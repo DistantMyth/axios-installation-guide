@@ -24,7 +24,7 @@ GitHub is where developers store, share, and collaborate on code. Think of it as
 
 - Enter your email address, create a strong password, and choose a professional username (avoid silly nicknames; you will put this on your resume!). You can also continue with Google or Apple.
   ![Enter details](Pasted%20image%2020260904031228.png)
-- Complete the quick captcha puzzle and enter the 6-digit OTP code sent to your email. You should see this:
+- Complete the quick captcha puzzle(if any) and enter the 6-digit OTP code sent to your email. You should see this:
   ![Enter OTP](Pasted%20image%2020260904031555.png)
 - Your GitHub account is now created! Keep your credentials safe.
 
@@ -56,19 +56,32 @@ CodeChef is an Indian competitive programming platform widely used for monthly c
   - Enter your Email.
   - Set a strong Password.
   - Check the Terms & Privacy Policy agreement, then click **REGISTER**.
+  - Click **Create Account**. If an email verification link is sent, open your inbox and click the verification link.
+  
+![CodeChef Verification](Pasted%20image%2020260904172043.png) ![CodeChef Verification](Pasted%20image%2020260904171939.png)
 
+![CodeChef Welcome](Pasted%20image%2020260904172620.png)
+
+![CodeChef Profile](Pasted%20image%2020260904172650.png)
+![CodeChef Student Profile](Pasted%20image%2020260904172736.png) ![CodeChef Student Details](Pasted%20image%2020260904172835.png)
+![CodeChef Details](Pasted%20image%2020260904172912.png)
+![CodeChef Form](Pasted%20image%2020260904172943.png)
+![CodeChef Form Complete](Pasted%20image%2020260904173018.png)
+
+- Your CodeChef account is now active!
 - Fill in your basic student details:
   - Country: **India**
-  - Current Institution / College Name: Search and select your college.
-  - Graduation Year: Select your expected graduation year.
+  - Current Institution / College Name: `Indian Institute of Information Technology, Lucknow Uttar Pradesh, India`.
+  - Graduation Year: `2030`.
   - User Type: **Student**
-  ![[Screenshot: CodeChef Student Profile Details]]
-
-- Click **Create Account**. If an email verification link is sent, open your inbox and click the verification link.
-- Your CodeChef account is now active!
-
----
-
+  - Prefered Programming Language: `C++`.
+  ![College Details](Pasted%20image%2020260904173219.png) ![Graduation Year](Pasted%20image%2020260904173238.png)
+![Preferred Language C++](Pasted%20image%2020260904173408.png)
+- If you want, you can change your username.
+![Change Username](Pasted%20image%2020260904173542.png)
+![[Pasted image 20260904173719.png]]
+![[Pasted image 20260904173908.png]]
+![Username Change Confirmation](Pasted%20image%2020260904174245.png)
 ## 1.4 Recommended Browser Extensions
 Install these browser extensions (available on Chrome Web Store, Firefox Add-ons, and Microsoft Edge Add-ons) to make your coding and contest experience 10x smoother:
 
@@ -83,8 +96,10 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
    - [Chrome Web Store Link](https://chromewebstore.google.com/detail/gakohpplicjdhhfllilcjpfildodfnnn?utm_source=item-share-cb)
    - ![Carrot Extension](Pasted%20image%2020260904113458.png)
 
-3. **Codeforces Enhancer**:
-   - Cleans up the Codeforces UI, adds multiple rating color highlights, and auto-hides solved problems.
+3. Similarly,
+- [Codeforces Rating-Based Heatmap](https://chromewebstore.google.com/detail/codeforces-rating-based-h/heajdhmohlobjebkgkpdomkaihaghkgb?hl=en)
+- [Codeforces Friends Tracker](https://chromewebstore.google.com/detail/codeforces-friends-tracke/gfdmmpimafkhcdekeddfeifcmcjbadam)
+- [CF Analytics](https://chromewebstore.google.com/detail/cf-analytics/hhljbjodjdbjbggddjaidojnlmaobcpo)
 
 ### For Web Development:
 1. **JSON Viewer / JSON Formatter**:
@@ -100,15 +115,17 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 ## 1.5 Essential VS Code Extensions
 Once you install VS Code (from your OS section below), open VS Code, click the **Extensions** icon on the left sidebar (shortcut: `Ctrl + Shift + X` on Windows/Linux, `Cmd + Shift + X` on Mac), search for the following extensions, and click **Install**:
 
-![[Screenshot: VS Code Extensions Tab]]
-
+![VS Code Extensions Tab](Pasted%20image%2020260904174839.png)
 ### C / C++ & Competitive Programming:
 - **C/C++** (by Microsoft): Syntax highlighting, code completion (IntelliSense), and debugging.
+![C/C++ Extension in VS Code](Pasted%20image%2020260904175101.png)
 - **C/C++ Extension Pack** (by Microsoft): Includes tools and CMake support.
-- **Competitive Programming Helper (cph)** (by Divyanshu Agrawal):
-  - Essential for CP! Works with the *Competitive Companion* browser extension to auto-fetch test cases and run them against your code in one click.
-  - ![[Screenshot: CPH extension in VS Code]]
 
+**Installation process of other extensions is similar to this one**
+
+
+- **Competitive Programming Helper (cph)** (by Divyanshu Agrawal):
+  - Essential for CP! Works with the *Competitive Companion* browser extension to auto-fetch test cases and run them against your code in one click(shortcut: ctrl + shift+ u).
 ### Python:
 - **Python** (by Microsoft): Linting, debugging, code formatting.
 - **Pylance** (by Microsoft): Super-fast autocomplete and type checking for Python.
@@ -159,7 +176,7 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
 Open **PowerShell as Administrator** and run this single command to install everything you need:
 
 ```powershell
-choco install -y git vscode nodejs-lts python3 7zip curl wget mingw
+choco install -y git vscode nodejs-lts python3 uv 7zip curl wget mingw
 ```
 
 What this installs:
@@ -167,9 +184,16 @@ What this installs:
 - `vscode`: Visual Studio Code editor.
 - `nodejs-lts`: Node.js (Long Term Support) & `npm` for web development.
 - `python3`: Python programming language & `pip`.
+- `uv`: Modern, blazing-fast Python package and project manager (replaces `pip` with 10x-100x faster installs).
 - `7zip`: Compression & extraction tool.
 - `curl` & `wget`: Command-line tools for downloading files and testing APIs.
 - `mingw`: MinGW-w64 (includes `gcc`, `g++`, and `gdb` compilers for C and C++).
+
+> [!NOTE]
+> *Alternative standalone install for uv:* If you prefer installing `uv` standalone via PowerShell directly:
+> ```powershell
+> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+> ```
 
 ![[Screenshot: Chocolatey Batch Installation in Progress]]
 
@@ -203,6 +227,7 @@ Open a regular PowerShell or Command Prompt window and run:
 gcc --version
 g++ --version
 python --version
+uv --version
 node --version
 git --version
 ```
@@ -293,9 +318,15 @@ Homebrew (`brew`) is the essential package manager for macOS.
 Run the following command in Terminal to install all essential tools:
 
 ```bash
-brew install git node python wget curl p7zip
+brew install git node python uv wget curl p7zip
 brew install --cask visual-studio-code
 ```
+
+> [!NOTE]
+> *Alternative standalone install for uv:* If you prefer installing `uv` standalone directly:
+> ```bash
+> curl -LsSf https://astral.sh/uv/install.sh | sh
+> ```
 
 ---
 
@@ -425,13 +456,19 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    sudo apt install -y git python3 python3-pip python3-venv curl wget p7zip-full
    ```
 
-4. Install Node.js and npm:
+4. Install uv (modern, blazing-fast Python package & project manager):
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+   *(uv installs to `~/.local/bin/uv` which is covered in the PATH section below).*
+
+5. Install Node.js and npm:
    ```bash
    sudo apt install -y nodejs npm
    ```
    *(Or install the latest LTS version using NodeSource).*
 
-5. Install Visual Studio Code:
+6. Install Visual Studio Code:
    ```bash
    sudo snap install --classic code
    ```
@@ -454,9 +491,9 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    sudo pacman -S --needed base-devel gdb
    ```
 
-3. Install Git, Python, Curl, Wget, and 7-Zip:
+3. Install Git, Python, uv, Curl, Wget, and 7-Zip:
    ```bash
-   sudo pacman -S git python python-pip curl wget p7zip
+   sudo pacman -S git python python-pip uv curl wget p7zip
    ```
 
 4. Install Node.js and npm:
@@ -488,9 +525,9 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    sudo dnf install -y gcc gcc-c++ gdb
    ```
 
-3. Install Git, Python, Curl, Wget, and 7-Zip:
+3. Install Git, Python, uv, Curl, Wget, and 7-Zip:
    ```bash
-   sudo dnf install -y git python3 python3-pip curl wget p7zip p7zip-plugins
+   sudo dnf install -y git python3 python3-pip uv curl wget p7zip p7zip-plugins
    ```
 
 4. Install Node.js and npm:
@@ -518,7 +555,7 @@ On Linux, your user environment variables and search paths are stored in shell c
 - If you use Zsh (default on Manjaro, Kali, macOS): `~/.zshrc`
 
 ### How Environment Variables Work:
-Whenever you install tools manually or through custom scripts (like Python local packages or `nvm`), they might install binaries to `~/.local/bin` or custom directories.
+Whenever you install tools manually or through custom scripts (like Python local packages, `uv`, or `nvm`), they might install binaries to `~/.local/bin` or custom directories.
 
 To add any custom directory to your PATH:
 1. Open `~/.bashrc` (or `~/.zshrc`) in an editor:
@@ -540,6 +577,7 @@ To add any custom directory to your PATH:
 gcc --version
 g++ --version
 python3 --version
+uv --version
 node --version
 git --version
 ```
@@ -589,5 +627,5 @@ Before starting your college lab or contest, run this quick checklist:
 - [ ] CodeChef account created & verified
 - [ ] VS Code installed with C/C++, CPH, and Python extensions
 - [ ] C++ compiler working with test file (`#include <bits/stdc++.h>`)
-- [ ] Python, Node.js, Git, Curl, 7-Zip, Wget responding in terminal
+- [ ] Python, uv, Node.js, Git, Curl, 7-Zip, Wget responding in terminal
 - [ ] Competitive Companion browser extension installed

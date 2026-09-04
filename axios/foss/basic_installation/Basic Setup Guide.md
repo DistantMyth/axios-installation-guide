@@ -58,15 +58,15 @@ CodeChef is an Indian competitive programming platform widely used for monthly c
   - Check the Terms & Privacy Policy agreement, then click **REGISTER**.
   - Click **Create Account**. If an email verification link is sent, open your inbox and click the verification link.
   
-![[Pasted image 20260904172043.png]]![[Pasted image 20260904171939.png]]
+![CodeChef Verification](Pasted%20image%2020260904172043.png) ![CodeChef Verification](Pasted%20image%2020260904171939.png)
 
-  ![[Pasted image 20260904172620.png]]
+![CodeChef Welcome](Pasted%20image%2020260904172620.png)
 
-![[Pasted image 20260904172650.png]]
-![[Pasted image 20260904172736.png]]![[Pasted image 20260904172835.png]]
-![[Pasted image 20260904172912.png]]
-![[Pasted image 20260904172943.png]]
-![[Pasted image 20260904173018.png]]
+![CodeChef Profile](Pasted%20image%2020260904172650.png)
+![CodeChef Student Profile](Pasted%20image%2020260904172736.png) ![CodeChef Student Details](Pasted%20image%2020260904172835.png)
+![CodeChef Details](Pasted%20image%2020260904172912.png)
+![CodeChef Form](Pasted%20image%2020260904172943.png)
+![CodeChef Form Complete](Pasted%20image%2020260904173018.png)
 
 - Your CodeChef account is now active!
 - Fill in your basic student details:
@@ -75,13 +75,13 @@ CodeChef is an Indian competitive programming platform widely used for monthly c
   - Graduation Year: `2030`.
   - User Type: **Student**
   - Prefered Programming Language: `C++`.
-  ![[Pasted image 20260904173219.png]]![[Pasted image 20260904173238.png]]
-![[Pasted image 20260904173408.png]]
+  ![College Details](Pasted%20image%2020260904173219.png) ![Graduation Year](Pasted%20image%2020260904173238.png)
+![Preferred Language C++](Pasted%20image%2020260904173408.png)
 - If you want, you can change your username.
-![[Pasted image 20260904173542.png]]
+![Change Username](Pasted%20image%2020260904173542.png)
 ![[Pasted image 20260904173719.png]]
 ![[Pasted image 20260904173908.png]]
-![[Pasted image 20260904174245.png]]
+![Username Change Confirmation](Pasted%20image%2020260904174245.png)
 ## 1.4 Recommended Browser Extensions
 Install these browser extensions (available on Chrome Web Store, Firefox Add-ons, and Microsoft Edge Add-ons) to make your coding and contest experience 10x smoother:
 
@@ -115,10 +115,10 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 ## 1.5 Essential VS Code Extensions
 Once you install VS Code (from your OS section below), open VS Code, click the **Extensions** icon on the left sidebar (shortcut: `Ctrl + Shift + X` on Windows/Linux, `Cmd + Shift + X` on Mac), search for the following extensions, and click **Install**:
 
-![[Pasted image 20260904174839.png]]
+![VS Code Extensions Tab](Pasted%20image%2020260904174839.png)
 ### C / C++ & Competitive Programming:
 - **C/C++** (by Microsoft): Syntax highlighting, code completion (IntelliSense), and debugging.
-![[Pasted image 20260904175101.png]]
+![C/C++ Extension in VS Code](Pasted%20image%2020260904175101.png)
 - **C/C++ Extension Pack** (by Microsoft): Includes tools and CMake support.
 
 **Installation process of other extensions is similar to this one**
