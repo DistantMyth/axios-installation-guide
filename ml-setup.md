@@ -27,31 +27,35 @@ Kaggle is the standard community hub for datasets, competitions, and free cloud 
 ### Step 1: Register an Account
 1. Go to [kaggle.com](https://www.kaggle.com).
 2. Click **Register** in the top right.  
-   ![Kaggle Register Button](images/placeholder-kaggle-register.png)  
-   *📸 Screenshot: Click "Register" in the top-right corner of kaggle.com*
+   ![Kaggle Register Button](images/kaggle-setup-1.png)  
 3. Choose **Register with Google** for single-click sign-in, or use an email and password.
+   ![Kaggle Sign-up Modal](images/kaggle-setup-2.png)  
 4. Set a professional username (this forms your public Kaggle portfolio URL: `kaggle.com/your-username`).  
-   ![Kaggle Sign-up Modal](images/placeholder-kaggle-signup.png)  
-   *📸 Screenshot: Registration modal with Google sign-in and username field*
+   ![Kaggle Sign-up Modal](images/kaggle-setup-3.png)  
 
 ### Step 2: Phone Verification (Mandatory for Compute)
 > [!IMPORTANT]
 > By default, new accounts cannot turn on GPUs/TPUs or enable internet access inside notebooks.
 
 1. Click your profile avatar (top-right) $\rightarrow$ select **Settings**.  
-   ![Kaggle Avatar Settings](images/placeholder-kaggle-avatar-settings.png)  
-   *📸 Screenshot: Profile avatar menu $\rightarrow$ Settings*
+   ![Kaggle Avatar Settings](images/kaggle-setup-4.png)  
+
+   ![Kaggle Avatar Settings](images/kaggle-setup-5.png)  
 2. Scroll to the **Phone verification** section.
+   ![Kaggle Phone Verification](images/kaggle-setup-6.png)  
 3. Enter your phone number with your country code (e.g., `+91` for India) and verify the OTP sent via SMS.  
-   ![Kaggle Phone Verification](images/placeholder-kaggle-phone-verify.png)  
-   *📸 Screenshot: Phone verification section with country code and OTP input*
 4. ✅ Once verified, your account unlocks **~30 hours/week** of free GPU quota (T4 / P100) and internet access inside Kaggle kernels.
 
 ### Step 3: Complete the Profile
+   ![Kaggle Edit Profile](images/kaggle-setup-7.png)  
+
 1. Add a profile photo and short bio.
 2. Link your **GitHub** and **LinkedIn** profiles so competition rankings and public notebooks act as resume credentials.  
-   ![Kaggle Edit Profile](images/placeholder-kaggle-profile.png)  
-   *📸 Screenshot: Profile page with photo, bio, and linked social profiles*
+   ![Kaggle Edit Profile](images/kaggle-setup-8.png)  
+
+   ![Kaggle Edit Profile](images/kaggle-setup-9.png)  
+
+   ![Kaggle Edit Profile](images/kaggle-setup-10.png)  
 
 ---
 
