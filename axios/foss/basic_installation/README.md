@@ -74,13 +74,13 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 ### For Competitive Programming (Codeforces / CodeChef):
 1. **Competitive Companion**:
    - Parses problem test cases directly from Codeforces, CodeChef, AtCoder, etc., into your VS Code editor with a single click.
-   - [Chrome Web Store Link](https://chromewebstore.google.com/detail/competitive-companion/cjnmckjndlpiamollfdakhflhaehbmcng)
-   - ![[Screenshot: Competitive Companion Extension in Web Store]]
+   - [Chrome Web Store Link](https://chromewebstore.google.com/detail/cjnmckjndlpiamhfimnnjmnckgghkjbl?utm_source=item-share-cb)
+   - ![Competitive Companion Extension](Pasted%20image%2020260904112851.png)
 
 2. **Carrot**:
    - Calculates predicted rating changes in real-time during live Codeforces contests.
-   - [Chrome Web Store Link](https://chromewebstore.google.com/detail/carrot/gniknkfdngackbijbbkchcmegicnjond)
-   - ![[Screenshot: Carrot Extension Codeforces]]
+   - [Chrome Web Store Link](https://chromewebstore.google.com/detail/gakohpplicjdhhfllilcjpfildodfnnn?utm_source=item-share-cb)
+   - ![Carrot Extension](Pasted%20image%2020260904113458.png)
 
 3. **Codeforces Enhancer**:
    - Cleans up the Codeforces UI, adds multiple rating color highlights, and auto-hides solved problems.
@@ -88,8 +88,11 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 ### For Web Development:
 1. **JSON Viewer / JSON Formatter**:
    - Makes API responses and JSON files clean, colorful, and readable in the browser instead of raw unreadable text.
+   - [JSON Formatter](https://chromewebstore.google.com/detail/bcjindcccaagfpapjjmafapmmgkkhgoa?utm_source=item-share-cb)
+   - [JSON Viewer](https://chromewebstore.google.com/detail/aimiinbnnkboelefkjlenlgimcabobli?utm_source=item-share-cb)
 2. **React Developer Tools** *(optional for later)*:
    - Inspects React component hierarchies in the browser's developer tools.
+   - [Chrome Web Store Link](https://chromewebstore.google.com/detail/fmkadmapgofadopljbjfkapdkoienihi?utm_source=item-share-cb)
 
 ---
 
