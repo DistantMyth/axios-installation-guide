@@ -23,23 +23,20 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
 
 1. Press the **Windows Key** on your keyboard, type **PowerShell**.
 2. **Right-click** on **Windows PowerShell** and select **Run as Administrator**.
-![Run PowerShell as Administrator](images/powershell-run-as-admin.png)
-
+   ![Run PowerShell as Administrator](images/powershell-run-as-admin.png)
 3. Click **Yes** on the User Account Control (UAC) prompt.
 4. Copy and paste the following command into PowerShell and press **Enter**:
    ```powershell
    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
    ```
    ![Chocolatey Installation Command in PowerShell](images/chocolatey-install-command.png)
-
 5. Wait 30–60 seconds until the installation finishes.
 6. Close the PowerShell window, then open a fresh PowerShell window (as Administrator) and verify it works by typing:
    ```powershell
    choco --version
    ```
    If it prints a version number (like `2.x.x`), Chocolatey is ready!
-![Chocolatey Version Check](images/choco-version-check.png)
-
+   ![Chocolatey Version Check](images/choco-version-check.png)
 
 > [!NOTE]
 > *Alternative*: Modern Windows 11/10 also comes with a built-in package manager called `winget`. However, Chocolatey is recommended here as it reliably configures developer PATH variables.
@@ -71,10 +68,7 @@ What this installs:
 > ```
 
 ![Chocolatey Tools Installation Output 1](images/choco-install-tools-1.png)
-
 ![Chocolatey Tools Installation Output 2](images/choco-install-tools-2.png)
-
-
 ![Chocolatey Tools Installation Output 3](images/choco-install-tools-3.png)
 
 ---
@@ -88,16 +82,13 @@ Chocolatey automatically sets up most paths, but you must verify that the C/C++ 
 
 ### Step-by-Step PATH Verification:
 1. Press `Windows Key + R`, type `sysdm.cpl`, and hit **Enter** (or search **Edit the system environment variables** in the Start Menu).
-![System Properties sysdm.cpl](images/system-properties-run-sysdm.png)
-
+   ![System Properties sysdm.cpl](images/system-properties-run-sysdm.png)
 2. In the System Properties window, click on the **Advanced** tab, then click the **Environment Variables...** button at the bottom.
-![System Properties Environment Variables Button](images/system-properties-environment-variables.png)
-
+   ![System Properties Environment Variables Button](images/system-properties-environment-variables.png)
 3. In the lower section called **System variables**, find the variable named **Path** and click **Edit...**.
-![Environment Variables System Path Selection](images/environment-variables-edit-path.png)
-
+   ![Environment Variables System Path Selection](images/environment-variables-edit-path.png)
 4. Check if the MinGW bin path exists in the list (usually `C:\tools\mingw64\bin` or `C:\ProgramData\chocolatey\bin`).
-![Edit Environment Variable MinGW Path](images/edit-environment-variable-mingw-path.png)
+   ![Edit Environment Variable MinGW Path](images/edit-environment-variable-mingw-path.png)
 
    - If it is **not** there:
      - Click **New**.
