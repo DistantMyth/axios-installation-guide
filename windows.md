@@ -8,17 +8,23 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
 
 1. Press the **Windows Key** on your keyboard, type **PowerShell**.
 2. **Right-click** on **Windows PowerShell** and select **Run as Administrator**.
+<img width="674" height="668" alt="image" src="https://github.com/user-attachments/assets/14e31994-9891-4560-ac10-c1c843add7eb" />
+
 3. Click **Yes** on the User Account Control (UAC) prompt.
 4. Copy and paste the following command into PowerShell and press **Enter**:
    ```powershell
    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
    ```
+   <img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/b13eca73-a341-447e-84f6-328232f3cce2" />
+
 5. Wait 30–60 seconds until the installation finishes.
 6. Close the PowerShell window, then open a fresh PowerShell window (as Administrator) and verify it works by typing:
    ```powershell
    choco --version
    ```
    If it prints a version number (like `2.x.x`), Chocolatey is ready!
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/055d64c4-8d91-4b0a-8308-59246e689d7c" />
+
 
 > [!NOTE]
 > *Alternative*: Modern Windows 11/10 also comes with a built-in package manager called `winget`. However, Chocolatey is recommended here as it reliably configures developer PATH variables.
@@ -49,6 +55,13 @@ What this installs:
 > powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 > ```
 
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/3c6a889d-e551-432e-ad1b-43e2f0619fae" />
+
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/e5a6b687-854e-4c6f-b4b8-de4780e9f7f3" />
+
+
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/1b5284fc-a5c3-42d9-b983-9e25af8072a7" />
+
 ---
 
 ## 2.3 Compilers & Environment Variables (PATH)
@@ -60,9 +73,17 @@ Chocolatey automatically sets up most paths, but you must verify that the C/C++ 
 
 ### Step-by-Step PATH Verification:
 1. Press `Windows Key + R`, type `sysdm.cpl`, and hit **Enter** (or search **Edit the system environment variables** in the Start Menu).
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/ed852d20-e2a0-42d7-9c2d-d6a4f82fa7b9" />
+
 2. In the System Properties window, click on the **Advanced** tab, then click the **Environment Variables...** button at the bottom.
+<img width="250" style="height: auto;" alt="image" src="https://github.com/user-attachments/assets/29f1e37e-b4a4-4d21-ab24-b4166a87606a" />
+
 3. In the lower section called **System variables**, find the variable named **Path** and click **Edit...**.
+<img width="483" height="409" alt="image" src="https://github.com/user-attachments/assets/d5451ead-ac7f-4875-90a8-6fc274532028" />
+
 4. Check if the MinGW bin path exists in the list (usually `C:\tools\mingw64\bin` or `C:\ProgramData\chocolatey\bin`).
+<img width="527" height="542" alt="image" src="https://github.com/user-attachments/assets/c0b082e6-802c-44fc-8586-c4c777ccbc06" />
+
    - If it is **not** there:
      - Click **New**.
      - Paste: `C:\tools\mingw64\bin` (or the folder where MinGW's `gcc.exe` was installed).
@@ -82,6 +103,8 @@ git --version
 ```
 
 If all of them return version numbers, your Windows development environment is completely set up!
+
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/b7ae44ec-ae7d-401c-ba45-134242c5d2e7" />
 
 ---
 
