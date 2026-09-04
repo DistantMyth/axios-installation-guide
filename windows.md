@@ -155,6 +155,49 @@ git config --global user.email "your_email@example.com"
 Git is now 100% installed, configured, and authenticated on your Windows PC!
 
 ---
+## 2.5 Windows Subsystem for Linux (WSL)
+
+Many standard tools are designed for Linux. Instead of dual-booting, Windows allows you to run a full Ubuntu Linux environment directly inside Windows using WSL.
+
+### Step 1: Install WSL and Ubuntu
+1. Open **PowerShell as Administrator**.
+
+2. Run the following command: 
+   ```powershell
+   wsl --install
+   ```
+   This command automatically installs Ubuntu as a default distribution.
+
+3. Wait for the download to finish. Restart your computer **if** prompted.
+
+![Ubuntu being installed](images/wsl.png)
+
+
+### Step 2: Configure your Linux Profile
+1. After your computer restarts, a new terminal window will automatically open saying "Installing, this may take a few minutes..."
+
+2. You will be asked to create a **UNIX username**. Type a simple username (all lowercase, no spaces) and hit Enter.
+
+3. You will be asked to create a **password**. 
+   > When you type your password in a Linux terminal, **nothing will show up on the screen**. This is a normal security feature. Just type it carefully and hit Enter, then retype it to confirm.
+4. Press Enter for any confirmation window to choose the default operation.
+
+## Step 3: Update Linux and Install Basic Tools
+
+Run the following commands:
+   
+1. 
+   ```Bash 
+   sudo apt update && sudo apt upgrade -y 
+   ```
+   
+2. 
+   ```Bash 
+   sudo apt install -y build-essential exiftool nmap netcat-traditional binwalk steghide
+   ```
+   
+
+---
 
 ## Next Steps
 
