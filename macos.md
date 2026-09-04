@@ -77,22 +77,22 @@ brew install --cask visual-studio-code
    ```bash
    brew list --versions gcc
    ```
-   You will see something like `gcc 14.2.0` (meaning GCC version 14). Homebrew names the executables with their major version number, e.g., `gcc-14` and `g++-14`.
+   You will see something like `gcc 16.2.0` (meaning GCC version 16). Homebrew names the executables with their major version number, e.g., `gcc-16` and `g++-16`.
 
 3. Configure your Mac so `gcc` and `g++` automatically point to GNU GCC:
    Run the following commands to create aliases in your `~/.zshrc` file:
    ```bash
-   echo 'alias gcc="gcc-14"' >> ~/.zshrc
-   echo 'alias g++="g++-14"' >> ~/.zshrc
+   echo 'alias gcc="gcc-16"' >> ~/.zshrc
+   echo 'alias g++="g++-16"' >> ~/.zshrc
    source ~/.zshrc
    ```
-   *(Note: If your Homebrew installed version 13, replace `14` with `13`).*
+   *(Note: If your Homebrew installed a different major version like 15 or 14, replace `16` with your installed version number).*
 
 4. Verify that `g++` is now genuine GCC:
    ```bash
    g++ --version
    ```
-   It should say `g++-14 (Homebrew GCC ...)` instead of `Apple clang version ...`.
+   It should say `g++-16 (Homebrew GCC ...)` instead of `Apple clang version ...`.
 
 5. Test compiling a C++ file with `<bits/stdc++.h>`:
    ```bash
