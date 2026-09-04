@@ -47,14 +47,15 @@ Codeforces is one of the most popular platforms in the world for competitive pro
 CodeChef is an Indian competitive programming platform widely used for monthly contests, learning data structures, and college hackathons.
 
 - Visit [https://www.codechef.com/](https://www.codechef.com/).
-- Click the **New User / Register** button in the top right corner.
-  ![[Screenshot: CodeChef Homepage and Register Button]]
+- Click the **Sign Up** button in the top right corner.
+  ![Sign up on CodeChef](Pasted%20image%2020260904103058.png)
 
-- You can sign up using your **Google Account** / **GitHub Account**, or enter your email manually:
-  ![[Screenshot: CodeChef Sign Up Form]]
+- You can sign up using your **Google Account**, or enter your details manually:
+  ![CodeChef Sign Up Details](Pasted%20image%2020260904103129.png)
+  - Enter your Full Name.
   - Enter your Email.
-  - Choose a unique Username/Handle.
   - Set a strong Password.
+  - Check the Terms & Privacy Policy agreement, then click **REGISTER**.
 
 - Fill in your basic student details:
   - Country: **India**
