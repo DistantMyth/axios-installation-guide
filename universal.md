@@ -159,5 +159,6 @@ Now that your accounts and extensions are set up, choose your operating system g
 - 🪟 **[2. Windows Setup Guide](windows.md)**
 - 🍎 **[3. macOS Setup Guide](macos.md)**
 - 🐧 **[4. Linux Setup Guide](linux.md)**
+- 🤖 **[Machine Learning Setup Guide](ml-setup.md)**
 
 Or return to the **[Basic Installation Overview](README.md)**.
