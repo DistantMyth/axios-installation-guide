@@ -4,6 +4,23 @@ These steps are done directly in your web browser and code editor, so they are *
 
 ---
 
+## 📑 Table of Contents
+
+- [1.1 GitHub Account](#11-github-account)
+- [1.2 Codeforces Account](#12-codeforces-account)
+- [1.3 CodeChef Account](#13-codechef-account)
+- [1.4 Recommended Browser Extensions](#14-recommended-browser-extensions)
+  - [Competitive Programming Extensions](#for-competitive-programming-codeforces--codechef)
+  - [Web Development Extensions](#for-web-development)
+- [1.5 Essential VS Code Extensions](#15-essential-vs-code-extensions)
+  - [C / C++ & Competitive Programming](#c--c--competitive-programming)
+  - [Python](#python)
+  - [Web Development](#web-development)
+  - [Quality of Life & Themes](#quality-of-life--themes)
+- [Next Steps](#next-steps)
+
+---
+
 ## 1.1 GitHub Account
 GitHub is where developers store, share, and collaborate on code. Think of it as Google Drive or cloud storage, but built specifically for code.
 

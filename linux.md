@@ -4,6 +4,23 @@ Linux is the developer standard in industry and academia. There are dozens of Li
 
 ---
 
+## 📑 Table of Contents
+
+- [4.1 Popular Linux Distros and Their Base Families](#41-popular-linux-distros-and-their-base-families)
+- [4.2 Installation by Distro Base](#42-installation-by-distro-base)
+  - [Option A: Debian / Ubuntu-based (`apt`)](#option-a-debian--ubuntu-based-apt)
+  - [Option B: Arch Linux-based (`pacman`)](#option-b-arch-linux-based-pacman)
+  - [Option C: Fedora / Red Hat-based (`dnf`)](#option-c-fedora--red-hat-based-dnf)
+- [4.3 Environment Variables & PATH on Linux](#43-environment-variables--path-on-linux)
+  - [How Environment Variables Work](#how-environment-variables-work)
+  - [Verify All Tools on Linux](#verify-all-tools-on-linux)
+- [4.4 Git Setup & Authentication (Linux)](#44-git-setup--authentication-linux)
+  - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
+  - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-via-ssh)
+- [Next Steps](#next-steps)
+
+---
+
 ## 4.1 Popular Linux Distros and Their Base Families
 
 Find your distribution in the table below to know which package manager section to follow:

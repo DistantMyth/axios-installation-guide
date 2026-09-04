@@ -4,6 +4,17 @@ Before starting your college lab or contest, run through this quick checklist to
 
 ---
 
+## 📑 Table of Contents
+
+- [1. Developer & Contest Accounts](#-1-developer--contest-accounts)
+- [2. VS Code & Extensions](#-2-vs-code--extensions)
+- [3. Compiler & Test Code](#️-3-compiler--test-code)
+- [4. Command Line Tools](#-4-command-line-tools)
+- [5. Git & GitHub Authentication](#-5-git--github-authentication)
+- [6. Browser Extensions](#-6-browser-extensions)
+
+---
+
 ## 📋 Readiness Checklist
 
 ### 🌐 1. Developer & Contest Accounts

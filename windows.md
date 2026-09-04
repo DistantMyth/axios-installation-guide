@@ -4,6 +4,21 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
 
 ---
 
+## 📑 Table of Contents
+
+- [2.1 Install Package Manager: Chocolatey](#21-install-package-manager-chocolatey)
+- [2.2 Install All Development Tools (One-Click)](#22-install-all-development-tools-one-click)
+- [2.3 Compilers & Environment Variables (PATH)](#23-compilers--environment-variables-path)
+  - [What is the PATH Environment Variable?](#what-is-the-path-environment-variable)
+  - [Step-by-Step PATH Verification](#step-by-step-path-verification)
+  - [Verify Everything in a New Terminal](#verify-everything-in-a-new-terminal)
+- [2.4 Git Setup & Authentication](#24-git-setup--authentication-windows)
+  - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
+  - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-ssh-key-method)
+- [Next Steps](#next-steps)
+
+---
+
 ## 2.1 Install Package Manager: Chocolatey
 
 1. Press the **Windows Key** on your keyboard, type **PowerShell**.

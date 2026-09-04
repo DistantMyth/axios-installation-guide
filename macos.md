@@ -4,6 +4,19 @@ macOS is Unix-based and fantastic for development, but it has a few specific qui
 
 ---
 
+## 📑 Table of Contents
+
+- [3.1 Install Package Manager: Homebrew](#31-install-package-manager-homebrew)
+- [3.2 Install Development Tools via Homebrew](#32-install-development-tools-via-homebrew)
+- [3.3 Compilers: Clang vs GCC Problem & <bits/stdc++.h>](#33-compilers-the-mac-clang-vs-gcc-problem--bitsstdch)
+  - [The Fix: Install Real GNU GCC via Homebrew](#the-fix-install-real-gnu-gcc-via-homebrew)
+- [3.4 Git Setup & Authentication (macOS)](#34-git-setup--authentication-macos)
+  - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
+  - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-via-ssh)
+- [Next Steps](#next-steps)
+
+---
+
 ## 3.1 Install Package Manager: Homebrew
 Homebrew (`brew`) is the essential package manager for macOS.
 

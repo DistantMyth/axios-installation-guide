@@ -1,4 +1,4 @@
-# Axios — Freshers # Freshers & Juniors Basic Setup Guide Juniors Basic Setup Guide
+# Axios — Freshers & Juniors Basic Setup Guide
 
 Welcome to college! This guide will help you set up your personal computer for programming, coursework, competitive programming (CP), and open-source development from scratch.
 
