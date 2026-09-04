@@ -8,14 +8,15 @@ Essential setup for Machine Learning & Data Science: local VS Code environment, 
 
 Open VS Code, click the **Extensions** icon on the left sidebar (shortcut: `Ctrl + Shift + X` on Windows/Linux, `Cmd + Shift + X` on Mac), search for the following extensions, and click **Install**:
 
-![VS Code Extensions Tab](images/Pasted%20image%2020260904174839.png)
+![VS Code Extensions Tab](images/vs-extension-1.png)
 
 - [ ] **Python** (`ms-python.python`) & **Pylance** (`ms-python.vscode-pylance`): Autocomplete, type hints, and code navigation.
 - [ ] **Jupyter** (`ms-toolsai.jupyter`): Run `.ipynb` notebooks natively inside VS Code without launching a browser server.
 - [ ] **Ruff** (`charliermarsh.ruff`): Fast linting and code formatting built by the same creators as `uv`.
 
-![VS Code Extensions Search](images/placeholder-vscode-extensions.png)  
-*📸 Screenshot: Extensions sidebar (`Ctrl+Shift+X`) searching and installing Python, Jupyter, and Ruff*
+![VS Code Extensions Search](images/vs-extension-2.png)  
+
+![VS Code Extensions Search](images/vs-extension-3.png)  
 
 ---
 
