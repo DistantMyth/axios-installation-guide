@@ -159,7 +159,7 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
 Open **PowerShell as Administrator** and run this single command to install everything you need:
 
 ```powershell
-choco install -y git vscode nodejs-lts python3 uv 7zip curl wget mingw
+choco install -y git vscode nodejs-lts python3 7zip curl wget mingw
 ```
 
 What this installs:
@@ -167,16 +167,9 @@ What this installs:
 - `vscode`: Visual Studio Code editor.
 - `nodejs-lts`: Node.js (Long Term Support) & `npm` for web development.
 - `python3`: Python programming language & `pip`.
-- `uv`: Modern, blazing-fast Python package and project manager (replaces `pip` with 10x-100x faster installs).
 - `7zip`: Compression & extraction tool.
 - `curl` & `wget`: Command-line tools for downloading files and testing APIs.
 - `mingw`: MinGW-w64 (includes `gcc`, `g++`, and `gdb` compilers for C and C++).
-
-> [!NOTE]
-> *Alternative standalone install for uv:* If you prefer installing `uv` standalone via PowerShell directly:
-> ```powershell
-> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-> ```
 
 ![[Screenshot: Chocolatey Batch Installation in Progress]]
 
@@ -210,7 +203,6 @@ Open a regular PowerShell or Command Prompt window and run:
 gcc --version
 g++ --version
 python --version
-uv --version
 node --version
 git --version
 ```
@@ -301,15 +293,9 @@ Homebrew (`brew`) is the essential package manager for macOS.
 Run the following command in Terminal to install all essential tools:
 
 ```bash
-brew install git node python uv wget curl p7zip
+brew install git node python wget curl p7zip
 brew install --cask visual-studio-code
 ```
-
-> [!NOTE]
-> *Alternative standalone install for uv:* If you prefer installing `uv` standalone directly:
-> ```bash
-> curl -LsSf https://astral.sh/uv/install.sh | sh
-> ```
 
 ---
 
@@ -439,19 +425,13 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    sudo apt install -y git python3 python3-pip python3-venv curl wget p7zip-full
    ```
 
-4. Install uv (modern, blazing-fast Python package & project manager):
-   ```bash
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
-   *(uv installs to `~/.local/bin/uv` which is covered in the PATH section below).*
-
-5. Install Node.js and npm:
+4. Install Node.js and npm:
    ```bash
    sudo apt install -y nodejs npm
    ```
    *(Or install the latest LTS version using NodeSource).*
 
-6. Install Visual Studio Code:
+5. Install Visual Studio Code:
    ```bash
    sudo snap install --classic code
    ```
@@ -474,9 +454,9 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    sudo pacman -S --needed base-devel gdb
    ```
 
-3. Install Git, Python, uv, Curl, Wget, and 7-Zip:
+3. Install Git, Python, Curl, Wget, and 7-Zip:
    ```bash
-   sudo pacman -S git python python-pip uv curl wget p7zip
+   sudo pacman -S git python python-pip curl wget p7zip
    ```
 
 4. Install Node.js and npm:
@@ -508,9 +488,9 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    sudo dnf install -y gcc gcc-c++ gdb
    ```
 
-3. Install Git, Python, uv, Curl, Wget, and 7-Zip:
+3. Install Git, Python, Curl, Wget, and 7-Zip:
    ```bash
-   sudo dnf install -y git python3 python3-pip uv curl wget p7zip p7zip-plugins
+   sudo dnf install -y git python3 python3-pip curl wget p7zip p7zip-plugins
    ```
 
 4. Install Node.js and npm:
@@ -538,7 +518,7 @@ On Linux, your user environment variables and search paths are stored in shell c
 - If you use Zsh (default on Manjaro, Kali, macOS): `~/.zshrc`
 
 ### How Environment Variables Work:
-Whenever you install tools manually or through custom scripts (like Python local packages, `uv`, or `nvm`), they might install binaries to `~/.local/bin` or custom directories.
+Whenever you install tools manually or through custom scripts (like Python local packages or `nvm`), they might install binaries to `~/.local/bin` or custom directories.
 
 To add any custom directory to your PATH:
 1. Open `~/.bashrc` (or `~/.zshrc`) in an editor:
@@ -560,7 +540,6 @@ To add any custom directory to your PATH:
 gcc --version
 g++ --version
 python3 --version
-uv --version
 node --version
 git --version
 ```
@@ -610,5 +589,5 @@ Before starting your college lab or contest, run this quick checklist:
 - [ ] CodeChef account created & verified
 - [ ] VS Code installed with C/C++, CPH, and Python extensions
 - [ ] C++ compiler working with test file (`#include <bits/stdc++.h>`)
-- [ ] Python, uv, Node.js, Git, Curl, 7-Zip, Wget responding in terminal
+- [ ] Python, Node.js, Git, Curl, 7-Zip, Wget responding in terminal
 - [ ] Competitive Companion browser extension installed
