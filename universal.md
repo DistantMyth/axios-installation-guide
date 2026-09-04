@@ -9,11 +9,11 @@ GitHub is where developers store, share, and collaborate on code. Think of it as
 
 1. Visit [www.github.com](https://www.github.com).
 2. Click **Sign up** in the top right corner.
-   ![Sign up on GitHub](Pasted%20image%2020260904030941.png)
+   ![Sign up on GitHub](images/Pasted%20image%2020260904030941.png)
 3. Enter your email address, create a strong password, and choose a professional username (avoid silly nicknames; you will put this on your resume!). You can also continue with Google or Apple.
-   ![Enter details](Pasted%20image%2020260904031228.png)
+   ![Enter details](images/Pasted%20image%2020260904031228.png)
 4. Complete the quick captcha puzzle (if prompted) and enter the 6-digit OTP code sent to your email.
-   ![Enter OTP](Pasted%20image%2020260904031555.png)
+   ![Enter OTP](images/Pasted%20image%2020260904031555.png)
 5. Your GitHub account is now created! Keep your credentials safe.
 
 ---
@@ -23,9 +23,9 @@ Codeforces is one of the most popular platforms in the world for competitive pro
 
 1. Visit [https://codeforces.com/](https://codeforces.com/).
 2. Click **Register** on the top right corner.
-   ![Codeforces Register](Pasted%20image%2020260904044811.png)
+   ![Codeforces Register](images/Pasted%20image%2020260904044811.png)
 3. Choose a professional handle (username), enter your email address, and create a secure password (you can also register using your Gmail account).
-   ![Codeforces Details](Pasted%20image%2020260904045015.png)
+   ![Codeforces Details](images/Pasted%20image%2020260904045015.png)
 4. Check your email inbox. You will receive an email with a verification link — click that link to activate your account.
 5. Your Codeforces account is ready!
 
@@ -36,24 +36,24 @@ CodeChef is an Indian competitive programming platform widely used for monthly c
 
 1. Visit [https://www.codechef.com/](https://www.codechef.com/).
 2. Click the **Sign Up** button in the top right corner.
-   ![Sign up on CodeChef](Pasted%20image%2020260904103058.png)
+   ![Sign up on CodeChef](images/Pasted%20image%2020260904103058.png)
 3. You can sign up using your **Google Account**, or enter your details manually:
-   ![CodeChef Sign Up Details](Pasted%20image%2020260904103129.png)
+   ![CodeChef Sign Up Details](images/Pasted%20image%2020260904103129.png)
    - Enter your Full Name.
    - Enter your Email.
    - Set a strong Password.
    - Check the Terms & Privacy Policy agreement, then click **REGISTER**.
    - Click **Create Account**. If an email verification link is sent, open your inbox and click the verification link.
 
-   ![CodeChef Verification](Pasted%20image%2020260904172043.png) ![CodeChef Verification](Pasted%20image%2020260904171939.png)
+   ![CodeChef Verification](images/Pasted%20image%2020260904172043.png) ![CodeChef Verification](images/Pasted%20image%2020260904171939.png)
 
-   ![CodeChef Welcome](Pasted%20image%2020260904172620.png)
+   ![CodeChef Welcome](images/Pasted%20image%2020260904172620.png)
 
-   ![CodeChef Profile](Pasted%20image%2020260904172650.png)
-   ![CodeChef Student Profile](Pasted%20image%2020260904172736.png) ![CodeChef Student Details](Pasted%20image%2020260904172835.png)
-   ![CodeChef Details](Pasted%20image%2020260904172912.png)
-   ![CodeChef Form](Pasted%20image%2020260904172943.png)
-   ![CodeChef Form Complete](Pasted%20image%2020260904173018.png)
+   ![CodeChef Profile](images/Pasted%20image%2020260904172650.png)
+   ![CodeChef Student Profile](images/Pasted%20image%2020260904172736.png) ![CodeChef Student Details](images/Pasted%20image%2020260904172835.png)
+   ![CodeChef Details](images/Pasted%20image%2020260904172912.png)
+   ![CodeChef Form](images/Pasted%20image%2020260904172943.png)
+   ![CodeChef Form Complete](images/Pasted%20image%2020260904173018.png)
 
 4. Fill in your basic student details:
    - Country: **India**
@@ -62,12 +62,12 @@ CodeChef is an Indian competitive programming platform widely used for monthly c
    - User Type: **Student**
    - Preferred Programming Language: `C++`.
 
-   ![College Details](Pasted%20image%2020260904173219.png) ![Graduation Year](Pasted%20image%2020260904173238.png)
-   ![Preferred Language C++](Pasted%20image%2020260904173408.png)
+   ![College Details](images/Pasted%20image%2020260904173219.png) ![Graduation Year](images/Pasted%20image%2020260904173238.png)
+   ![Preferred Language C++](images/Pasted%20image%2020260904173408.png)
 
 5. If you want, you can update your username:
-   ![Change Username](Pasted%20image%2020260904173542.png)
-   ![Username Change Confirmation](Pasted%20image%2020260904174245.png)
+   ![Change Username](images/Pasted%20image%2020260904173542.png)
+   ![Username Change Confirmation](images/Pasted%20image%2020260904174245.png)
 
 ---
 
@@ -78,12 +78,12 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 1. **Competitive Companion**:
    - Parses problem test cases directly from Codeforces, CodeChef, AtCoder, etc., into your VS Code editor with a single click.
    - [Chrome Web Store Link](https://chromewebstore.google.com/detail/cjnmckjndlpiamhfimnnjmnckgghkjbl?utm_source=item-share-cb)
-   - ![Competitive Companion Extension](Pasted%20image%2020260904112851.png)
+   - ![Competitive Companion Extension](images/Pasted%20image%2020260904112851.png)
 
 2. **Carrot**:
    - Calculates predicted rating changes in real-time during live Codeforces contests.
    - [Chrome Web Store Link](https://chromewebstore.google.com/detail/gakohpplicjdhhfllilcjpfildodfnnn?utm_source=item-share-cb)
-   - ![Carrot Extension](Pasted%20image%2020260904113458.png)
+   - ![Carrot Extension](images/Pasted%20image%2020260904113458.png)
 
 3. **Helpful Extras**:
    - [Codeforces Rating-Based Heatmap](https://chromewebstore.google.com/detail/codeforces-rating-based-h/heajdhmohlobjebkgkpdomkaihaghkgb?hl=en)
@@ -104,11 +104,11 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 ## 1.5 Essential VS Code Extensions
 Once you install VS Code (from your OS guide), open VS Code, click the **Extensions** icon on the left sidebar (shortcut: `Ctrl + Shift + X` on Windows/Linux, `Cmd + Shift + X` on Mac), search for the following extensions, and click **Install**:
 
-![VS Code Extensions Tab](Pasted%20image%2020260904174839.png)
+![VS Code Extensions Tab](images/Pasted%20image%2020260904174839.png)
 
 ### C / C++ & Competitive Programming:
 - **C/C++** (by Microsoft): Syntax highlighting, code completion (IntelliSense), and debugging.
-  ![C/C++ Extension in VS Code](Pasted%20image%2020260904175101.png)
+  ![C/C++ Extension in VS Code](images/Pasted%20image%2020260904175101.png)
 - **C/C++ Extension Pack** (by Microsoft): Includes tools and CMake support.
 - **Competitive Programming Helper (cph)** (by Divyanshu Agrawal):
   - Essential for CP! Works with the *Competitive Companion* browser extension to auto-fetch test cases and run them against your code in one click (shortcut: `Ctrl + Shift + U`).

@@ -71,4 +71,4 @@ Run these commands in your terminal to verify that each tool responds with a ver
 
 🎉 **You are all set! Welcome to the college developer community!**
 
-Return to the **[Basic Installation Overview](README.md)** or explore more on the **[FOSS Wing](../README.md)**.
+Return to the **[Basic Installation Overview](README.md)** 
