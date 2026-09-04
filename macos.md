@@ -141,5 +141,6 @@ macOS setup is complete!
 
 ## Next Steps
 
-- Proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your setup.
+- Now that VS Code, GCC, and Git are installed, head over to **[1.5 Essential VS Code Extensions](universal.md#15-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, etc.).
+- After installing extensions, proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.

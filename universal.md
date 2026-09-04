@@ -116,6 +116,15 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
    - Inspects React component hierarchies in the browser's developer tools.
    - [Chrome Web Store Link](https://chromewebstore.google.com/detail/fmkadmapgofadopljbjfkapdkoienihi?utm_source=item-share-cb)
 
+> [!IMPORTANT]
+> **Have you installed VS Code and compilers yet?**
+> You cannot install VS Code extensions until VS Code itself is installed! If you haven't installed it yet, jump to your operating system guide first to install VS Code, compilers, and Git:
+> - 🪟 **[2. Windows Setup Guide](windows.md)**
+> - 🍎 **[3. macOS Setup Guide](macos.md)**
+> - 🐧 **[4. Linux Setup Guide](linux.md)**
+>
+> Once your OS setup is complete, return here to install your extensions!
+
 ---
 
 ## 1.5 Essential VS Code Extensions
@@ -154,10 +163,9 @@ Once you install VS Code (from your OS guide), open VS Code, click the **Extensi
 
 ## Next Steps
 
-Now that your accounts and extensions are set up, choose your operating system guide to install compilers, package managers, and Git:
-
-- 🪟 **[2. Windows Setup Guide](windows.md)**
-- 🍎 **[3. macOS Setup Guide](macos.md)**
-- 🐧 **[4. Linux Setup Guide](linux.md)**
-
-Or return to the **[Basic Installation Overview](README.md)**.
+- Finished installing all extensions and tools? Head over to the **[5. Quick Verification Checklist](checklist.md)** to verify your setup!
+- Haven't completed your operating system setup yet? Head to your OS guide:
+  - 🪟 **[2. Windows Setup Guide](windows.md)**
+  - 🍎 **[3. macOS Setup Guide](macos.md)**
+  - 🐧 **[4. Linux Setup Guide](linux.md)**
+- Or return to the **[Basic Installation Overview](README.md)**.
