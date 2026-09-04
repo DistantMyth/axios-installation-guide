@@ -126,6 +126,12 @@ Once you install VS Code (from your OS section below), open VS Code, click the *
 
 - **Competitive Programming Helper (cph)** (by Divyanshu Agrawal):
   - Essential for CP! Works with the *Competitive Companion* browser extension to auto-fetch test cases and run them against your code in one click(shortcut: ctrl + shift+ u).
+- **Code Runner** (by Jun Han):
+  - Run code files or selected snippets for C, C++, Python, Java, etc., with a single click (Play button in top-right) or shortcut (`Ctrl + Alt + N` on Windows/Linux, `Cmd + Option + N` on Mac).
+  - **Important setting for interactive input:** By default, Code Runner runs in the read-only Output window, which prevents you from entering input (`cin`, `scanf`, or `input()`). To fix this:
+    1. Open VS Code Settings (`Ctrl + ,` on Windows/Linux, `Cmd + ,` on Mac).
+    2. Search for `code-runner.runInTerminal`.
+    3. Check the box for **"Code-runner: Run In Terminal"**. Now your programs will run in the terminal and accept user input!
 ### Python:
 - **Python** (by Microsoft): Linting, debugging, code formatting.
 - **Pylance** (by Microsoft): Super-fast autocomplete and type checking for Python.
@@ -625,7 +631,7 @@ Before starting your college lab or contest, run this quick checklist:
 - [ ] GitHub account created & SSH key added
 - [ ] Codeforces account created & verified
 - [ ] CodeChef account created & verified
-- [ ] VS Code installed with C/C++, CPH, and Python extensions
+- [ ] VS Code installed with C/C++, CPH, Python, and Code Runner extensions
 - [ ] C++ compiler working with test file (`#include <bits/stdc++.h>`)
 - [ ] Python, uv, Node.js, Git, Curl, 7-Zip, Wget responding in terminal
 - [ ] Competitive Companion browser extension installed
