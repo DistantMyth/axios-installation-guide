@@ -24,7 +24,7 @@ GitHub is where developers store, share, and collaborate on code. Think of it as
 
 - Enter your email address, create a strong password, and choose a professional username (avoid silly nicknames; you will put this on your resume!). You can also continue with Google or Apple.
   ![Enter details](Pasted%20image%2020260904031228.png)
-- Complete the quick captcha puzzle and enter the 6-digit OTP code sent to your email. You should see this:
+- Complete the quick captcha puzzle(if any) and enter the 6-digit OTP code sent to your email. You should see this:
   ![Enter OTP](Pasted%20image%2020260904031555.png)
 - Your GitHub account is now created! Keep your credentials safe.
 
@@ -56,19 +56,32 @@ CodeChef is an Indian competitive programming platform widely used for monthly c
   - Enter your Email.
   - Set a strong Password.
   - Check the Terms & Privacy Policy agreement, then click **REGISTER**.
+  - Click **Create Account**. If an email verification link is sent, open your inbox and click the verification link.
+  
+![[Pasted image 20260904172043.png]]![[Pasted image 20260904171939.png]]
 
+  ![[Pasted image 20260904172620.png]]
+
+![[Pasted image 20260904172650.png]]
+![[Pasted image 20260904172736.png]]![[Pasted image 20260904172835.png]]
+![[Pasted image 20260904172912.png]]
+![[Pasted image 20260904172943.png]]
+![[Pasted image 20260904173018.png]]
+
+- Your CodeChef account is now active!
 - Fill in your basic student details:
   - Country: **India**
-  - Current Institution / College Name: Search and select your college.
-  - Graduation Year: Select your expected graduation year.
+  - Current Institution / College Name: `Indian Institute of Information Technology, Lucknow Uttar Pradesh, India`.
+  - Graduation Year: `2030`.
   - User Type: **Student**
-  ![[Screenshot: CodeChef Student Profile Details]]
-
-- Click **Create Account**. If an email verification link is sent, open your inbox and click the verification link.
-- Your CodeChef account is now active!
-
----
-
+  - Prefered Programming Language: `C++`.
+  ![[Pasted image 20260904173219.png]]![[Pasted image 20260904173238.png]]
+![[Pasted image 20260904173408.png]]
+- If you want, you can change your username.
+![[Pasted image 20260904173542.png]]
+![[Pasted image 20260904173719.png]]
+![[Pasted image 20260904173908.png]]
+![[Pasted image 20260904174245.png]]
 ## 1.4 Recommended Browser Extensions
 Install these browser extensions (available on Chrome Web Store, Firefox Add-ons, and Microsoft Edge Add-ons) to make your coding and contest experience 10x smoother:
 
@@ -83,8 +96,10 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
    - [Chrome Web Store Link](https://chromewebstore.google.com/detail/gakohpplicjdhhfllilcjpfildodfnnn?utm_source=item-share-cb)
    - ![Carrot Extension](Pasted%20image%2020260904113458.png)
 
-3. **Codeforces Enhancer**:
-   - Cleans up the Codeforces UI, adds multiple rating color highlights, and auto-hides solved problems.
+3. Similarly,
+- [Codeforces Rating-Based Heatmap](https://chromewebstore.google.com/detail/codeforces-rating-based-h/heajdhmohlobjebkgkpdomkaihaghkgb?hl=en)
+- [Codeforces Friends Tracker](https://chromewebstore.google.com/detail/codeforces-friends-tracke/gfdmmpimafkhcdekeddfeifcmcjbadam)
+- [CF Analytics](https://chromewebstore.google.com/detail/cf-analytics/hhljbjodjdbjbggddjaidojnlmaobcpo)
 
 ### For Web Development:
 1. **JSON Viewer / JSON Formatter**:
@@ -100,15 +115,17 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 ## 1.5 Essential VS Code Extensions
 Once you install VS Code (from your OS section below), open VS Code, click the **Extensions** icon on the left sidebar (shortcut: `Ctrl + Shift + X` on Windows/Linux, `Cmd + Shift + X` on Mac), search for the following extensions, and click **Install**:
 
-![[Screenshot: VS Code Extensions Tab]]
-
+![[Pasted image 20260904174839.png]]
 ### C / C++ & Competitive Programming:
 - **C/C++** (by Microsoft): Syntax highlighting, code completion (IntelliSense), and debugging.
+![[Pasted image 20260904175101.png]]
 - **C/C++ Extension Pack** (by Microsoft): Includes tools and CMake support.
-- **Competitive Programming Helper (cph)** (by Divyanshu Agrawal):
-  - Essential for CP! Works with the *Competitive Companion* browser extension to auto-fetch test cases and run them against your code in one click.
-  - ![[Screenshot: CPH extension in VS Code]]
 
+**Installation process of other extensions is similar to this one**
+
+
+- **Competitive Programming Helper (cph)** (by Divyanshu Agrawal):
+  - Essential for CP! Works with the *Competitive Companion* browser extension to auto-fetch test cases and run them against your code in one click(shortcut: ctrl + shift+ u).
 ### Python:
 - **Python** (by Microsoft): Linting, debugging, code formatting.
 - **Pylance** (by Microsoft): Super-fast autocomplete and type checking for Python.
