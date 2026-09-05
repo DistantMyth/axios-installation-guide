@@ -2,7 +2,7 @@
 
 Welcome to college! This guide will help you set up your personal computer for programming, coursework, competitive programming (CP), machine learning (ML), and open-source development from scratch.
 
-Instead of hunting down fragmented tutorials, everything you need is organized below in **focused modules**.
+Instead of hunting down fragmented tutorials, everything you need is organized below in **6 focused modules**.
 
 ---
 
@@ -30,7 +30,7 @@ Instead of hunting down fragmented tutorials, everything you need is organized b
   Complete installation guide across major distro families: **Debian / Ubuntu** (`apt`), **Arch Linux** (`pacman`), and **Fedora / RHEL** (`dnf`), shell PATH configuration (`.bashrc` / `.zshrc`), and Git SSH setup.
 
 - 🤖 **[5. Machine Learning Setup Guide](ml-setup.md)**  
-  Essential editor and notebook extensions (VS Code, Jupyter, Ruff), Kaggle setup with free GPU quota activation, and Hugging Face account with gated model access.
+  Essential editor and notebook extensions (VS Code, Jupyter, Ruff), Kaggle setup with free GPU quota activation, and Hugging Face profile setup.
 
 - ✅ **[6. Quick Verification Checklist](checklist.md)**  
   Interactive self-check test and command reference table to verify compilers, interpreters, tools, and SSH keys in under 2 minutes.

@@ -1,4 +1,4 @@
-# Machine Learning Setup Guide
+# 5. Machine Learning Setup Guide
 
 Essential setup for Machine Learning & Data Science: local VS Code environment, free cloud GPU compute on Kaggle, and open-source models on Hugging Face.
 
@@ -14,7 +14,8 @@ Essential setup for Machine Learning & Data Science: local VS Code environment, 
 - [3. Hugging Face Account Setup](#3-hugging-face-account-setup)
   - [Step 1: Sign Up & Verify Email](#step-1-sign-up--verify-email)
   - [Step 2: Customize Profile Details](#step-2-customize-profile-details)
-- [Quick Verification Checklist](#-quick-verification-checklist)
+- [4. Quick Verification Checklist](#4-quick-verification-checklist)
+- [Next Steps](#next-steps)
 
 ---
 
@@ -24,9 +25,9 @@ Open VS Code, click the **Extensions** icon on the left sidebar (shortcut: `Ctrl
 
 ![Click Extensions icon on VS Code activity bar](images/vs-extension-1.png)
 
-- [ ] **Python** (`ms-python.python`) & **Pylance** (`ms-python.vscode-pylance`): Autocomplete, type hints, and code navigation.
-- [ ] **Jupyter** (`ms-toolsai.jupyter`): Run `.ipynb` notebooks natively inside VS Code without launching a browser server.
-- [ ] **Ruff** (`charliermarsh.ruff`): Fast linting and code formatting built by the same creators as `uv`.
+- **Python** (`ms-python.python`) & **Pylance** (`ms-python.vscode-pylance`): Autocomplete, type hints, and code navigation.
+- **Jupyter** (`ms-toolsai.jupyter`): Run `.ipynb` notebooks natively inside VS Code without launching a browser server.
+- **Ruff** (`charliermarsh.ruff`): Fast linting and code formatting built by the creators of `uv`.
 
 ![Search for Python and Pylance in Extensions](images/vs-extension-2.png)  
 
@@ -51,7 +52,7 @@ Kaggle is the standard community hub for datasets, competitions, and free cloud 
 > [!IMPORTANT]
 > By default, new accounts cannot turn on GPUs/TPUs or enable internet access inside notebooks.
 
-1. Click your profile avatar (top-right) $\rightarrow$ select **Settings**.  
+1. Click your profile avatar (top-right) -> select **Settings**.  
    ![Click your profile avatar in the top-right corner](images/kaggle-setup-4.png)  
 
    ![Select Settings from the user dropdown menu](images/kaggle-setup-5.png)  
@@ -63,7 +64,7 @@ Kaggle is the standard community hub for datasets, competitions, and free cloud 
 
 ### Step 3: Complete the Profile
 
-1. Click your profile avatar $\rightarrow$ select **Your Profile**.  
+1. Click your profile avatar -> select **Your Profile**.  
    ![Select Your Profile from the avatar dropdown menu](images/kaggle-setup-8.png)  
 2. Click **Edit your public profile**.  
    ![Click Edit your public profile on your profile page](images/kaggle-setup-9.png)  
@@ -101,7 +102,7 @@ Hugging Face is the central repository for pre-trained weights (LLMs, vision mod
    > Hugging Face disables community interactions, dataset forks, and model access until your email is confirmed. Open your inbox and click the verification link immediately.
 
 ### Step 2: Customize Profile Details
-1. Click your profile avatar (top-right) $\rightarrow$ select **Settings**.  
+1. Click your profile avatar (top-right) -> select **Settings**.  
    ![Click your profile avatar in the top navigation bar](images/huggingface-setup-4.png)  
 
    ![Select Settings from the avatar dropdown](images/huggingface-setup-5.png)  
@@ -111,10 +112,17 @@ Hugging Face is the central repository for pre-trained weights (LLMs, vision mod
 
 ---
 
-## ✅ Quick Verification Checklist
+## 4. Quick Verification Checklist
 
 - [ ] Installed VS Code extensions: **Python**, **Pylance**, **Jupyter**, and **Ruff**
 - [ ] Registered Kaggle account and completed **Phone Verification** (GPU unlocked)
 - [ ] Added Kaggle profile photo, bio, and linked GitHub/LinkedIn
 - [ ] Registered Hugging Face account and **verified email**
 - [ ] Added GitHub and research interests to Hugging Face profile
+
+---
+
+## Next Steps
+
+- Proceed to the **[6. Quick Verification Checklist](checklist.md)** to verify your complete setup.
+- Or return to the **[Basic Installation Overview](README.md)**.

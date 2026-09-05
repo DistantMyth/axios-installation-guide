@@ -148,6 +148,7 @@ Once you install VS Code (from your OS guide), open VS Code, click the **Extensi
 ### Python:
 - **Python** (by Microsoft): Linting, debugging, code formatting.
 - **Pylance** (by Microsoft): Super-fast autocomplete and type checking for Python.
+- *(For AI/ML, Jupyter notebooks, and Ruff, see the **[5. Machine Learning Setup Guide](ml-setup.md)**).*
 
 ### Web Development:
 - **Live Server** (by Ritwick Dey): Launch a local development server with live reload for HTML/CSS/JavaScript.
@@ -163,10 +164,10 @@ Once you install VS Code (from your OS guide), open VS Code, click the **Extensi
 
 ## Next Steps
 
-- Finished installing all extensions and tools? Head over to the **[5. Quick Verification Checklist](checklist.md)** to verify your setup!
+- Finished installing all extensions and tools? Head over to the **[6. Quick Verification Checklist](checklist.md)** to verify your setup!
 - Haven't completed your operating system setup yet? Head to your OS guide:
   - 🪟 **[2. Windows Setup Guide](windows.md)**
   - 🍎 **[3. macOS Setup Guide](macos.md)**
   - 🐧 **[4. Linux Setup Guide](linux.md)**
-- 🤖 **[Machine Learning Setup Guide](ml-setup.md)**
+- Interested in Machine Learning & Data Science? Check out the **[5. Machine Learning Setup Guide](ml-setup.md)** for Jupyter, Ruff, Kaggle, and Hugging Face.
 - Or return to the **[Basic Installation Overview](README.md)**.

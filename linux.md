@@ -216,5 +216,5 @@ git config --global user.email "your_email@example.com"
 ## Next Steps
 
 - Now that VS Code, build tools, and Git are installed, head over to **[1.5 Essential VS Code Extensions](universal.md#15-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, etc.).
-- After installing extensions, proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your complete setup.
+- After installing extensions, proceed to the **[6. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.

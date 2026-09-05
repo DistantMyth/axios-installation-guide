@@ -1,4 +1,4 @@
-# 5. Quick Verification Checklist
+# 6. Quick Verification Checklist
 
 Before starting your college lab or contest, run through this quick checklist to confirm everything is working smoothly.
 
@@ -8,7 +8,7 @@ Before starting your college lab or contest, run through this quick checklist to
 
 - [1. Developer & Contest Accounts](#-1-developer--contest-accounts)
 - [2. VS Code & Extensions](#-2-vs-code--extensions)
-- [3. Compiler & Test Code](#️-3-compiler--test-code)
+- [3. Compiler & Test Code](#-3-compiler--test-code)
 - [4. Command Line Tools](#-4-command-line-tools)
 - [5. Git & GitHub Authentication](#-5-git--github-authentication)
 - [6. Browser Extensions](#-6-browser-extensions)
@@ -21,6 +21,8 @@ Before starting your college lab or contest, run through this quick checklist to
 - [ ] **GitHub**: Account created and logged in.
 - [ ] **Codeforces**: Account registered and email verified.
 - [ ] **CodeChef**: Account registered, student details filled (IIIT Lucknow).
+- [ ] **Kaggle**: Account registered & phone verified (~30 hrs/week free GPU unlocked).
+- [ ] **Hugging Face**: Account registered & email confirmed.
 
 ---
 
@@ -31,6 +33,7 @@ Before starting your college lab or contest, run through this quick checklist to
 - [ ] **Code Runner** extension installed.
   - [ ] Setting `code-runner.runInTerminal` is **checked** in VS Code Settings (`Ctrl + ,` or `Cmd + ,`).
 - [ ] **Python** & **Pylance** extensions installed.
+- [ ] **Jupyter** & **Ruff** extensions installed *(for ML & Data Science)*.
 
 ---
 
