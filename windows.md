@@ -182,9 +182,17 @@ Many standard tools are designed for Linux. Instead of dual-booting, Windows all
    > When you type your password in a Linux terminal, **nothing will show up on the screen**. This is a normal security feature. Just type it carefully and hit Enter, then retype it to confirm.
 4. Press Enter for any confirmation window to choose the default operation.
 
+5. Run ` wsl --status ` to check if WSL is succesfully installed.
+
+
+- Methods to acess wsl :
+   - Ubuntu Terminal
+   - `wsl` command in Terminal
+
+
 ## Step 3: Update Linux and Install Basic Tools
 
-Run the following commands:
+Run the following commands (in the Ubuntu Terminal):
    
 1. 
    ```Bash 
