@@ -12,6 +12,7 @@ Before starting your college lab or contest, run through this quick checklist to
 - [4. Command Line Tools](#-4-command-line-tools)
 - [5. Git & GitHub Authentication](#-5-git--github-authentication)
 - [6. Browser Extensions](#-6-browser-extensions)
+- [7. WSL & CTF Toolkit (Windows)](#-7-wsl-and-ctf-toolkit-windows)
 
 ---
 
@@ -83,29 +84,25 @@ Run these commands in your terminal to verify that each tool responds with a ver
 
 ---
 
-### 🧑‍💻 7. WSL and CTF Toolkit
+### 🧑‍💻 7. WSL and CTF Toolkit (Windows)
 
-#### Windows Subsystem for Linux and Ubuntu
-Open your **Ubuntu** terminal (search "Ubuntu" in the Start Menu) and verify the core Linux environment:
+For Windows users using WSL: open your **Ubuntu** terminal (search "Ubuntu" in the Start Menu) and verify:
 
-- [ ] **Core Compilers:**
-
-  - `gcc --version` 
+- [ ] **Core Compilers & Build Tools:**
+  - `gcc --version`
   - `make --version`
 - [ ] **Linux Python & Git:**
   - `python3 --version`
-  - `git --version`.
-
-#### Cybersecurity Tools
-
-Run these commands in your Ubuntu Terminal : 
-- [ ] `exiftool -ver`
-- [ ] `nmap --version`
-- [ ] `binwalk --version`
-- [ ] `steghide --version`
-- [ ] `nc -h`
+  - `git --version`
+- [ ] **Cybersecurity / CTF Tools:**
+  - `exiftool -ver`
+  - `nmap --version`
+  - `binwalk --version`
+  - `steghide --version`
+  - `nc -h`
 
 ---
+
 🎉 **You are all set! Welcome to the college developer community!**
 
-Return to the **[Basic Installation Overview](README.md)** 
+Return to the **[Basic Installation Overview](README.md)**. 

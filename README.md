@@ -21,7 +21,7 @@ Instead of hunting down fragmented tutorials, everything you need is organized b
   *For all operating systems.* Set up your developer accounts (GitHub, Codeforces, CodeChef), install browser extensions for competitive programming, and configure essential VS Code extensions (C/C++, CPH, Code Runner with interactive input).
 
 - 🪟 **[2. Windows Setup Guide](windows.md)**  
-  One-click tool installation using **Chocolatey**, configuring MinGW C/C++ compilers, setting environment variables (PATH), and configuring Git with GitHub SSH authentication.
+  One-click tool installation using **Chocolatey**, configuring MinGW C/C++ compilers, setting environment variables (PATH), Git SSH authentication, and setting up **WSL (Ubuntu)** with essential CTF tools.
 
 - 🍎 **[3. macOS Setup Guide](macos.md)**  
   Setting up **Homebrew**, tool installations, solving the Apple Clang vs GNU GCC problem for `#include <bits/stdc++.h>`, and configuring Git with GitHub SSH authentication.

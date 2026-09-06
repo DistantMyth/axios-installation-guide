@@ -15,6 +15,10 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
 - [2.4 Git Setup & Authentication](#24-git-setup--authentication-windows)
   - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
   - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-ssh-key-method)
+- [2.5 Windows Subsystem for Linux (WSL)](#25-windows-subsystem-for-linux-wsl)
+  - [Step 1: Install WSL and Ubuntu](#step-1-install-wsl-and-ubuntu)
+  - [Step 2: Configure your Linux Profile](#step-2-configure-your-linux-profile)
+  - [Step 3: Update Linux and Install Essential & CTF Tools](#step-3-update-linux-and-install-essential--ctf-tools)
 - [Next Steps](#next-steps)
 
 ---
@@ -155,60 +159,52 @@ git config --global user.email "your_email@example.com"
 Git is now 100% installed, configured, and authenticated on your Windows PC!
 
 ---
+
 ## 2.5 Windows Subsystem for Linux (WSL)
 
-Many standard tools are designed for Linux. Instead of dual-booting, Windows allows you to run a full Ubuntu Linux environment directly inside Windows using WSL.
+Many standard developer and cybersecurity tools are designed natively for Linux. Instead of setting up a complex dual-boot system, Windows allows you to run a full Ubuntu Linux environment directly inside Windows using WSL.
 
 ### Step 1: Install WSL and Ubuntu
-1. Open **PowerShell as Administrator**.
-
+1. Open **PowerShell as Administrator** (Right-click Windows Start -> Terminal/PowerShell (Admin)).
 2. Run the following command: 
    ```powershell
    wsl --install
    ```
-   This command automatically installs Ubuntu as a default distribution.
-
-3. Wait for the download to finish. Restart your computer **if** prompted.
+   This command automatically enables the required virtualization features and downloads Ubuntu as the default distribution.
+3. Wait for the download to finish. Restart your computer if prompted.
 
 ![Ubuntu being installed](images/wsl.png)
 
-
 ### Step 2: Configure your Linux Profile
-1. After your computer restarts, a new terminal window will automatically open saying "Installing, this may take a few minutes..."
+1. After your computer restarts, a new terminal window will automatically launch saying *"Installing, this may take a few minutes..."*
+2. When prompted, create a **UNIX username**. Type a simple username (all lowercase, no spaces) and hit **Enter**.
+3. Create a **password**:
+   > [!NOTE]
+   > When typing your password in a Linux terminal, **no characters or asterisks will appear on screen**. This is standard Unix security behavior. Just type it carefully and press Enter, then retype it to confirm.
+4. Run `wsl --status` to verify that WSL 2 is successfully installed and running.
 
-2. You will be asked to create a **UNIX username**. Type a simple username (all lowercase, no spaces) and hit Enter.
+> [!TIP]
+> **How to launch WSL in the future:**
+> - Launch **Ubuntu** directly from your Start Menu, OR
+> - Open Windows Terminal / PowerShell and type `wsl`.
 
-3. You will be asked to create a **password**. 
-   > When you type your password in a Linux terminal, **nothing will show up on the screen**. This is a normal security feature. Just type it carefully and hit Enter, then retype it to confirm.
-4. Press Enter for any confirmation window to choose the default operation.
+### Step 3: Update Linux and Install Essential & CTF Tools
 
-5. Run ` wsl --status ` to check if WSL is succesfully installed.
+Inside your Ubuntu Terminal, run:
 
-
-- Methods to acess wsl :
-   - Ubuntu Terminal
-   - `wsl` command in Terminal
-
-
-## Step 3: Update Linux and Install Basic Tools
-
-Run the following commands (in the Ubuntu Terminal):
-   
-1. 
-   ```Bash 
-   sudo apt update && sudo apt upgrade -y 
+1. Update package lists and upgrade existing packages:
+   ```bash
+   sudo apt update && sudo apt upgrade -y
    ```
-   
-2. 
-   ```Bash 
+2. Install C/C++ build tools and essential CTF / Cybersecurity utilities:
+   ```bash
    sudo apt install -y build-essential exiftool nmap netcat-traditional binwalk steghide
    ```
-   
 
 ---
 
 ## Next Steps
 
-- Now that VS Code, compilers, and Git are installed, head over to **[1.5 Essential VS Code Extensions](universal.md#15-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, etc.).
+- Now that VS Code, compilers, Git, and WSL are installed, head over to **[1.5 Essential VS Code Extensions](universal.md#15-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, etc.).
 - After installing extensions, proceed to the **[6. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.
