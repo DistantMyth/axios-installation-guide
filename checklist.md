@@ -83,6 +83,29 @@ Run these commands in your terminal to verify that each tool responds with a ver
 
 ---
 
+### 🧑‍💻 7. WSL and CTF Toolkit
+
+#### Windows Subsystem for Linux and Ubuntu
+Open your **Ubuntu** terminal (search "Ubuntu" in the Start Menu) and verify the core Linux environment:
+
+- [ ] **Core Compilers:**
+
+  - `gcc --version` 
+  - `make --version`
+- [ ] **Linux Python & Git:**
+  - `python3 --version`
+  - `git --version`.
+
+#### Cybersecurity Tools
+
+Run these commands in your Ubuntu Terminal : 
+- [ ] `exiftool -ver`
+- [ ] `nmap --version`
+- [ ] `binwalk --version`
+- [ ] `steghide --version`
+- [ ] `nc -h`
+
+---
 🎉 **You are all set! Welcome to the college developer community!**
 
 Return to the **[Basic Installation Overview](README.md)** 
