@@ -20,6 +20,7 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
   - [Step 1: Install WSL and Ubuntu](#step-1-install-wsl-and-ubuntu)
   - [Step 2: Configure your Linux Profile](#step-2-configure-your-linux-profile)
   - [Step 3: Update Linux and Install Essential & CTF Tools](#step-3-update-linux-and-install-essential--ctf-tools)
+  - [Step 4: Web3 & Solana Development Setup (inside WSL)](#step-4-web3--solana-development-setup-inside-wsl)
 - [Next Steps](#next-steps)
 
 ---
@@ -222,10 +223,81 @@ Inside your Ubuntu Terminal, run:
    sudo apt install -y build-essential exiftool nmap netcat-traditional binwalk steghide
    ```
 
+### Step 4: Web3 & Solana Development Setup (inside WSL)
+
+> [!IMPORTANT]
+> **Why install Solana & Anchor inside WSL?**
+> Solana smart contracts are written in Rust, and the Anchor framework is built for Unix/Linux environments. Installing or compiling them natively on Windows PowerShell/CMD often results in broken compilation scripts and linker errors. Running everything inside **WSL (Ubuntu)** gives you a stable, native Linux environment.
+
+Inside your Ubuntu Terminal, run:
+
+1. **Install Rust (Rustup Toolchain):**
+   ```bash
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   ```
+   When prompted, press `1` and hit Enter (default install). Once complete, reload your shell:
+   ```bash
+   source $HOME/.cargo/env
+   ```
+   Verify Rust compiler and package manager:
+   ```bash
+   rustc --version
+   cargo --version
+   ```
+
+2. **Install Solana CLI:**
+   ```bash
+   sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+   ```
+   Add Solana CLI to your PATH permanently:
+   ```bash
+   echo 'export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"' >> ~/.bashrc
+   source ~/.bashrc
+   ```
+   Verify Solana CLI:
+   ```bash
+   solana --version
+   ```
+   Configure default cluster to devnet and generate your local keypair:
+   ```bash
+   solana config set --url devnet
+   solana-keygen new
+   solana address
+   ```
+   *(Save the printed recovery seed phrase somewhere safe offline!)*
+
+3. **Install Anchor Version Manager (AVM):**
+   ```bash
+   cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+   ```
+   *(☕ Note: This step compiles from source and takes 5–10 minutes. Let it run to completion).*
+   Verify:
+   ```bash
+   avm --version
+   ```
+
+4. **Install Anchor Framework CLI:**
+   ```bash
+   avm install latest
+   avm use latest
+   ```
+   Verify:
+   ```bash
+   anchor --version
+   ```
+
+5. **Smoke-Test Your Full Solana Environment:**
+   ```bash
+   anchor init my-first-project
+   cd my-first-project
+   anchor build
+   ```
+   If `anchor build` finishes without errors, your Solana dev environment is 100% operational! 🎉
+
 ---
 
 ## Next Steps
 
-- Now that VS Code, compilers, Git, and WSL are installed, head over to **[1.7 Essential VS Code Extensions](universal.md#17-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
+- Now that VS Code, compilers, Git, and WSL are installed, head over to **[1.8 Essential VS Code Extensions](universal.md#18-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
 - After installing extensions, proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.

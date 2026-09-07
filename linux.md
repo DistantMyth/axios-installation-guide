@@ -17,6 +17,7 @@ Linux is the developer standard in industry and academia. There are dozens of Li
 - [4.4 Git Setup & Authentication (Linux)](#44-git-setup--authentication-linux)
   - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
   - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-via-ssh)
+- [4.5 Web3 & Solana Development Setup](#45-web3--solana-development-setup)
 - [Next Steps](#next-steps)
 
 ---
@@ -211,10 +212,64 @@ git config --global user.email "your_email@example.com"
    Type `yes` when prompted. You will see:
    `Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.`
 
+## 4.5 Web3 & Solana Development Setup
+
+If you are joining the Web3 Wing / Onchain IIITL or building decentralized applications (dApps), install the Rust and Solana development toolchains natively on Linux:
+
+1. **Install Rust (Rustup Toolchain):**
+   ```bash
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   ```
+   Press `1` and hit Enter when prompted. Reload your shell environment:
+   ```bash
+   source $HOME/.cargo/env
+   ```
+   Verify Rust compiler and package manager:
+   ```bash
+   rustc --version
+   cargo --version
+   ```
+
+2. **Install Solana CLI:**
+   ```bash
+   sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+   ```
+   Add Solana CLI to your PATH:
+   ```bash
+   echo 'export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"' >> ~/.bashrc
+   source ~/.bashrc
+   ```
+   Verify and configure default cluster to devnet:
+   ```bash
+   solana --version
+   solana config set --url devnet
+   solana-keygen new
+   solana address
+   ```
+
+3. **Install Anchor Version Manager (AVM) & Anchor CLI:**
+   ```bash
+   cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+   avm install latest
+   avm use latest
+   ```
+   Verify Anchor:
+   ```bash
+   anchor --version
+   ```
+
+4. **Smoke-Test Your Solana Environment:**
+   ```bash
+   anchor init my-first-project
+   cd my-first-project
+   anchor build
+   ```
+   If `anchor build` finishes without errors, your Linux Solana dev environment is ready!
+
 ---
 
 ## Next Steps
 
-- Now that VS Code, build tools, and Git are installed, head over to **[1.7 Essential VS Code Extensions](universal.md#17-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
+- Now that VS Code, build tools, and Git are installed, head over to **[1.8 Essential VS Code Extensions](universal.md#18-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
 - After installing extensions, proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.

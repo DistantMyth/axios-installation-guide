@@ -6,24 +6,27 @@ Before starting your college lab or contest, run through this quick checklist to
 
 ## 📑 Table of Contents
 
-- [1. Developer & Contest Accounts](#-1-developer--contest-accounts)
+- [1. Developer, Contest & Web3 Accounts](#-1-developer-contest--web3-accounts)
 - [2. VS Code & Extensions](#-2-vs-code--extensions)
 - [3. Compiler & Test Code](#-3-compiler--test-code)
 - [4. Command Line Tools](#-4-command-line-tools)
 - [5. Git & GitHub Authentication](#-5-git--github-authentication)
 - [6. Browser Extensions](#-6-browser-extensions)
-- [7. WSL & CTF Toolkit (Windows)](#-7-wsl-and-ctf-toolkit-windows)
+- [7. WSL & Linux Advanced Toolkits (CTF & Web3)](#-7-wsl--linux-advanced-toolkits-ctf--web3)
 
 ---
 
 ## 📋 Readiness Checklist
 
-### 🌐 1. Developer & Contest Accounts
+### 🌐 1. Developer, Contest & Web3 Accounts
 - [ ] **GitHub**: Account created and logged in.
 - [ ] **Codeforces**: Account registered and email verified.
 - [ ] **CodeChef**: Account registered, student details filled (IIIT Lucknow).
 - [ ] **Kaggle**: Account registered & phone verified (~30 hrs/week free GPU unlocked).
 - [ ] **Hugging Face**: Account registered & email confirmed.
+- [ ] **MetaMask**: Wallet extension installed, account created, and Secret Recovery Phrase (SRP) stored safely offline.
+- [ ] **Sepolia Testnet**: Test network enabled in MetaMask and test ETH received from faucet.
+- [ ] **Phantom**: Solana wallet installed and switched to Solana Devnet.
 
 ---
 
@@ -79,6 +82,10 @@ Run these commands in your terminal to verify that each tool responds with a ver
 | **uv Package Manager** | `uv --version` | `uv 0.x.x` |
 | **Node.js** | `node --version` | `v20.x.x` or `v22.x.x` |
 | **Git** | `git --version` | `git version 2.x.x` |
+| **Rust Compiler** | `rustc --version` | `rustc 1.x.x` *(WSL / Linux)* |
+| **Cargo Package Manager** | `cargo --version` | `cargo 1.x.x` *(WSL / Linux)* |
+| **Solana CLI** | `solana --version` | `solana-cli x.x.x` *(WSL / Linux)* |
+| **Anchor CLI** | `anchor --version` | `anchor-cli 0.x.x` *(WSL / Linux)* |
 
 ---
 
@@ -99,9 +106,9 @@ Run these commands in your terminal to verify that each tool responds with a ver
 
 ---
 
-### 🧑‍💻 7. WSL and CTF Toolkit (Windows)
+### 🧑‍💻 7. WSL & Linux Advanced Toolkits (CTF & Web3)
 
-For Windows users using WSL: open your **Ubuntu** terminal (search "Ubuntu" in the Start Menu) and verify:
+For Windows users (inside WSL Ubuntu) and native Linux users, verify your advanced domain toolchains:
 
 - [ ] **Core Compilers & Build Tools:**
   - `gcc --version`
@@ -115,6 +122,12 @@ For Windows users using WSL: open your **Ubuntu** terminal (search "Ubuntu" in t
   - `binwalk --version`
   - `steghide --version`
   - `nc -h`
+- [ ] **Web3 & Solana Development Tools:**
+  - `rustc --version` & `cargo --version`
+  - `solana --version`
+  - `solana address` (prints valid local base58 wallet address)
+  - `avm --version` & `anchor --version`
+  - Smoke test: `anchor build` compiles successfully inside a test Anchor project (`my-first-project`).
 
 ---
 
