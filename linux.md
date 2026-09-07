@@ -80,10 +80,19 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    *(Or install the latest LTS version using NodeSource).*
 
 6. Install Visual Studio Code:
-   ```bash
-   sudo snap install --classic code
-   ```
-   *Alternative without snap:* Download the official `.deb` package from [code.visualstudio.com](https://code.visualstudio.com/) and run `sudo dpkg -i <filename>.deb`.
+   Download the official `.deb` package from the Microsoft website and install it using `apt`:
+   - Visit [code.visualstudio.com/download](https://code.visualstudio.com/download) and click **.deb** (or download directly via terminal):
+     ```bash
+     wget -O vscode.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
+     ```
+   - Install the downloaded package:
+     ```bash
+     sudo apt install -y ./vscode.deb
+     ```
+   > [!TIP]
+   > Installing the official `.deb` package automatically configures Microsoft's official APT repository (`/etc/apt/sources.list.d/vscode.list`) on your machine, so VS Code will receive seamless automatic updates alongside your regular `sudo apt update && sudo apt upgrade`!
+   > 
+   > *(Alternative via Snap if preferred: `sudo snap install --classic code`).*
 
 ---
 
@@ -111,10 +120,25 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    ```
 
 5. Install Visual Studio Code:
-   ```bash
-   sudo pacman -S code
-   ```
-   *(Or `visual-studio-code-bin` via your AUR helper like `yay -S visual-studio-code-bin` for official Microsoft branding).*
+   > [!IMPORTANT]
+   > **Do not install `code` via `sudo pacman -S code`:**
+   > In Arch's official repositories, the package `code` is **Code - OSS** (an open-source community build). It lacks access to the official Microsoft Extension Marketplace, disables Microsoft Settings Sync, and causes proprietary Microsoft extensions like **Pylance** (`ms-python.vscode-pylance`) and the **C/C++ Debugger** (`ms-vscode.cpptools`) to fail or refuse to run.
+   >
+   > To get the official Microsoft Visual Studio Code with the complete Marketplace and Settings Sync, install **`visual-studio-code-bin`** from the Arch User Repository (AUR):
+
+   - **If you use an AUR helper like `yay` or `paru` (recommended):**
+     ```bash
+     yay -S visual-studio-code-bin
+     # or if you use paru:
+     paru -S visual-studio-code-bin
+     ```
+
+   - **If you do not have an AUR helper installed (using native Arch tools):**
+     ```bash
+     git clone https://aur.archlinux.org/visual-studio-code-bin.git
+     cd visual-studio-code-bin
+     makepkg -si
+     ```
 
 ---
 
@@ -143,12 +167,19 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    ```
 
 5. Install Visual Studio Code:
-   Import the Microsoft repository and install:
-   ```bash
-   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-   sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-   sudo dnf install -y code
-   ```
+   - **Method 1: Direct `.rpm` download (recommended):**
+     Visit [code.visualstudio.com/download](https://code.visualstudio.com/download) and click **.rpm** (or download directly via terminal):
+     ```bash
+     wget -O vscode.rpm 'https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64'
+     sudo dnf install -y ./vscode.rpm
+     ```
+   - **Method 2: Via Microsoft YUM/DNF repository:**
+     ```bash
+     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+     sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+     sudo dnf check-update
+     sudo dnf install -y code
+     ```
 
 ---
 
