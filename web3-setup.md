@@ -422,6 +422,12 @@ Remix is a browser-based IDE for writing, compiling, and deploying **Solidity** 
 
 ![Screenshot 2026-09-06 at 12.38.27 AM.png](images/Screenshot_2026-09-06_at_12.38.27_AM.png)
 
-[Parth B (@brokendopen) on X](https://x.com/brokendopen)
+[Parth B (@brokendopen) on X](https://x.com/iamparthbadgire)
 
 [Nilanjan Chavan (@NilanjanHehe) on X](https://x.com/NilanjanHehe)
+
+[Palak Dasauni on X](https://x.com/palakdasauni13)
+
+[Lakshya on X](https://x.com/lakshya_117)
+
+[Harshita Punia on X](https://x.com/harshita_punia)
