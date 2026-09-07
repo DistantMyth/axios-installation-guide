@@ -39,13 +39,28 @@ Before starting your college lab or contest, run through this quick checklist to
 ---
 
 ### ⚙️ 3. Compiler & Test Code
-- [ ] Test C++ file compiles with `<bits/stdc++.h>`:
+- [ ] Test C++ file compiles with `<bits/stdc++.h>` and Policy-Based Data Structures (`ordered_set`):
   ```cpp
   #include <bits/stdc++.h>
+  #include <ext/pb_ds/assoc_container.hpp>
+  #include <ext/pb_ds/tree_policy.hpp>
+
   using namespace std;
+  using namespace __gnu_pbds;
+
+  // Definition of ordered_set (Policy-Based Data Structure)
+  template <typename T>
+  using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
   int main() {
-      cout << "Environment is 100% ready!" << endl;
+      ordered_set<int> s;
+      s.insert(10);
+      s.insert(20);
+      s.insert(30);
+
+      // order_of_key returns the number of elements strictly smaller than 25 (output: 2)
+      cout << "Elements < 25: " << s.order_of_key(25) << endl;
+      cout << "Environment is 100% ready for Competitive Programming & PBDS!" << endl;
       return 0;
   }
   ```

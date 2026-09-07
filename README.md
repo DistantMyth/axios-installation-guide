@@ -20,7 +20,7 @@ Instead of hunting down fragmented tutorials, everything you need is organized b
   *For all operating systems.* Set up your developer and ML accounts (GitHub, Codeforces, CodeChef, Kaggle, Hugging Face), install browser extensions for competitive programming, and configure essential VS Code extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff).
 
 - 🪟 **[2. Windows Setup Guide](windows.md)**  
-  One-click tool installation using **Chocolatey**, configuring MinGW C/C++ compilers, setting environment variables (PATH), Git SSH authentication, and setting up **WSL (Ubuntu)** with essential CTF tools.
+  One-click tool installation using **Chocolatey**, configuring modern standard GCC compilers via **MSYS2 UCRT64** (avoiding legacy MinGW `ordered_set` bugs), setting environment variables (PATH), Git SSH authentication, and setting up **WSL (Ubuntu)** with essential CTF tools.
 
 - 🍎 **[3. macOS Setup Guide](macos.md)**  
   Setting up **Homebrew**, tool installations, solving the Apple Clang vs GNU GCC problem for `#include <bits/stdc++.h>`, and configuring Git with GitHub SSH authentication.

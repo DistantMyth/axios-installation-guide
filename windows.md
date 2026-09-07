@@ -9,6 +9,7 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
 - [2.1 Install Package Manager: Chocolatey](#21-install-package-manager-chocolatey)
 - [2.2 Install All Development Tools (One-Click)](#22-install-all-development-tools-one-click)
 - [2.3 Compilers & Environment Variables (PATH)](#23-compilers--environment-variables-path)
+  - [Install the Modern GCC Compiler (MSYS2 UCRT64)](#install-the-modern-gcc-compiler-msys2-ucrt64)
   - [What is the PATH Environment Variable?](#what-is-the-path-environment-variable)
   - [Step-by-Step PATH Verification](#step-by-step-path-verification)
   - [Verify Everything in a New Terminal](#verify-everything-in-a-new-terminal)
@@ -52,7 +53,7 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
 Open **PowerShell as Administrator** and run this single command to install everything you need:
 
 ```powershell
-choco install -y git vscode nodejs-lts python3 uv 7zip curl wget mingw
+choco install -y git vscode nodejs-lts python3 uv 7zip curl wget msys2
 ```
 
 What this installs:
@@ -63,7 +64,7 @@ What this installs:
 - `uv`: Modern, blazing-fast Python package and project manager (replaces `pip` with 10x-100x faster installs).
 - `7zip`: Compression & extraction tool.
 - `curl` & `wget`: Command-line tools for downloading files and testing APIs.
-- `mingw`: MinGW-w64 (includes `gcc`, `g++`, and `gdb` compilers for C and C++).
+- `msys2`: MSYS2 development platform (provides the modern GNU GCC compiler toolchain without legacy MinGW bugs).
 
 > [!NOTE]
 > *Alternative standalone install for uv:* If you prefer installing `uv` standalone via PowerShell directly:
@@ -79,10 +80,27 @@ What this installs:
 
 ## 2.3 Compilers & Environment Variables (PATH)
 
+### Install the Modern GCC Compiler (MSYS2 UCRT64)
+
+> [!IMPORTANT]
+> **Why MSYS2 UCRT64 instead of legacy MinGW?**
+> Legacy MinGW distributions (such as older MinGW-w64 packages) suffer from an infamous bug with Policy-Based Data Structures (PBDS) — specifically breaking `ordered_set` (`<ext/pb_ds/assoc_container.hpp>`) due to a corrupted internal header filename in the package.
+> MSYS2 UCRT64 provides the modern, upstream GNU GCC compiler toolchain (GCC 14+) built on the modern Windows Universal C Runtime (UCRT). With MSYS2, `<bits/stdc++.h>`, `ordered_set`, and modern C++20/C++23 features work flawlessly out of the box!
+
+To install the standard GNU GCC C/C++ compiler and debugger:
+
+1. In your Administrator PowerShell, run:
+   ```powershell
+   C:\msys64\usr\bin\bash.exe -lc "pacman -S --noconfirm mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb"
+   ```
+   *(Alternatively, launch **MSYS2 UCRT64** from the Windows Start Menu and run `pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain`).*
+
+---
+
 ### What is the PATH Environment Variable?
 Think of your computer as a giant library. When you type `gcc` or `python` in a terminal, Windows doesn't know where those programs are stored unless you add their folder location to the **PATH**. PATH is a list of directory shortcuts that Windows checks whenever you run a command.
 
-Chocolatey automatically sets up most paths, but you must verify that the C/C++ compiler (`gcc`/`g++`) is registered.
+To make `gcc`, `g++`, and `gdb` accessible from PowerShell, Command Prompt, and VS Code, we add the MSYS2 UCRT64 `bin` folder to PATH.
 
 ### Step-by-Step PATH Verification:
 1. Press `Windows Key + R`, type `sysdm.cpl`, and hit **Enter** (or search **Edit the system environment variables** in the Start Menu).
@@ -91,13 +109,12 @@ Chocolatey automatically sets up most paths, but you must verify that the C/C++ 
    ![System Properties Environment Variables Button](images/system-properties-environment-variables.png)
 3. In the lower section called **System variables**, find the variable named **Path** and click **Edit...**.
    ![Environment Variables System Path Selection](images/environment-variables-edit-path.png)
-4. Check if the MinGW bin path exists in the list (usually `C:\tools\mingw64\bin` or `C:\ProgramData\chocolatey\bin`).
-   ![Edit Environment Variable MinGW Path](images/edit-environment-variable-mingw-path.png)
-
-   - If it is **not** there:
-     - Click **New**.
-     - Paste: `C:\tools\mingw64\bin` (or the folder where MinGW's `gcc.exe` was installed).
-     - Click **OK** on all windows to save.
+4. Add the MSYS2 UCRT64 compiler path to the list:
+   - Click **New**.
+   - Paste: `C:\msys64\ucrt64\bin`
+   - Click **OK** on all dialog windows to save.
+   *(Reference dialog showing where compiler PATH entries are added:)*
+   ![Edit Environment Variable Path](images/edit-environment-variable-mingw-path.png)
 5. **Restart your terminal / PowerShell** (environment variables only update in newly opened terminals).
 
 ### Verify Everything in a New Terminal:
@@ -163,6 +180,10 @@ Git is now 100% installed, configured, and authenticated on your Windows PC!
 ## 2.5 Windows Subsystem for Linux (WSL)
 
 Many standard developer and cybersecurity tools are designed natively for Linux. Instead of setting up a complex dual-boot system, Windows allows you to run a full Ubuntu Linux environment directly inside Windows using WSL.
+
+> [!TIP]
+> **WSL as a Pure Linux Compiler Environment:**
+> In addition to native Windows MSYS2 GCC, WSL provides a 100% native Linux GNU GCC compiler environment (`sudo apt install build-essential`), exactly identical to online contest platforms (Codeforces, CodeChef, AtCoder, CSES). You can compile and test your CP code inside WSL anytime!
 
 ### Step 1: Install WSL and Ubuntu
 1. Open **PowerShell as Administrator** (Right-click Windows Start -> Terminal/PowerShell (Admin)).
