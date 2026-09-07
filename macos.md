@@ -186,6 +186,8 @@ To make `gcc` and `g++` default to genuine GNU GCC in your terminal:
    ```bash
    echo 'alias gcc="gcc-16"' >> ~/.zshrc
    echo 'alias g++="g++-16"' >> ~/.zshrc
+   echo 'export CC="gcc-16"' >> ~/.zshrc
+   echo 'export CXX="g++-16"' >> ~/.zshrc
    source ~/.zshrc
    ```
    *(If your Homebrew installed version 14, use `gcc-14` and `g++-14`).*
@@ -243,6 +245,10 @@ int main() {
    ```
    *(Thanks to the terminal alias `alias g++="g++-16"`, `g++` runs genuine GNU GCC 16 instead of Apple Clang!).*
    Enter `5 7` and press Return &rarr; outputs `Sum: 12`.
+
+> [!IMPORTANT]
+> **If pressing F5 to Build and Debug:**
+> If you press `F5` instead of clicking the Play button, VS Code will prompt you to select a compiler configuration. Always select **`C/C++: g++-16 build and debug active file`**, never `clang++`.
 
 ---
 
@@ -349,6 +355,8 @@ Open Terminal and run:
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "your_email@example.com"
+git config --global core.autocrlf input
+git config --global init.defaultBranch main
 ```
 
 ### Step 2: Authenticate with GitHub via SSH
@@ -418,10 +426,11 @@ If you are joining the Web3 Wing / Onchain IIITL or building decentralized appli
    ```bash
    sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
    ```
-   Add Solana CLI to your PATH in `~/.zprofile` (or `~/.zshrc`):
+   Add Solana CLI to your PATH in `~/.zprofile` and `~/.zshrc`:
    ```bash
    echo 'export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"' >> ~/.zprofile
-   source ~/.zprofile
+   echo 'export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"' >> ~/.zshrc
+   source ~/.zshrc
    ```
    Verify and configure default cluster to devnet:
    ```bash
@@ -430,6 +439,13 @@ If you are joining the Web3 Wing / Onchain IIITL or building decentralized appli
    solana-keygen new
    solana address
    ```
+
+   > [!TIP]
+   > **Apple Silicon (M1/M2/M3/M4) Note:**
+   > Ensure Apple's Rosetta 2 translation layer is installed for full compatibility when compiling certain Solana SBF toolchain dependencies:
+   > ```bash
+   > softwareupdate --install-rosetta --agree-to-license
+   > ```
 
 3. **Install Anchor Version Manager (AVM) & Anchor CLI:**
    ```bash

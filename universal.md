@@ -419,6 +419,41 @@ By default, Code Runner runs in the read-only Output panel (which prevents enter
 
 ![Click Install on the Python extension page](images/vs-extension-3.png)  
 
+#### Managing Python Packages with `uv` (Avoiding PEP 668 Errors)
+On modern operating systems (Ubuntu 24.04+, Debian 12+, Fedora, Arch, and macOS Homebrew), running global `pip install` is blocked by the OS (`error: externally-managed-environment`). Always use **`uv`** (which we install in the OS guides) to manage virtual environments and packages at 10x–100x the speed of standard pip:
+
+1. **Create a Virtual Environment:**
+   Inside your project or coursework folder:
+   ```bash
+   uv venv
+   ```
+2. **Activate the Virtual Environment:**
+   - **Windows (PowerShell):**
+     ```powershell
+     .venv\Scripts\Activate.ps1
+     ```
+   - **macOS / Linux:**
+     ```bash
+     source .venv/bin/activate
+     ```
+3. **Install Packages Blazingly Fast:**
+   ```bash
+   uv pip install numpy pandas matplotlib torch
+   ```
+4. **Or Run Scripts Directly Without Manual Activation:**
+   ```bash
+   uv run script.py
+   ```
+
+#### Local Jupyter Notebooks Setup:
+When working with Jupyter notebooks (`.ipynb`) in VS Code:
+1. Inside your project folder, install the IPython kernel:
+   ```bash
+   uv pip install ipykernel
+   ```
+2. Open your `.ipynb` file in VS Code.
+3. Click **Select Kernel** in the top-right corner &rarr; select **Python Environments...** &rarr; choose your project's **`.venv`**.
+
 ### Web Development:
 - **Live Server** (by Ritwick Dey): Launch a local development server with live reload for HTML/CSS/JavaScript.
 - **Prettier - Code Formatter**: Automatically cleans up and formats your code nicely whenever you save.

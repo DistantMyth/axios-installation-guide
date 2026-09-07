@@ -23,7 +23,7 @@ Instead of hunting down fragmented tutorials, everything you need is organized b
   One-click tool installation using **Chocolatey**, configuring modern standard GCC compilers via **MSYS2 UCRT64** (avoiding legacy MinGW `ordered_set` bugs), setting environment variables (PATH), Git SSH authentication, and setting up **WSL (Ubuntu)** with essential CTF & Web3/Solana development tools.
 
 - 🍎 **[3. macOS Setup Guide](macos.md)**  
-  Setting up **Homebrew**, tool installations, solving the Apple Clang vs GNU GCC problem for `#include <bits/stdc++.h>`, and configuring Git with GitHub SSH authentication.
+  Setting up **Homebrew**, tool installations, solving the Apple Clang vs GNU GCC problem for `#include <bits/stdc++.h>`, essential CTF utilities, Web3/Solana development tools, and configuring Git with GitHub SSH authentication.
 
 - 🐧 **[4. Linux Setup Guide](linux.md)**  
   Complete installation guide across major distro families: **Debian / Ubuntu** (`apt`), **Arch Linux** (`pacman`), and **Fedora / RHEL** (`dnf`), shell PATH configuration (`.bashrc` / `.zshrc`), Web3/Solana development tools, and Git SSH setup.

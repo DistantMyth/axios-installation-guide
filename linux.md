@@ -443,6 +443,8 @@ All should output valid version numbers.
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "your_email@example.com"
+git config --global core.autocrlf input
+git config --global init.defaultBranch main
 ```
 
 ### Step 2: Authenticate with GitHub via SSH
@@ -456,7 +458,18 @@ git config --global user.email "your_email@example.com"
    cat ~/.ssh/id_ed25519.pub
    ```
    Select the printed text (`ssh-ed25519 AAAAC3... your_email@example.com`) and copy it (`Ctrl + Shift + C` in Linux terminal).
-   *(Optional: install `xclip` via `sudo apt install xclip` or `sudo pacman -S xclip` and run `xclip -selection clipboard < ~/.ssh/id_ed25519.pub`)*.
+   
+   *(Optional one-click copy commands:)*
+   - **On Wayland (default on modern Ubuntu 22.04/24.04, Fedora, Arch GNOME/KDE):**
+     ```bash
+     sudo apt install -y wl-clipboard  # Arch: sudo pacman -S wl-clipboard | Fedora: sudo dnf install -y wl-clipboard
+     wl-copy < ~/.ssh/id_ed25519.pub
+     ```
+   - **On X11:**
+     ```bash
+     sudo apt install -y xclip         # Arch: sudo pacman -S xclip | Fedora: sudo dnf install -y xclip
+     xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+     ```
 4. Go to **GitHub** -> **Settings** -> **SSH and GPG keys** -> **New SSH key**.
 5. Title: `My Linux Machine`.
 6. Paste the key and click **Add SSH key**.

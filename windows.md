@@ -50,6 +50,11 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
    ```
    If it prints a version number (like `2.x.x`), Chocolatey is ready!
    ![Chocolatey Version Check](images/choco-version-check.png)
+7. **Configure PowerShell Script Execution Policy (Crucial for Python):**
+   By default, Windows restricts running local scripts (like Python virtual environment activation scripts `.venv\Scripts\Activate.ps1`). Enable script execution for your user by running:
+   ```powershell
+   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+   ```
 
 > [!NOTE]
 > *Alternative*: Modern Windows 11/10 also comes with a built-in package manager called `winget`. However, Chocolatey is recommended here as it reliably configures developer PATH variables.
@@ -339,8 +344,15 @@ Open PowerShell and run:
 ```powershell
 git config --global user.name "Your Name"
 git config --global user.email "your_email@example.com"
+git config --global core.autocrlf input
+git config --global init.defaultBranch main
 ```
 *(Make sure to use the exact same email address you used when registering on GitHub!)*
+
+> [!TIP]
+> **Why `core.autocrlf input`?**
+> Windows traditionally uses `CRLF` (`\r\n`) for line endings, while Linux and macOS use `LF` (`\n`). If you write shell scripts (`.sh`) or code shared between Windows and WSL, Windows `CRLF` breaks bash execution with the frustrating errors `\r: command not found` or `: bad interpreter: No such file or directory`. Setting `core.autocrlf input` guarantees clean Unix `LF` line endings on checkout and commit.
+> *(If you ever encounter `^M` line ending errors inside WSL, install `dos2unix` via `sudo apt install dos2unix` and run `dos2unix <filename>`).*
 
 ### Step 2: Authenticate with GitHub via SSH
 1. In PowerShell, generate a new secure SSH key:
@@ -415,6 +427,10 @@ Inside your Ubuntu Terminal, run:
 2. Install C/C++ build tools, Node.js, and essential CTF / Cybersecurity utilities:
    ```bash
    sudo apt install -y build-essential libimage-exiftool-perl nmap netcat-traditional binwalk steghide nodejs npm pkg-config libssl-dev libudev-dev
+   ```
+3. Install `uv` (modern Python package and virtual environment manager inside Linux):
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
 
 ### Step 4: Web3 & Solana Development Setup (inside WSL)
