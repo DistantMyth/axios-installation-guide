@@ -12,7 +12,7 @@ Before starting your college lab or contest, run through this quick checklist to
 - [4. Command Line Tools](#-4-command-line-tools)
 - [5. Git & GitHub Authentication](#-5-git--github-authentication)
 - [6. Browser Extensions](#-6-browser-extensions)
-- [7. WSL & Linux Advanced Toolkits (CTF & Web3)](#-7-wsl--linux-advanced-toolkits-ctf--web3)
+- [7. WSL, macOS & Linux Advanced Toolkits (CTF & Web3)](#-7-wsl-macos--linux-advanced-toolkits-ctf--web3)
 
 ---
 
@@ -41,7 +41,7 @@ Before starting your college lab or contest, run through this quick checklist to
 
 ---
 
-### ⚙️ 3. Compiler & Test Code
+### 🧪 3. Compiler & Test Code
 - [ ] Test C++ file compiles with `<bits/stdc++.h>` and Policy-Based Data Structures (`ordered_set`):
   ```cpp
   #include <bits/stdc++.h>
@@ -92,10 +92,10 @@ Run these commands in your terminal to verify that each tool responds with a ver
 | **uv Package Manager** | `uv --version` | `uv 0.x.x` |
 | **Node.js** | `node --version` | `v20.x.x` or `v22.x.x` |
 | **Git** | `git --version` | `git version 2.x.x` |
-| **Rust Compiler** | `rustc --version` | `rustc 1.x.x` *(WSL / Linux)* |
-| **Cargo Package Manager** | `cargo --version` | `cargo 1.x.x` *(WSL / Linux)* |
-| **Solana CLI** | `solana --version` | `solana-cli x.x.x` *(WSL / Linux)* |
-| **Anchor CLI** | `anchor --version` | `anchor-cli 0.x.x` *(WSL / Linux)* |
+| **Rust Compiler** | `rustc --version` | `rustc 1.x.x` *(macOS / Linux / WSL)* |
+| **Cargo Package Manager** | `cargo --version` | `cargo 1.x.x` *(macOS / Linux / WSL)* |
+| **Solana CLI** | `solana --version` | `solana-cli x.x.x` *(macOS / Linux / WSL)* |
+| **Anchor CLI** | `anchor --version` | `anchor-cli 0.x.x` *(macOS / Linux / WSL)* |
 
 ---
 
@@ -122,9 +122,9 @@ Run these commands in your terminal to verify that each tool responds with a ver
 
 ---
 
-### 🧑‍💻 7. WSL & Linux Advanced Toolkits (CTF & Web3)
+### 🚀 7. WSL, macOS & Linux Advanced Toolkits (CTF & Web3)
 
-For Windows users (inside WSL Ubuntu) and native Linux users, verify your advanced domain toolchains:
+For Windows users (inside WSL Ubuntu), native Linux users, and macOS users, verify your advanced domain toolchains:
 
 - [ ] **Core Compilers & Build Tools:**
   - `gcc --version`

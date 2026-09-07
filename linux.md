@@ -12,20 +12,22 @@ Linux is the developer standard in industry and academia. There are dozens of Li
   - [Option B: Arch Linux-based (`pacman`)](#option-b-arch-linux-based-pacman)
   - [Option C: Fedora / Red Hat-based (`dnf`)](#option-c-fedora--red-hat-based-dnf)
   - [Option D: Universal Standalone Tarball (`.tar.gz`)](#option-d-universal-standalone-tarball-targz)
-- [4.3 Running Your First C++ File in VS Code](#43-running-your-first-c-file-in-vs-code)
+- [4.3 Configure VS Code for C/C++ & Competitive Programming](#43-configure-vs-code-for-cc--competitive-programming)
+- [4.4 Running Your First C++ File in VS Code](#44-running-your-first-c-file-in-vs-code)
   - [Step 1: Open Your Working Directory](#step-1-open-your-working-directory)
   - [Step 2: Create a C++ Source File](#step-2-create-a-c-source-file)
   - [Step 3: Write and Run Your Code](#step-3-write-and-run-your-code)
   - [Step 4: Select the g++ Build Configuration](#step-4-select-the-g-build-configuration)
-- [4.4 Using Competitive Companion & CPH in VS Code](#44-using-competitive-companion--cph-in-vs-code)
-- [4.5 Verifying Advanced CP Features (PBDS & Optimization Pragmas)](#45-verifying-advanced-cp-features-pbds--optimization-pragmas)
-- [4.6 Environment Variables & PATH on Linux](#46-environment-variables--path-on-linux)
+- [4.5 Using Competitive Companion & CPH in VS Code](#45-using-competitive-companion--cph-in-vs-code)
+- [4.6 Verifying Advanced CP Features (PBDS & Optimization Pragmas)](#46-verifying-advanced-cp-features-pbds--optimization-pragmas)
+- [4.7 Environment Variables & PATH on Linux](#47-environment-variables--path-on-linux)
   - [How Environment Variables Work](#how-environment-variables-work)
   - [Verify All Tools on Linux](#verify-all-tools-on-linux)
-- [4.7 Git Setup & Authentication (Linux)](#47-git-setup--authentication-linux)
+- [4.8 Git Setup & Authentication (Linux)](#48-git-setup--authentication-linux)
   - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
   - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-via-ssh)
-- [4.8 Web3 & Solana Development Setup](#48-web3--solana-development-setup)
+- [4.9 Cybersecurity & CTF Tools Setup (Linux)](#49-cybersecurity--ctf-tools-setup-linux)
+- [4.10 Web3 & Solana Development Setup](#410-web3--solana-development-setup)
 - [Next Steps](#next-steps)
 
 ---
@@ -222,7 +224,41 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
 
 ---
 
-## 4.3 Running Your First C++ File in VS Code
+---
+
+## 4.3 Configure VS Code for C/C++ & Competitive Programming
+
+Now configure VS Code so IntelliSense and syntax diagnostics use your native GNU GCC compiler:
+
+1. Open VS Code.
+2. Press `Ctrl + Shift + P` to open the Command Palette.
+3. Type and select: **`C/C++: Edit Configurations (UI)`**.
+4. Set the following options:
+   - **Compiler Path:** `/usr/bin/g++`
+   - **IntelliSense Mode:** `linux-gcc-x64`
+   - **C++ Standard:** `c++20` (or `c++17`)
+5. *(Recommended Tip)*: Press `Ctrl + Shift + P` -> search `File: Toggle Auto Save` -> click it to turn on auto-save!
+
+![File Toggle Auto Save](images/vscode-file-toggle-autosave.png)
+
+### Configure Code Runner & CPH for Linux:
+1. **Code Runner Settings**:
+   - Open Settings (`Ctrl + ,`).
+   - Search for `run in terminal` -> check **Code-runner: Run In Terminal**.
+   - Search for `save file before run` -> check **Code-runner: Save File Before Run**.
+   - Search for `executor map` -> click **Edit in settings.json** and ensure `"cpp"` compiles with optimization:
+     ```json
+     "cpp": "cd $dir && g++ -std=c++20 -O2 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+     "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+     ```
+2. **CPH (Competitive Programming Helper) Settings**:
+   - In Settings, search for `CPH Language Cpp`.
+   - Set **CPH > Language: Cpp > Command**: `g++`.
+   - Set **CPH > Language: Cpp > Args**: `-std=c++20 -O2`.
+
+---
+
+## 4.4 Running Your First C++ File in VS Code
 
 Follow the official CP Wing workflow to set up your project workspace and run your first C++ program:
 
@@ -272,7 +308,7 @@ VS Code will automatically configure the build task, compile `main.cpp` using yo
 
 ---
 
-## 4.4 Using Competitive Companion & CPH in VS Code
+## 4.5 Using Competitive Companion & CPH in VS Code
 
 The official CP Wing workflow pairs the **Competitive Companion** browser extension with **Competitive Programming Helper (cph)** in VS Code to parse contest problems and run test cases in one click:
 
@@ -299,7 +335,7 @@ The official CP Wing workflow pairs the **Competitive Companion** browser extens
 
 ---
 
-## 4.5 Verifying Advanced CP Features (PBDS & Optimization Pragmas)
+## 4.6 Verifying Advanced CP Features (PBDS & Optimization Pragmas)
 
 In modern competitive programming, high performance and specialized data structures like **Policy-Based Data Structures (PBDS)** (`ordered_set`) are essential. Verify your compiler with this test:
 
@@ -314,8 +350,8 @@ Create a file named `test_pbds.cpp`:
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 
-// x86_64 target architecture optimizations
-#if defined(__x86_64__) || defined(_M_X64)
+// x86_64 architecture target optimizations
+#if (defined(__x86_64__) || defined(_M_X64)) && !defined(__APPLE__)
 #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
 #endif
 
@@ -333,7 +369,6 @@ int main() {
     // Fast I/O
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cout.tie(NULL);
 
     ordered_set<int> s;
     s.insert(10);
@@ -353,7 +388,7 @@ int main() {
 
 Compile and run the test in your terminal:
 ```bash
-g++ -O3 test_pbds.cpp -o test_pbds && ./test_pbds
+g++ -std=c++20 -O3 test_pbds.cpp -o test_pbds && ./test_pbds
 ```
 
 Expected Output:
@@ -365,7 +400,7 @@ Linux C++ compiler, PBDS, and optimization pragmas are 100% operational!
 
 ---
 
-## 4.6 Environment Variables & PATH on Linux
+## 4.7 Environment Variables & PATH on Linux
 
 On Linux, your user environment variables and search paths are stored in shell configuration files:
 - If you use Bash (default on Ubuntu, Fedora, Debian): `~/.bashrc`
@@ -402,7 +437,7 @@ All should output valid version numbers.
 
 ---
 
-## 4.7 Git Setup & Authentication (Linux)
+## 4.8 Git Setup & Authentication (Linux)
 
 ### Step 1: Set your Git Name and Email
 ```bash
@@ -432,7 +467,28 @@ git config --global user.email "your_email@example.com"
    Type `yes` when prompted. You will see:
    `Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.`
 
-## 4.8 Web3 & Solana Development Setup
+---
+
+## 4.9 Cybersecurity & CTF Tools Setup (Linux)
+
+If you are participating in CTF (Capture The Flag) competitions or cybersecurity challenges with the Infosec / Cybersecurity Wing, install these standard reverse engineering, steganography, and network analysis command-line utilities:
+
+- **Debian / Ubuntu / Linux Mint:**
+  ```bash
+  sudo apt update && sudo apt install -y libimage-exiftool-perl nmap netcat-traditional binwalk steghide
+  ```
+- **Arch Linux / Manjaro:**
+  ```bash
+  sudo pacman -S --needed perl-image-exiftool nmap gnu-netcat binwalk steghide
+  ```
+- **Fedora / RHEL:**
+  ```bash
+  sudo dnf install -y perl-Image-ExifTool nmap nmap-ncat binwalk steghide
+  ```
+
+---
+
+## 4.10 Web3 & Solana Development Setup
 
 If you are joining the Web3 Wing / Onchain IIITL or building decentralized applications (dApps), install the Rust and Solana development toolchains natively on Linux:
 
@@ -468,6 +524,12 @@ If you are joining the Web3 Wing / Onchain IIITL or building decentralized appli
    ```
 
 3. **Install Anchor Version Manager (AVM) & Anchor CLI:**
+   > [!NOTE]
+   > Compiling `avm` from source requires C build tools, OpenSSL, pkg-config, and libudev development libraries:
+   > - **Debian / Ubuntu:** `sudo apt install -y pkg-config libssl-dev libudev-dev`
+   > - **Arch Linux:** `sudo pacman -S --needed pkgconf openssl`
+   > - **Fedora:** `sudo dnf install -y pkgconf-pkg-config openssl-devel systemd-devel`
+
    ```bash
    cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
    avm install latest

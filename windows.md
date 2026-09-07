@@ -61,7 +61,8 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
 Open **PowerShell as Administrator** and run this single command to install everything you need:
 
 ```powershell
-choco install -y git vscode nodejs-lts python3 uv 7zip curl wget msys2
+choco install -y git vscode nodejs-lts python3 uv 7zip curl wget
+choco install -y msys2 --params "/InstallDir:C:\msys64"
 ```
 
 What this installs:
@@ -74,15 +75,14 @@ What this installs:
 - `curl` & `wget`: Command-line tools for downloading files and testing APIs.
 - `msys2`: MSYS2 development platform (provides the modern GNU GCC compiler toolchain without legacy MinGW bugs).
 
-> [!NOTE]
-> *Alternative standalone install for uv:* If you prefer installing `uv` standalone via PowerShell directly:
+> [!TIP]
+> **Using winget instead?**
+> If you prefer Windows built-in `winget` (as in the official CP Wing guide), run:
 > ```powershell
-> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+> winget install MSYS2.MSYS2
 > ```
-
-![Chocolatey Tools Installation Output 1](images/choco-install-tools-1.png)
-![Chocolatey Tools Installation Output 2](images/choco-install-tools-2.png)
-![Chocolatey Tools Installation Output 3](images/choco-install-tools-3.png)
+> Winget automatically installs MSYS2 directly to `C:\msys64`.
+> *(Note: If you previously installed MSYS2 via plain Chocolatey without parameters, it may be installed at `C:\tools\msys64` instead; simply use `C:\tools\msys64` wherever `C:\msys64` appears below).*
 
 ---
 
@@ -95,13 +95,13 @@ What this installs:
 > Legacy MinGW distributions (such as older MinGW-w64 packages) suffer from an infamous bug with Policy-Based Data Structures (PBDS) — specifically breaking `ordered_set` (`<ext/pb_ds/assoc_container.hpp>`) due to a corrupted internal header filename in the package.
 > MSYS2 UCRT64 provides the modern, upstream GNU GCC compiler toolchain (GCC 14+) built on the modern Windows Universal C Runtime (UCRT). With MSYS2, `<bits/stdc++.h>`, `ordered_set`, and modern C++20/C++23 features work flawlessly out of the box!
 
-To install the standard GNU GCC C/C++ compiler and debugger:
+To install the standard GNU GCC C/C++ compiler, debugger, and build utilities:
 
 1. In your Administrator PowerShell, run:
    ```powershell
-   C:\msys64\usr\bin\bash.exe -lc "pacman -S --noconfirm mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-gdb"
+   C:\msys64\usr\bin\bash.exe -lc "pacman -S --noconfirm mingw-w64-ucrt-x86_64-toolchain"
    ```
-   *(Alternatively, launch **MSYS2 UCRT64** from the Windows Start Menu and run `pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain`).*
+   *(Alternatively, launch **MSYS2 UCRT64** from the Windows Start Menu and run `pacman -S --noconfirm mingw-w64-ucrt-x86_64-toolchain`).*
 
 ---
 
@@ -167,6 +167,21 @@ Now configure VS Code so IntelliSense and syntax diagnostics use your newly inst
 5. *(Recommended Tip)*: Press `Ctrl + Shift + P` -> search `File: Toggle Auto Save` -> click it to turn on auto-save so your files are always automatically saved before compilation!
 
 ![File Toggle Auto Save](images/vscode-file-toggle-autosave.png)
+
+### Configure Code Runner & CPH for Windows:
+1. **Code Runner Settings**:
+   - Open Settings (`Ctrl + ,`).
+   - Search for `run in terminal` -> check **Code-runner: Run In Terminal**.
+   - Search for `save file before run` -> check **Code-runner: Save File Before Run**.
+   - Search for `executor map` -> click **Edit in settings.json** and ensure `"cpp"` compiles with optimization and PowerShell compatibility:
+     ```json
+     "cpp": "cd $dir && g++ -std=c++17 -O2 $fileName -o $fileNameWithoutExt.exe && & .\\$fileNameWithoutExt.exe",
+     "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt.exe && & .\\$fileNameWithoutExt.exe"
+     ```
+2. **CPH (Competitive Programming Helper) Settings**:
+   - In Settings, search for `CPH Language Cpp`.
+   - Set **CPH > Language: Cpp > Command**: `g++` (or `C:\msys64\ucrt64\bin\g++.exe`).
+   - Set **CPH > Language: Cpp > Args**: `-std=c++17 -O2`.
 
 ---
 
@@ -263,7 +278,11 @@ Create a file named `test_pbds.cpp`:
 // Compiler optimization pragmas
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
+
+// x86_64 architecture target optimizations
+#if (defined(__x86_64__) || defined(_M_X64)) && !defined(__APPLE__)
 #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+#endif
 
 using namespace std;
 using namespace __gnu_pbds;
@@ -393,9 +412,9 @@ Inside your Ubuntu Terminal, run:
    ```bash
    sudo apt update && sudo apt upgrade -y
    ```
-2. Install C/C++ build tools and essential CTF / Cybersecurity utilities:
+2. Install C/C++ build tools, Node.js, and essential CTF / Cybersecurity utilities:
    ```bash
-   sudo apt install -y build-essential exiftool nmap netcat-traditional binwalk steghide
+   sudo apt install -y build-essential libimage-exiftool-perl nmap netcat-traditional binwalk steghide nodejs npm pkg-config libssl-dev libudev-dev
    ```
 
 ### Step 4: Web3 & Solana Development Setup (inside WSL)

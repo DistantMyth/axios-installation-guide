@@ -22,6 +22,8 @@ macOS is Unix-based and fantastic for development, but it has a few specific qui
 - [3.10 Git Setup & Authentication (macOS)](#310-git-setup--authentication-macos)
   - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
   - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-via-ssh)
+- [3.11 Cybersecurity & CTF Tools Setup (macOS)](#311-cybersecurity--ctf-tools-setup-macos)
+- [3.12 Web3 & Solana Development Setup (macOS)](#312-web3--solana-development-setup-macos)
 - [Next Steps](#next-steps)
 
 ---
@@ -372,6 +374,81 @@ git config --global user.email "your_email@example.com"
    Type `yes` when prompted. You will see: `Hi <username>! You've successfully authenticated...`
 
 macOS setup is complete!
+
+---
+
+## 3.11 Cybersecurity & CTF Tools Setup (macOS)
+
+If you are participating in CTF (Capture The Flag) competitions or cybersecurity challenges with the Infosec / Cybersecurity Wing, install these standard reverse engineering, steganography, and network analysis command-line utilities via Homebrew:
+
+```bash
+brew install exiftool nmap binwalk steghide netcat
+```
+
+Verify the tools:
+```bash
+exiftool -ver
+nmap --version
+binwalk --version
+steghide --version
+nc -h
+```
+
+---
+
+## 3.12 Web3 & Solana Development Setup (macOS)
+
+If you are joining the Web3 Wing / Onchain IIITL or building decentralized applications (dApps), install the Rust and Solana development toolchains natively on macOS:
+
+1. **Install Rust (Rustup Toolchain):**
+   ```bash
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   ```
+   Press `1` and hit Enter when prompted. Reload your shell environment:
+   ```bash
+   source $HOME/.cargo/env
+   ```
+   Verify Rust compiler and package manager:
+   ```bash
+   rustc --version
+   cargo --version
+   ```
+
+2. **Install Solana CLI:**
+   ```bash
+   sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+   ```
+   Add Solana CLI to your PATH in `~/.zprofile` (or `~/.zshrc`):
+   ```bash
+   echo 'export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"' >> ~/.zprofile
+   source ~/.zprofile
+   ```
+   Verify and configure default cluster to devnet:
+   ```bash
+   solana --version
+   solana config set --url devnet
+   solana-keygen new
+   solana address
+   ```
+
+3. **Install Anchor Version Manager (AVM) & Anchor CLI:**
+   ```bash
+   cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+   avm install latest
+   avm use latest
+   ```
+   Verify Anchor:
+   ```bash
+   anchor --version
+   ```
+
+4. **Smoke-Test Your Solana Environment:**
+   ```bash
+   anchor init my-first-project
+   cd my-first-project
+   anchor build
+   ```
+   If `anchor build` finishes without errors, your macOS Solana dev environment is ready!
 
 ---
 

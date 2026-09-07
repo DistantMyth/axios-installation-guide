@@ -337,6 +337,7 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 
 7. **CF FetchCodes**:
    - Quickly fetch and inspect problem solutions and test data for contest analysis.
+   - [Chrome Web Store Link](https://chromewebstore.google.com/detail/cf-fetchcodes/ombmefkchmjbodcoboeagbpaejfojnga)
 
 ### For Web Development:
 1. **JSON Viewer / JSON Formatter**:
