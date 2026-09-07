@@ -119,25 +119,39 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    sudo pacman -S nodejs npm
    ```
 
-5. Install Visual Studio Code:
+5. Install an AUR Helper (`yay`):
+   Distros like EndeavourOS and Garuda come with `yay` pre-installed. If you are on vanilla Arch Linux or Manjaro, install `yay` once from the Arch User Repository:
+   ```bash
+   sudo pacman -S --needed git base-devel
+   git clone https://aur.archlinux.org/yay.git
+   cd yay && makepkg -si && cd .. && rm -rf yay
+   ```
+   Verify installation:
+   ```bash
+   yay --version
+   ```
+
+6. Install Visual Studio Code:
    > [!IMPORTANT]
    > **Do not install `code` via `sudo pacman -S code`:**
    > In Arch's official repositories, the package `code` is **Code - OSS** (an open-source community build). It lacks access to the official Microsoft Extension Marketplace, disables Microsoft Settings Sync, and causes proprietary Microsoft extensions like **Pylance** (`ms-python.vscode-pylance`) and the **C/C++ Debugger** (`ms-vscode.cpptools`) to fail or refuse to run.
    >
    > To get the official Microsoft Visual Studio Code with the complete Marketplace and Settings Sync, install **`visual-studio-code-bin`** from the Arch User Repository (AUR):
 
-   - **If you use an AUR helper like `yay` or `paru` (recommended):**
+   - **Using `yay` (recommended):**
      ```bash
      yay -S visual-studio-code-bin
-     # or if you use paru:
+     ```
+
+   - **Alternative (if using `paru`):**
+     ```bash
      paru -S visual-studio-code-bin
      ```
 
-   - **If you do not have an AUR helper installed (using native Arch tools):**
+   - **Alternative (directly via `makepkg` without an AUR helper):**
      ```bash
      git clone https://aur.archlinux.org/visual-studio-code-bin.git
-     cd visual-studio-code-bin
-     makepkg -si
+     cd visual-studio-code-bin && makepkg -si && cd .. && rm -rf visual-studio-code-bin
      ```
 
 ---
