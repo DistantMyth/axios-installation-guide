@@ -205,6 +205,6 @@ Inside your Ubuntu Terminal, run:
 
 ## Next Steps
 
-- Now that VS Code, compilers, Git, and WSL are installed, head over to **[1.5 Essential VS Code Extensions](universal.md#15-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, etc.).
-- After installing extensions, proceed to the **[6. Quick Verification Checklist](checklist.md)** to verify your complete setup.
+- Now that VS Code, compilers, Git, and WSL are installed, head over to **[1.7 Essential VS Code Extensions](universal.md#17-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
+- After installing extensions, proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.

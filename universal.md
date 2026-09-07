@@ -9,12 +9,19 @@ These steps are done directly in your web browser and code editor, so they are *
 - [1.1 GitHub Account](#11-github-account)
 - [1.2 Codeforces Account](#12-codeforces-account)
 - [1.3 CodeChef Account](#13-codechef-account)
-- [1.4 Recommended Browser Extensions](#14-recommended-browser-extensions)
+- [1.4 Kaggle Account (Free Cloud GPU Compute)](#14-kaggle-account-free-cloud-gpu-compute)
+  - [Step 1: Register an Account](#step-1-register-an-account)
+  - [Step 2: Phone Verification (Mandatory for Compute)](#step-2-phone-verification-mandatory-for-compute)
+  - [Step 3: Complete the Profile](#step-3-complete-the-profile)
+- [1.5 Hugging Face Account](#15-hugging-face-account)
+  - [Step 1: Sign Up & Verify Email](#step-1-sign-up--verify-email)
+  - [Step 2: Customize Profile Details](#step-2-customize-profile-details)
+- [1.6 Recommended Browser Extensions](#16-recommended-browser-extensions)
   - [Competitive Programming Extensions](#for-competitive-programming-codeforces--codechef)
   - [Web Development Extensions](#for-web-development)
-- [1.5 Essential VS Code Extensions](#15-essential-vs-code-extensions)
+- [1.7 Essential VS Code Extensions](#17-essential-vs-code-extensions)
   - [C / C++ & Competitive Programming](#c--c--competitive-programming)
-  - [Python](#python)
+  - [Python, Machine Learning & Data Science](#python-machine-learning--data-science)
   - [Web Development](#web-development)
   - [Quality of Life & Themes](#quality-of-life--themes)
 - [Next Steps](#next-steps)
@@ -88,7 +95,84 @@ CodeChef is an Indian competitive programming platform widely used for monthly c
 
 ---
 
-## 1.4 Recommended Browser Extensions
+## 1.4 Kaggle Account (Free Cloud GPU Compute)
+
+Kaggle is the standard community hub for datasets, competitions, and free cloud GPU compute (essential for running and training machine learning models without needing a dedicated GPU on your laptop).
+
+### Step 1: Register an Account
+1. Go to [kaggle.com](https://www.kaggle.com).
+2. Click **Register** in the top right.  
+   ![Click Register in the top-right corner of kaggle.com](images/kaggle-setup-1.png)  
+3. Choose **Register with Google** for single-click sign-in, or use an email and password.  
+   ![Choose Register with Google or Register with Email](images/kaggle-setup-2.png)  
+4. Set a professional username (this forms your public Kaggle portfolio URL: `kaggle.com/your-username`).  
+   ![Enter your full name and choose a public username](images/kaggle-setup-3.png)  
+
+### Step 2: Phone Verification (Mandatory for Compute)
+> [!IMPORTANT]
+> By default, new accounts cannot turn on GPUs/TPUs or enable internet access inside notebooks. Phone verification is required to unlock free compute quotas!
+
+1. Click your profile avatar (top-right) -> select **Settings**.  
+   ![Click your profile avatar in the top-right corner](images/kaggle-setup-4.png)  
+
+   ![Select Settings from the user dropdown menu](images/kaggle-setup-5.png)  
+2. Scroll down to the **Phone verification** section and click **Phone verify**.  
+   ![Click Phone verify under the Phone verification section](images/kaggle-setup-6.png)  
+3. Enter your phone number with your country code (e.g., `+91` for India), complete the captcha, and verify the OTP sent via SMS.  
+   ![Enter country code, mobile number, and click Start verification](images/kaggle-setup-7.png)  
+4. ✅ Once verified, your account unlocks **~30 hours/week** of free GPU quota (NVIDIA T4 / P100) and internet access inside Kaggle kernels.
+
+### Step 3: Complete the Profile
+
+1. Click your profile avatar -> select **Your Profile**.  
+   ![Select Your Profile from the avatar dropdown menu](images/kaggle-setup-8.png)  
+2. Click **Edit your public profile**.  
+   ![Click Edit your public profile on your profile page](images/kaggle-setup-9.png)  
+3. Add a profile photo, display name, and tagline:  
+   - Click the pencil icon on the profile banner:  
+     ![Click the banner edit pencil icon](images/kaggle-profile-1.png)  
+   - Upload a photo, fill in your details, and click **Save changes**:  
+     ![Update profile photo, display name, tagline, and occupation](images/kaggle-profile-2.png)  
+4. Add a short bio:  
+   - Scroll down to the **Bio** section and click the pencil icon:  
+     ![Click the pencil icon next to the Bio section](images/kaggle-profile-3.png)  
+   - Enter your bio and click **Save**:  
+     ![Write your bio and click Save](images/kaggle-profile-4.png)  
+5. Link your **GitHub** and **LinkedIn** profiles so competition rankings and public notebooks act as resume credentials:  
+   - Click the pencil icon next to the social links section:  
+     ![Click the edit pencil icon next to social links](images/kaggle-setup-10.png)  
+   - Enter your GitHub username and LinkedIn URL:  
+     ![Enter GitHub username and LinkedIn URL](images/kaggle-setup-11.png)   
+
+---
+
+## 1.5 Hugging Face Account
+
+Hugging Face is the central repository for pre-trained weights (LLMs, vision models), benchmarks, and raw datasets.
+
+### Step 1: Sign Up & Verify Email
+1. Navigate to [huggingface.co](https://huggingface.co).
+2. Click **Sign Up** in the top-right corner.  
+   ![Click Sign Up in the top-right corner of huggingface.co](images/huggingface-setup-1.png)  
+3. Enter your email and password, then click **Next**.  
+   ![Enter your email address and password](images/huggingface-setup-2.png)  
+4. Fill in your username, full name, agree to the Terms of Service, and click **Create Account**.  
+   ![Choose a username, enter full name, and click Create Account](images/huggingface-setup-3.png)  
+   > [!WARNING]
+   > Hugging Face disables community interactions, dataset forks, and model access until your email is confirmed. Open your inbox and click the verification link immediately.
+
+### Step 2: Customize Profile Details
+1. Click your profile avatar (top-right) -> select **Settings**.  
+   ![Click your profile avatar in the top navigation bar](images/huggingface-setup-4.png)  
+
+   ![Select Settings from the avatar dropdown](images/huggingface-setup-5.png)  
+2. Under **Profile Settings**, add your profile photo, GitHub handle, and social links:  
+   ![Update profile avatar, full name, GitHub handle, and click Save changes](images/huggingface-setup-6.png)  
+3. Any public Spaces (demo apps using Gradio/Streamlit) or custom datasets you create will appear under this profile.
+
+---
+
+## 1.6 Recommended Browser Extensions
 Install these browser extensions (available on Chrome Web Store, Firefox Add-ons, and Microsoft Edge Add-ons) to make your coding and contest experience 10x smoother:
 
 ### For Competitive Programming (Codeforces / CodeChef):
@@ -127,7 +211,7 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 
 ---
 
-## 1.5 Essential VS Code Extensions
+## 1.7 Essential VS Code Extensions
 Once you install VS Code (from your OS guide), open VS Code, click the **Extensions** icon on the left sidebar (shortcut: `Ctrl + Shift + X` on Windows/Linux, `Cmd + Shift + X` on Mac), search for the following extensions, and click **Install**:
 
 ![VS Code Extensions Tab](images/Pasted%20image%2020260904174839.png)
@@ -145,10 +229,15 @@ Once you install VS Code (from your OS guide), open VS Code, click the **Extensi
     2. Search for `code-runner.runInTerminal`.
     3. Check the box for **"Code-runner: Run In Terminal"**. Now your programs will run in the terminal and accept user input!
 
-### Python:
-- **Python** (by Microsoft): Linting, debugging, code formatting.
-- **Pylance** (by Microsoft): Super-fast autocomplete and type checking for Python.
-- *(For AI/ML, Jupyter notebooks, and Ruff, see the **[5. Machine Learning Setup Guide](ml-setup.md)**).*
+### Python, Machine Learning & Data Science:
+- **Python** (`ms-python.python` by Microsoft): Autocomplete, linting, debugging, and multi-environment selection.
+- **Pylance** (`ms-python.vscode-pylance` by Microsoft): High-performance language support, type checking, and auto-imports.
+- **Jupyter** (`ms-toolsai.jupyter` by Microsoft): Run interactive `.ipynb` notebooks directly inside VS Code without launching a browser server.
+- **Ruff** (`charliermarsh.ruff` by Astral): Extremely fast Python linter and code formatter built in Rust by the creators of `uv`.
+
+![Search for Python and Pylance in Extensions](images/vs-extension-2.png)  
+
+![Click Install on the Python extension page](images/vs-extension-3.png)  
 
 ### Web Development:
 - **Live Server** (by Ritwick Dey): Launch a local development server with live reload for HTML/CSS/JavaScript.
@@ -164,10 +253,9 @@ Once you install VS Code (from your OS guide), open VS Code, click the **Extensi
 
 ## Next Steps
 
-- Finished installing all extensions and tools? Head over to the **[6. Quick Verification Checklist](checklist.md)** to verify your setup!
+- Finished installing all extensions and tools? Head over to the **[5. Quick Verification Checklist](checklist.md)** to verify your setup!
 - Haven't completed your operating system setup yet? Head to your OS guide:
   - 🪟 **[2. Windows Setup Guide](windows.md)**
   - 🍎 **[3. macOS Setup Guide](macos.md)**
   - 🐧 **[4. Linux Setup Guide](linux.md)**
-- Interested in Machine Learning & Data Science? Check out the **[5. Machine Learning Setup Guide](ml-setup.md)** for Jupyter, Ruff, Kaggle, and Hugging Face.
 - Or return to the **[Basic Installation Overview](README.md)**.

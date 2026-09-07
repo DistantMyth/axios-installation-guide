@@ -1,4 +1,4 @@
-# 6. Quick Verification Checklist
+# 5. Quick Verification Checklist
 
 Before starting your college lab or contest, run through this quick checklist to confirm everything is working smoothly.
 
