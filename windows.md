@@ -14,11 +14,16 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
   - [Step-by-Step PATH Verification](#step-by-step-path-verification)
   - [Verify Everything in a New Terminal](#verify-everything-in-a-new-terminal)
 - [2.4 Configure VS Code for C/C++ & Competitive Programming](#24-configure-vs-code-for-cc--competitive-programming)
-- [2.5 Compile & Test C++ and Policy-Based Data Structures (ordered_set)](#25-compile--test-c-and-policy-based-data-structures-ordered_set)
-- [2.6 Git Setup & Authentication (Windows)](#26-git-setup--authentication-windows)
+- [2.5 Running Your First C++ File in VS Code](#25-running-your-first-c-file-in-vs-code)
+  - [Step 1: Open Your Working Directory](#step-1-open-your-working-directory)
+  - [Step 2: Create a C++ Source File](#step-2-create-a-c-source-file)
+  - [Step 3: Write and Run Your Code](#step-3-write-and-run-your-code)
+- [2.6 Using Competitive Companion & CPH in VS Code](#26-using-competitive-companion--cph-in-vs-code)
+- [2.7 Verifying Advanced CP Features (PBDS ordered_set)](#27-verifying-advanced-cp-features-pbds-ordered_set)
+- [2.8 Git Setup & Authentication (Windows)](#28-git-setup--authentication-windows)
   - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
-  - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-ssh-key-method)
-- [2.7 Windows Subsystem for Linux (WSL)](#27-windows-subsystem-for-linux-wsl)
+  - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-via-ssh)
+- [2.9 Windows Subsystem for Linux (WSL)](#29-windows-subsystem-for-linux-wsl)
   - [Step 1: Install WSL and Ubuntu](#step-1-install-wsl-and-ubuntu)
   - [Step 2: Configure your Linux Profile](#step-2-configure-your-linux-profile)
   - [Step 3: Update Linux and Install Essential & CTF Tools](#step-3-update-linux-and-install-essential--ctf-tools)
@@ -161,75 +166,152 @@ Now configure VS Code so IntelliSense and syntax diagnostics use your newly inst
    - **C++ Standard:** `c++17` (or `c++20`)
 5. *(Recommended Tip)*: Press `Ctrl + Shift + P` -> search `File: Toggle Auto Save` -> click it to turn on auto-save so your files are always automatically saved before compilation!
 
+![File Toggle Auto Save](images/vscode-file-toggle-autosave.png)
+
 ---
 
-## 2.5 Compile & Test C++ and Policy-Based Data Structures (ordered_set)
+## 2.5 Running Your First C++ File in VS Code
 
-### Test 1: Simple C++ Program
-1. Create a file named `main.cpp`:
-   ```cpp
-   #include <bits/stdc++.h>
-   using namespace std;
+Follow the official CP Wing workflow to set up your project workspace and run your first C++ program on Windows:
 
-   int main() {
-       int a, b;
-       cin >> a >> b;
-       cout << a + b << '\n';
-   }
-   ```
-2. Open the terminal in VS Code (`Ctrl + ~`) and compile:
+### Step 1: Open Your Working Directory
+Press `Ctrl + K` then `Ctrl + O` (or click **File** -> **Open Folder...**) to open the file browser. Create or select a dedicated folder where you will write your code (e.g. `C:\Users\<username>\cp` or `C:\coding`):
+
+![Open Folder in VS Code](images/vscode-linux-open-folder.png)
+
+### Step 2: Create a C++ Source File
+In the Explorer sidebar, click the **New File** icon (or press `Ctrl + N`), name the file `main.cpp`, and hit **Enter**:
+
+![Create main.cpp](images/vscode-linux-main-cpp.png)
+
+### Step 3: Write and Run Your Code
+Paste a basic C++ test snippet into `main.cpp`:
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int a, b;
+    cout << "Enter two numbers: ";
+    cin >> a >> b;
+    cout << "Sum: " << a + b << '\n';
+    return 0;
+}
+```
+
+**Two ways to run your code on Windows:**
+
+1. **Via the Play Button (Code Runner / C++ Extension):**
+   Click the **Play / Run Code** button in the top-right corner of the editor window:
+
+   ![Run Button in VS Code](images/vscode-linux-run-button.png)
+
+   *(Ensure you enabled `Code-runner: Run In Terminal` in VS Code settings as described in [1.8 VS Code Extensions](universal.md#18-essential-vs-code-extensions) so the program accepts interactive keyboard input like `cin`).*
+
+2. **Via the Integrated Terminal (`Ctrl + ~`):**
+   Open the terminal inside VS Code and compile with your MSYS2 GCC compiler:
    ```powershell
    g++ -std=c++17 -O2 main.cpp -o main.exe
-   ```
-3. Run the executable:
-   ```powershell
    .\main.exe
    ```
-4. Enter `5 7` and press Enter. The output should be `12`.
-
-### Test 2: Testing Policy-Based Data Structures (`ordered_set`)
-To verify that PBDS (`ordered_set`) compiles cleanly without any legacy MinGW packaging bugs:
-
-1. Create a file named `test.cpp`:
-   ```cpp
-   #include <bits/stdc++.h>
-   #include <ext/pb_ds/assoc_container.hpp>
-   #include <ext/pb_ds/tree_policy.hpp>
-
-   using namespace std;
-   using namespace __gnu_pbds;
-
-   template<class T>
-   using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
-   int main() {
-       ordered_set<int> s;
-       s.insert(10);
-       s.insert(20);
-       s.insert(30);
-
-       // Element at 0-based index 1 in sorted order (output: 20)
-       cout << *s.find_by_order(1) << '\n';
-
-       // Number of elements strictly less than 25 (output: 2)
-       cout << s.order_of_key(25) << '\n';
-   }
-   ```
-2. In your terminal, compile and run:
-   ```powershell
-   g++ -std=c++17 -O2 test.cpp -o test.exe
-   .\test.exe
-   ```
-3. **Expected output:**
+   Enter `5 7` and press Enter. The output will display:
    ```text
-   20
-   2
+   Sum: 12
    ```
-If you see `20` and `2`, your Windows C++ compiler and PBDS support are 100% verified!
 
 ---
 
-## 2.6 Git Setup & Authentication (Windows)
+## 2.6 Using Competitive Companion & CPH in VS Code
+
+The official CP Wing workflow connects your browser directly to VS Code for one-click problem parsing and automated judging:
+
+1. **Browser & Extension Setup:**
+   Confirm you have installed **Competitive Companion** in Chrome, Edge, or Brave and **Competitive Programming Helper (cph)** in VS Code (see [1.7 Browser Extensions](universal.md#17-recommended-browser-extensions) and [1.8 VS Code Extensions](universal.md#18-essential-vs-code-extensions)).
+
+2. **Parse Any Contest Problem:**
+   Open any problem on Codeforces, CodeChef, or AtCoder in your browser. Click the green **`+` (Competitive Companion)** icon in the browser toolbar:
+
+   ![Competitive Companion Parse](images/cf-problem-parse-companion.png)
+
+3. **Automatic Problem Generation:**
+   Switch to VS Code. If prompted to select a language, select `cpp`. CPH will automatically create the source file and load all sample test cases side-by-side:
+
+   ![CPH Testcases Loaded](images/cph-judge-testcases.png)
+
+4. **Run and Verify Testcases:**
+   Write your solution and click the **Run** button next to each testcase (or click **Run All**):
+
+   ![CPH Run Testcase](images/cph-judge-run-testcase.png)
+
+   - 🟩 **Passed**: Expected output matches your program's output.
+   - 🟥 **Failed**: Shows an exact side-by-side diff between expected and actual output.
+
+---
+
+## 2.7 Verifying Advanced CP Features (PBDS ordered_set)
+
+In modern competitive programming, specialized GNU extensions like **Policy-Based Data Structures (PBDS)** (`ordered_set`) and compiler optimization pragmas are frequently used. Verify that your MSYS2 compiler supports them without legacy MinGW bugs:
+
+Create a file named `test_pbds.cpp`:
+
+```cpp
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+// Compiler optimization pragmas
+#pragma GCC optimize("O3")
+#pragma GCC optimize("unroll-loops")
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+
+using namespace std;
+using namespace __gnu_pbds;
+
+// Definition of ordered_set (Policy-Based Data Structure)
+template<class T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+template<class T>
+using ordered_multiset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+int main() {
+    // Fast I/O
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    ordered_set<int> s;
+    s.insert(10);
+    s.insert(20);
+    s.insert(30);
+
+    // find_by_order(k): returns iterator to the k-th smallest element (0-indexed)
+    cout << "Element at index 1: " << *s.find_by_order(1) << " (Expected: 20)" << '\n';
+
+    // order_of_key(k): returns count of elements strictly smaller than k
+    cout << "Elements < 25: " << s.order_of_key(25) << " (Expected: 2)" << '\n';
+
+    cout << "Windows MSYS2 UCRT64 GCC, PBDS, and optimization pragmas are 100% operational!" << '\n';
+    return 0;
+}
+```
+
+In your VS Code terminal, compile and run:
+```powershell
+g++ -std=c++17 -O2 test_pbds.cpp -o test_pbds.exe
+.\test_pbds.exe
+```
+
+Expected output:
+```text
+Element at index 1: 20 (Expected: 20)
+Elements < 25: 2 (Expected: 2)
+Windows MSYS2 UCRT64 GCC, PBDS, and optimization pragmas are 100% operational!
+```
+
+---
+
+## 2.8 Git Setup & Authentication (Windows)
 
 Now we will configure your identity in Git and link your computer to your GitHub account.
 
@@ -241,7 +323,7 @@ git config --global user.email "your_email@example.com"
 ```
 *(Make sure to use the exact same email address you used when registering on GitHub!)*
 
-### Step 2: Authenticate with GitHub (SSH Key Method)
+### Step 2: Authenticate with GitHub via SSH
 1. In PowerShell, generate a new secure SSH key:
    ```powershell
    ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -271,7 +353,7 @@ Git is now 100% installed, configured, and authenticated on your Windows PC!
 
 ---
 
-## 2.7 Windows Subsystem for Linux (WSL)
+## 2.9 Windows Subsystem for Linux (WSL)
 
 Many standard developer and cybersecurity tools are designed natively for Linux. Instead of setting up a complex dual-boot system, Windows allows you to run a full Ubuntu Linux environment directly inside Windows using WSL.
 

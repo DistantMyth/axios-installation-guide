@@ -13,8 +13,13 @@ macOS is Unix-based and fantastic for development, but it has a few specific qui
 - [3.4 Configure VS Code IntelliSense for GCC & C++26](#34-configure-vs-code-intellisense-for-gcc--c26)
 - [3.5 Configure Code Runner & CPH Extensions](#35-configure-code-runner--cph-extensions)
 - [3.6 Terminal Aliases](#36-terminal-aliases)
-- [3.7 Verify Setup with CP & PBDS Snippet](#37-verify-setup-with-cp--pbds-snippet)
-- [3.8 Git Setup & Authentication (macOS)](#38-git-setup--authentication-macos)
+- [3.7 Running Your First C++ File in VS Code](#37-running-your-first-c-file-in-vs-code)
+  - [Step 1: Open Your Working Directory](#step-1-open-your-working-directory)
+  - [Step 2: Create a C++ Source File](#step-2-create-a-c-source-file)
+  - [Step 3: Write and Run Your Code](#step-3-write-and-run-your-code)
+- [3.8 Using Competitive Companion & CPH in VS Code](#38-using-competitive-companion--cph-in-vs-code)
+- [3.9 Verifying Advanced CP Features (PBDS & Apple Silicon Safeguard)](#39-verifying-advanced-cp-features-pbds--apple-silicon-safeguard)
+- [3.10 Git Setup & Authentication (macOS)](#310-git-setup--authentication-macos)
   - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
   - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-via-ssh)
 - [Next Steps](#next-steps)
@@ -190,7 +195,83 @@ To make `gcc` and `g++` default to genuine GNU GCC in your terminal:
 
 ---
 
-## 3.7 Verify Setup with CP & PBDS Snippet
+## 3.7 Running Your First C++ File in VS Code
+
+Follow the official CP Wing workflow to set up your project workspace and run your first C++ program on macOS:
+
+### Step 1: Open Your Working Directory
+Press `Cmd + K` then `Cmd + O` (or click **File** -> **Open Folder...**) to open the file browser. Create or select a dedicated folder where you will write your code (e.g. `~/cp` or `~/coding`):
+
+![Open Folder in VS Code](images/vscode-linux-open-folder.png)
+
+### Step 2: Create a C++ Source File
+In the Explorer sidebar, click the **New File** icon (or press `Cmd + N`), name the file `main.cpp`, and hit **Return**:
+
+![Create main.cpp](images/vscode-linux-main-cpp.png)
+
+### Step 3: Write and Run Your Code
+Paste a basic C++ test snippet into `main.cpp`:
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int a, b;
+    cout << "Enter two numbers: ";
+    cin >> a >> b;
+    cout << "Sum: " << a + b << endl;
+    return 0;
+}
+```
+
+**Two ways to run your code on macOS:**
+
+1. **Via the Play Button (Code Runner):**
+   Click the **Play / Run Code** button in the top-right corner of the editor window:
+
+   ![Run Button in VS Code](images/vscode-linux-run-button.png)
+
+   *(Code Runner uses the GCC 16 C++26 executor map we configured in `settings.json` and runs interactively inside the integrated Terminal).*
+
+2. **Via the Integrated Terminal (`Cmd + ~`):**
+   Open the terminal inside VS Code and compile:
+   ```bash
+   g++ -std=c++26 -O2 main.cpp -o main && ./main
+   ```
+   *(Thanks to the terminal alias `alias g++="g++-16"`, `g++` runs genuine GNU GCC 16 instead of Apple Clang!).*
+   Enter `5 7` and press Return &rarr; outputs `Sum: 12`.
+
+---
+
+## 3.8 Using Competitive Companion & CPH in VS Code
+
+The official CP Wing workflow pairs **Competitive Companion** in your browser with **Competitive Programming Helper (cph)** in VS Code for one-click problem parsing and automated testing:
+
+1. **Browser & Extension Setup:**
+   Confirm you have installed **Competitive Companion** in your browser (Safari, Chrome, or Firefox) and **Competitive Programming Helper (cph)** in VS Code (see [1.7 Browser Extensions](universal.md#17-recommended-browser-extensions) and [1.8 VS Code Extensions](universal.md#18-essential-vs-code-extensions)).
+
+2. **Parse Any Contest Problem:**
+   Open any problem on Codeforces, CodeChef, or AtCoder in your browser. Click the green **`+` (Competitive Companion)** icon in the browser toolbar:
+
+   ![Competitive Companion Parse](images/cf-problem-parse-companion.png)
+
+3. **Automatic Problem Generation:**
+   Switch to VS Code. If prompted to select a language, select `cpp`. CPH will automatically create the source file and load all sample test cases side-by-side:
+
+   ![CPH Testcases Loaded](images/cph-judge-testcases.png)
+
+4. **Run and Verify Testcases:**
+   Write your solution and click the **Run** button next to each testcase (or click **Run All**):
+
+   ![CPH Run Testcase](images/cph-judge-run-testcase.png)
+
+   - 🟩 **Passed**: Expected output matches your program's output.
+   - 🟥 **Failed**: Shows an exact side-by-side diff between expected and actual output.
+
+---
+
+## 3.9 Verifying Advanced CP Features (PBDS & Apple Silicon Safeguard)
 
 > [!IMPORTANT]
 > **Apple Silicon ARM64 Warning for CP Pragmas:**
@@ -203,8 +284,11 @@ Create a file named `verify.cpp` in VS Code and paste:
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 
+// Compiler optimization pragmas
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
+
+// Guard x86 instructions on Apple Silicon
 #ifndef __APPLE__
 #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
 #endif
@@ -219,20 +303,44 @@ template <class T>
 using ordered_multiset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 int main() {
-    int n;
-    cin >> n;
-    cout << n << endl;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    ordered_set<int> s;
+    s.insert(10);
+    s.insert(20);
+    s.insert(30);
+
+    // find_by_order(k): returns iterator to the k-th smallest element (0-indexed)
+    cout << "Element at index 1: " << *s.find_by_order(1) << " (Expected: 20)" << endl;
+
+    // order_of_key(k): returns count of elements strictly smaller than k
+    cout << "Elements < 25: " << s.order_of_key(25) << " (Expected: 2)" << endl;
+
+    cout << "macOS GCC 16, C++26, and PBDS are 100% operational!" << endl;
     return 0;
 }
 ```
 
-Run the code with CPH or Code Runner. When tested against sample input, it will compile and pass cleanly!
+Run the code with CPH or in terminal:
+```bash
+g++ -std=c++26 -O2 verify.cpp -o verify && ./verify
+```
+
+Expected Output:
+```text
+Element at index 1: 20 (Expected: 20)
+Elements < 25: 2 (Expected: 2)
+macOS GCC 16, C++26, and PBDS are 100% operational!
+```
+
+When tested in CPH with sample inputs, it compiles and passes cleanly:
 
 ![macOS CPH Verification](images/macos-cph-verification.png)
 
 ---
 
-## 3.8 Git Setup & Authentication (macOS)
+## 3.10 Git Setup & Authentication (macOS)
 
 ### Step 1: Set your Git Name and Email
 Open Terminal and run:
