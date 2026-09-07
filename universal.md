@@ -300,19 +300,43 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 
 ### For Competitive Programming (Codeforces / CodeChef):
 1. **Competitive Companion**:
-   - Parses problem test cases directly from Codeforces, CodeChef, AtCoder, etc., into your VS Code editor with a single click.
-   - [Chrome Web Store Link](https://chromewebstore.google.com/detail/cjnmckjndlpiamhfimnnjmnckgghkjbl?utm_source=item-share-cb)
-   - ![Competitive Companion Extension](images/Pasted%20image%2020260904112851.png)
+   - Parses problem test cases directly from Codeforces, CodeChef, AtCoder, CSES, etc., into your VS Code editor with a single click.
+   - [Chrome / Edge / Brave Web Store](https://chromewebstore.google.com/detail/competitive-companion/cjnmckjndlpiamhfimnnjmnckgghkjbl?utm_source=item-share-cb)
+   - [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/competitive-companion/)
+   - Pin the extension to your browser toolbar so it's always accessible!
+   
+   ![Competitive Companion Extension](images/ext-competitive-companion.png)
 
 2. **Carrot**:
-   - Calculates predicted rating changes in real-time during live Codeforces contests.
+   - Calculates and displays predicted Codeforces rating changes in real-time during live contests.
    - [Chrome Web Store Link](https://chromewebstore.google.com/detail/gakohpplicjdhhfllilcjpfildodfnnn?utm_source=item-share-cb)
-   - ![Carrot Extension](images/Pasted%20image%2020260904113458.png)
+   
+   ![Carrot Extension](images/ext-carrot.png)
 
-3. **Helpful Extras**:
-   - [Codeforces Rating-Based Heatmap](https://chromewebstore.google.com/detail/codeforces-rating-based-h/heajdhmohlobjebkgkpdomkaihaghkgb?hl=en)
-   - [Codeforces Friends Tracker](https://chromewebstore.google.com/detail/codeforces-friends-tracke/gfdmmpimafkhcdekeddfeifcmcjbadam)
-   - [CF Analytics](https://chromewebstore.google.com/detail/cf-analytics/hhljbjodjdbjbggddjaidojnlmaobcpo)
+3. **CF Analytics**:
+   - Analyzes your Codeforces profile, problem-solving streaks, topic breakdown, and difficulty distribution.
+   - [Chrome Web Store Link](https://chromewebstore.google.com/detail/cf-analytics/hhljbjodjdbjbggddjaidojnlmaobcpo)
+   
+   ![CF Analytics Extension](images/ext-cf-analytics.png)
+
+4. **Codeforces Rating-Based Heatmap**:
+   - Adds an interactive, GitHub-style daily problem-solving heatmap directly on your Codeforces profile.
+   - [Chrome Web Store Link](https://chromewebstore.google.com/detail/codeforces-rating-based-h/heajdhmohlobjebkgkpdomkaihaghkgb?hl=en)
+   
+   ![Codeforces Rating-Based Heatmap](images/ext-cf-heatmap.png)
+
+5. **Codeforces Friends Tracker**:
+   - Quickly view submissions made by friends on any specific Codeforces problem during practice.
+   - [Chrome Web Store Link](https://chromewebstore.google.com/detail/codeforces-friends-tracke/gfdmmpimafkhcdekeddfeifcmcjbadam)
+   
+   ![Codeforces Friends Tracker](images/ext-cf-friends-tracker.png)
+
+6. **College & Custom Standings**:
+   - **Codeforces College Standings** ([Chrome / Brave](https://chromewebstore.google.com/detail/codeforces-college-standi/jebplnggddknopemgddcfadflgffcbpd)): Filters live contest standings specifically for IIIT Lucknow students.
+   - **Codeforces Custom Standings** ([Firefox](https://addons.mozilla.org/en-US/firefox/addon/codeforces-custom-standings/)): Custom leaderboard filtering on Firefox.
+
+7. **CF FetchCodes**:
+   - Quickly fetch and inspect problem solutions and test data for contest analysis.
 
 ### For Web Development:
 1. **JSON Viewer / JSON Formatter**:
@@ -337,20 +361,52 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 ## 1.8 Essential VS Code Extensions
 Once you install VS Code (from your OS guide), open VS Code, click the **Extensions** icon on the left sidebar (shortcut: `Ctrl + Shift + X` on Windows/Linux, `Cmd + Shift + X` on Mac), search for the following extensions, and click **Install**:
 
-![VS Code Extensions Tab](images/Pasted%20image%2020260904174839.png)
-
 ### C / C++ & Competitive Programming:
-- **C/C++** (by Microsoft): Syntax highlighting, code completion (IntelliSense), and debugging.
-  ![C/C++ Extension in VS Code](images/Pasted%20image%2020260904175101.png)
-- **C/C++ Extension Pack** (by Microsoft): Includes tools and CMake support.
-- **Competitive Programming Helper (cph)** (by Divyanshu Agrawal):
-  - Essential for CP! Works with the *Competitive Companion* browser extension to auto-fetch test cases and run them against your code in one click (shortcut: `Ctrl + Shift + U`).
-- **Code Runner** (by Jun Han):
-  - Run code files or selected snippets for C, C++, Python, Java, etc., with a single click (Play button in top-right) or shortcut (`Ctrl + Alt + N` on Windows/Linux, `Cmd + Option + N` on Mac).
-  - **Important setting for interactive input:** By default, Code Runner runs in the read-only Output window, which prevents you from entering input (`cin`, `scanf`, or `input()`). To fix this:
-    1. Open VS Code Settings (`Ctrl + ,` on Windows/Linux, `Cmd + ,` on Mac).
-    2. Search for `code-runner.runInTerminal`.
-    3. Check the box for **"Code-runner: Run In Terminal"**. Now your programs will run in the terminal and accept user input!
+1. **C/C++** (by Microsoft):
+   - Syntax highlighting, code completion (IntelliSense), and debugging.
+   
+   ![C/C++ Extension](images/vs-extension-c-cpp.png)
+
+2. **Competitive Programming Helper (cph)** (by Divyanshu Agrawal):
+   - The #1 extension for CP! Auto-fetches test cases via Competitive Companion and runs your code against all inputs in one click (`Ctrl + Shift + U`).
+   
+   ![Competitive Programming Helper (cph)](images/vs-extension-cph.png)
+
+3. **Code Runner** (by Jun Han):
+   - Run code files or selected snippets with a single click (Play button in the top-right) or shortcut (`Ctrl + Alt + N` on Windows/Linux, `Cmd + Option + N` on Mac).
+   
+   ![Code Runner Extension](images/vs-extension-code-runner.png)
+
+#### Essential Code Runner Settings (Do Not Skip!):
+By default, Code Runner runs in the read-only Output panel (which prevents entering terminal input like `cin`) and doesn't auto-save before compiling. Configure these two settings:
+1. Open VS Code Settings (`Ctrl + ,` on Windows/Linux, `Cmd + ,` on Mac).
+2. Search for `run in terminal` -> **Check the box for "Code-runner: Run In Terminal"**:
+   
+   ![Code-runner Run In Terminal](images/vscode-code-runner-run-in-terminal.png)
+
+3. Search for `save file before run` -> **Check the box for "Code-runner: Save File Before Run"**:
+   
+   ![Code-runner Save File Before Run](images/vscode-code-runner-save-before-run.png)
+
+> [!TIP]
+> **Enable Auto Save in VS Code:**
+> Press `Ctrl + Shift + P` (or `Cmd + Shift + P` on Mac), type `File: Toggle Auto Save`, and hit Enter. This ensures your code is never lost or unsaved when testing!
+>
+> ![File Toggle Auto Save](images/vscode-file-toggle-autosave.png)
+
+#### Workflow: How to Use Competitive Companion + CPH
+1. Open any problem on Codeforces or CodeChef in your browser.
+2. Click the green **`+`** icon of Competitive Companion in your browser extensions bar:
+   
+   ![Competitive Companion Green Plus Icon](images/cf-problem-parse-companion.png)
+
+3. Switch to VS Code. If prompted, select **`cpp`**. The problem with its official sample testcases will appear instantly:
+   
+   ![CPH Testcases Loaded](images/cph-judge-testcases.png)
+
+4. Write your solution in the created file and click **Run testcase** to verify your solution:
+   
+   ![CPH Run Testcases](images/cph-judge-run-testcase.png)
 
 ### Python, Machine Learning & Data Science:
 - **Python** (`ms-python.python` by Microsoft): Autocomplete, linting, debugging, and multi-environment selection.

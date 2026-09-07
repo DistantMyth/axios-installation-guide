@@ -13,10 +13,12 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
   - [What is the PATH Environment Variable?](#what-is-the-path-environment-variable)
   - [Step-by-Step PATH Verification](#step-by-step-path-verification)
   - [Verify Everything in a New Terminal](#verify-everything-in-a-new-terminal)
-- [2.4 Git Setup & Authentication](#24-git-setup--authentication-windows)
+- [2.4 Configure VS Code for C/C++ & Competitive Programming](#24-configure-vs-code-for-cc--competitive-programming)
+- [2.5 Compile & Test C++ and Policy-Based Data Structures (ordered_set)](#25-compile--test-c-and-policy-based-data-structures-ordered_set)
+- [2.6 Git Setup & Authentication (Windows)](#26-git-setup--authentication-windows)
   - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
   - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-ssh-key-method)
-- [2.5 Windows Subsystem for Linux (WSL)](#25-windows-subsystem-for-linux-wsl)
+- [2.7 Windows Subsystem for Linux (WSL)](#27-windows-subsystem-for-linux-wsl)
   - [Step 1: Install WSL and Ubuntu](#step-1-install-wsl-and-ubuntu)
   - [Step 2: Configure your Linux Profile](#step-2-configure-your-linux-profile)
   - [Step 3: Update Linux and Install Essential & CTF Tools](#step-3-update-linux-and-install-essential--ctf-tools)
@@ -104,19 +106,29 @@ Think of your computer as a giant library. When you type `gcc` or `python` in a 
 To make `gcc`, `g++`, and `gdb` accessible from PowerShell, Command Prompt, and VS Code, we add the MSYS2 UCRT64 `bin` folder to PATH.
 
 ### Step-by-Step PATH Verification:
-1. Press `Windows Key + R`, type `sysdm.cpl`, and hit **Enter** (or search **Edit the system environment variables** in the Start Menu).
-   ![System Properties sysdm.cpl](images/system-properties-run-sysdm.png)
+1. Search **Environment Variables** in the Start Menu and select **Edit the system environment variables** (or press `Windows Key + R`, type `sysdm.cpl`, and hit Enter).
+   
+   ![Search Environment Variables in Start Menu](images/windows-search-env-variables.png)
+
 2. In the System Properties window, click on the **Advanced** tab, then click the **Environment Variables...** button at the bottom.
    ![System Properties Environment Variables Button](images/system-properties-environment-variables.png)
-3. In the lower section called **System variables**, find the variable named **Path** and click **Edit...**.
+
+3. Under **User variables** (or **System variables**), find the variable named **Path** and click **Edit...**.
    ![Environment Variables System Path Selection](images/environment-variables-edit-path.png)
-4. Add the MSYS2 UCRT64 compiler path to the list:
+
+4. Add the MSYS2 UCRT64 compiler path:
    - Click **New**.
    - Paste: `C:\msys64\ucrt64\bin`
+   - **Click "Move Up" until `C:\msys64\ucrt64\bin` is at the very top of the list!**
    - Click **OK** on all dialog windows to save.
-   *(Reference dialog showing where compiler PATH entries are added:)*
-   ![Edit Environment Variable Path](images/edit-environment-variable-mingw-path.png)
-5. **Restart your terminal / PowerShell** (environment variables only update in newly opened terminals).
+   
+   ![Edit Environment Variable Path with MSYS2 at Top](images/windows-env-path-msys2-top.png)
+
+   > [!IMPORTANT]
+   > **Keep MSYS2 at the Top of PATH:**
+   > In other setups, if any other compiler paths exist (such as legacy `C:\tools\mingw64\bin`), make sure they are strictly **below** `C:\msys64\ucrt64\bin` (or delete them). This guarantees that older MinGW compilers never shadow your modern MSYS2 GCC compiler.
+
+5. **Restart your terminal / PowerShell and VS Code** (environment variables only update in newly opened processes).
 
 ### Verify Everything in a New Terminal:
 Open a regular PowerShell or Command Prompt window and run:
@@ -136,7 +148,88 @@ If all of them return version numbers, your Windows development environment is c
 
 ---
 
-## 2.4 Git Setup & Authentication (Windows)
+## 2.4 Configure VS Code for C/C++ & Competitive Programming
+
+Now configure VS Code so IntelliSense and syntax diagnostics use your newly installed MSYS2 compiler:
+
+1. Open VS Code.
+2. Press `Ctrl + Shift + P` to open the Command Palette.
+3. Type and select: **`C/C++: Edit Configurations (UI)`**.
+4. Set the following options:
+   - **Compiler Path:** `C:\msys64\ucrt64\bin\g++.exe`
+   - **IntelliSense Mode:** `gcc-x64`
+   - **C++ Standard:** `c++17` (or `c++20`)
+5. *(Recommended Tip)*: Press `Ctrl + Shift + P` -> search `File: Toggle Auto Save` -> click it to turn on auto-save so your files are always automatically saved before compilation!
+
+---
+
+## 2.5 Compile & Test C++ and Policy-Based Data Structures (ordered_set)
+
+### Test 1: Simple C++ Program
+1. Create a file named `main.cpp`:
+   ```cpp
+   #include <bits/stdc++.h>
+   using namespace std;
+
+   int main() {
+       int a, b;
+       cin >> a >> b;
+       cout << a + b << '\n';
+   }
+   ```
+2. Open the terminal in VS Code (`Ctrl + ~`) and compile:
+   ```powershell
+   g++ -std=c++17 -O2 main.cpp -o main.exe
+   ```
+3. Run the executable:
+   ```powershell
+   .\main.exe
+   ```
+4. Enter `5 7` and press Enter. The output should be `12`.
+
+### Test 2: Testing Policy-Based Data Structures (`ordered_set`)
+To verify that PBDS (`ordered_set`) compiles cleanly without any legacy MinGW packaging bugs:
+
+1. Create a file named `test.cpp`:
+   ```cpp
+   #include <bits/stdc++.h>
+   #include <ext/pb_ds/assoc_container.hpp>
+   #include <ext/pb_ds/tree_policy.hpp>
+
+   using namespace std;
+   using namespace __gnu_pbds;
+
+   template<class T>
+   using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+   int main() {
+       ordered_set<int> s;
+       s.insert(10);
+       s.insert(20);
+       s.insert(30);
+
+       // Element at 0-based index 1 in sorted order (output: 20)
+       cout << *s.find_by_order(1) << '\n';
+
+       // Number of elements strictly less than 25 (output: 2)
+       cout << s.order_of_key(25) << '\n';
+   }
+   ```
+2. In your terminal, compile and run:
+   ```powershell
+   g++ -std=c++17 -O2 test.cpp -o test.exe
+   .\test.exe
+   ```
+3. **Expected output:**
+   ```text
+   20
+   2
+   ```
+If you see `20` and `2`, your Windows C++ compiler and PBDS support are 100% verified!
+
+---
+
+## 2.6 Git Setup & Authentication (Windows)
 
 Now we will configure your identity in Git and link your computer to your GitHub account.
 
@@ -178,7 +271,7 @@ Git is now 100% installed, configured, and authenticated on your Windows PC!
 
 ---
 
-## 2.5 Windows Subsystem for Linux (WSL)
+## 2.7 Windows Subsystem for Linux (WSL)
 
 Many standard developer and cybersecurity tools are designed natively for Linux. Instead of setting up a complex dual-boot system, Windows allows you to run a full Ubuntu Linux environment directly inside Windows using WSL.
 

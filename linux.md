@@ -11,13 +11,21 @@ Linux is the developer standard in industry and academia. There are dozens of Li
   - [Option A: Debian / Ubuntu-based (`apt`)](#option-a-debian--ubuntu-based-apt)
   - [Option B: Arch Linux-based (`pacman`)](#option-b-arch-linux-based-pacman)
   - [Option C: Fedora / Red Hat-based (`dnf`)](#option-c-fedora--red-hat-based-dnf)
-- [4.3 Environment Variables & PATH on Linux](#43-environment-variables--path-on-linux)
+  - [Option D: Universal Standalone Tarball (`.tar.gz`)](#option-d-universal-standalone-tarball-targz)
+- [4.3 Running Your First C++ File in VS Code](#43-running-your-first-c-file-in-vs-code)
+  - [Step 1: Open Your Working Directory](#step-1-open-your-working-directory)
+  - [Step 2: Create a C++ Source File](#step-2-create-a-c-source-file)
+  - [Step 3: Write and Run Your Code](#step-3-write-and-run-your-code)
+  - [Step 4: Select the g++ Build Configuration](#step-4-select-the-g-build-configuration)
+- [4.4 Using Competitive Companion & CPH in VS Code](#44-using-competitive-companion--cph-in-vs-code)
+- [4.5 Verifying Advanced CP Features (PBDS & Optimization Pragmas)](#45-verifying-advanced-cp-features-pbds--optimization-pragmas)
+- [4.6 Environment Variables & PATH on Linux](#46-environment-variables--path-on-linux)
   - [How Environment Variables Work](#how-environment-variables-work)
   - [Verify All Tools on Linux](#verify-all-tools-on-linux)
-- [4.4 Git Setup & Authentication (Linux)](#44-git-setup--authentication-linux)
+- [4.7 Git Setup & Authentication (Linux)](#47-git-setup--authentication-linux)
   - [Step 1: Set your Git Name and Email](#step-1-set-your-git-name-and-email)
   - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-via-ssh)
-- [4.5 Web3 & Solana Development Setup](#45-web3--solana-development-setup)
+- [4.8 Web3 & Solana Development Setup](#48-web3--solana-development-setup)
 - [Next Steps](#next-steps)
 
 ---
@@ -139,13 +147,180 @@ Open your terminal (`Ctrl + Alt + T` on most distros) and run the commands for y
    ```bash
    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
    sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-   sudo dnf check-update
    sudo dnf install -y code
    ```
 
 ---
 
-## 4.3 Environment Variables & PATH on Linux
+### Option D: Universal Standalone Tarball (`.tar.gz`)
+*(Applicable to any Linux distribution if you prefer a standalone portable setup or lack root/sudo permissions)*
+
+1. **Download the Tarball:**
+   Download the `.tar.gz` package from the official [Visual Studio Code download page](https://code.visualstudio.com/download):
+
+   ![Download VS Code for Linux](images/vscode-download-linux.png)
+
+2. **Extract the Archive:**
+   Navigate to the directory where you downloaded the file and extract the tarball:
+   ```bash
+   tar -xvf code-stable-x64-*.tar.gz
+   ```
+
+   ![Extract VS Code Tarball](images/vscode-linux-tar-extract.png)
+
+3. **Launch VS Code:**
+   After extraction, launch VS Code directly from the executable inside the extracted folder:
+   ```bash
+   ./VSCode-linux-x64/bin/code
+   ```
+   *(Optional: You can move this folder to `/opt/` and create a symlink to `/usr/local/bin/code` via `sudo ln -s /opt/VSCode-linux-x64/bin/code /usr/local/bin/code` so you can launch `code` directly from any terminal or application launcher such as Rofi, Wofi, or Dmenu).*
+
+---
+
+## 4.3 Running Your First C++ File in VS Code
+
+Follow the official CP Wing workflow to set up your project workspace and run your first C++ program:
+
+### Step 1: Open Your Working Directory
+Press `Ctrl + K` then `Ctrl + O` (or go to **File** -> **Open Folder...**) to open the file browser. Create or select a dedicated folder where you will write your code (e.g. `~/cp` or `~/coding`):
+
+![Open Folder in VS Code](images/vscode-linux-open-folder.png)
+
+### Step 2: Create a C++ Source File
+In the Explorer sidebar, click the **New File** icon (or press `Ctrl + N`), name the file `main.cpp`, and hit **Enter**:
+
+![Create main.cpp](images/vscode-linux-main-cpp.png)
+
+### Step 3: Write and Run Your Code
+Paste a basic C++ test snippet into `main.cpp`:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter an integer: ";
+    cin >> n;
+    cout << "You entered: " << n << endl;
+    return 0;
+}
+```
+
+To run your code:
+- Press **F5** (or **Fn + F5** depending on your keyboard configuration).
+- Alternatively, click the **Run C/C++ File** (play button) in the top-right corner of the editor window:
+
+![Run Button in VS Code](images/vscode-linux-run-button.png)
+
+> [!NOTE]
+> If VS Code asks for permissions (such as *Do you trust the authors of the files in this folder?*), click **Yes, I trust the authors**.
+
+### Step 4: Select the g++ Build Configuration
+If prompted with *Select a build configuration to run and debug*, select:
+`C/C++: g++ build and debug active file`
+
+![Select g++ Build Configuration](images/vscode-linux-gdb-config.png)
+
+VS Code will automatically configure the build task, compile `main.cpp` using your installed `g++` compiler, and launch your program in the integrated **Terminal** tab where you can provide input and view the output.
+
+---
+
+## 4.4 Using Competitive Companion & CPH in VS Code
+
+The official CP Wing workflow pairs the **Competitive Companion** browser extension with **Competitive Programming Helper (cph)** in VS Code to parse contest problems and run test cases in one click:
+
+1. **Browser & VS Code Extension Setup:**
+   Confirm you have installed **Competitive Companion** in your browser and **Competitive Programming Helper (cph)** in VS Code (see [1.7 Browser Extensions](universal.md#17-recommended-browser-extensions) and [1.8 VS Code Extensions](universal.md#18-essential-vs-code-extensions)).
+
+2. **Parse Any Contest Problem:**
+   Open any problem on Codeforces, CodeChef, or AtCoder. Click the green **`+` (Competitive Companion)** icon in your browser toolbar:
+
+   ![Competitive Companion Parse](images/cf-problem-parse-companion.png)
+
+3. **Automatic Problem Generation:**
+   Switch to your VS Code window. If prompted to select a language, select `cpp`. CPH will automatically create the source file and load all sample test cases side-by-side:
+
+   ![CPH Testcases Loaded](images/cph-judge-testcases.png)
+
+4. **Run and Verify Testcases:**
+   Write your solution and click the **Run** button next to each testcase (or click **Run All**):
+
+   ![CPH Run Testcase](images/cph-judge-run-testcase.png)
+
+   - 🟩 **Passed**: Expected output matches your program's output.
+   - 🟥 **Failed**: Shows an exact diff between the expected output and your program's actual output.
+
+---
+
+## 4.5 Verifying Advanced CP Features (PBDS & Optimization Pragmas)
+
+In modern competitive programming, high performance and specialized data structures like **Policy-Based Data Structures (PBDS)** (`ordered_set`) are essential. Verify your compiler with this test:
+
+Create a file named `test_pbds.cpp`:
+
+```cpp
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+// Compiler optimization pragmas
+#pragma GCC optimize("O3")
+#pragma GCC optimize("unroll-loops")
+
+// x86_64 target architecture optimizations
+#if defined(__x86_64__) || defined(_M_X64)
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+#endif
+
+using namespace std;
+using namespace __gnu_pbds;
+
+// Definition of ordered_set (Policy-Based Data Structure)
+template <typename T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+template <typename T>
+using ordered_multiset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+int main() {
+    // Fast I/O
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    ordered_set<int> s;
+    s.insert(10);
+    s.insert(20);
+    s.insert(30);
+
+    // find_by_order(k): returns iterator to the k-th smallest element (0-indexed)
+    cout << "Element at index 1: " << *s.find_by_order(1) << " (Expected: 20)" << endl;
+
+    // order_of_key(k): returns count of elements strictly smaller than k
+    cout << "Elements < 25: " << s.order_of_key(25) << " (Expected: 2)" << endl;
+
+    cout << "Linux C++ compiler, PBDS, and optimization pragmas are 100% operational!" << endl;
+    return 0;
+}
+```
+
+Compile and run the test in your terminal:
+```bash
+g++ -O3 test_pbds.cpp -o test_pbds && ./test_pbds
+```
+
+Expected Output:
+```text
+Element at index 1: 20 (Expected: 20)
+Elements < 25: 2 (Expected: 2)
+Linux C++ compiler, PBDS, and optimization pragmas are 100% operational!
+```
+
+---
+
+## 4.6 Environment Variables & PATH on Linux
 
 On Linux, your user environment variables and search paths are stored in shell configuration files:
 - If you use Bash (default on Ubuntu, Fedora, Debian): `~/.bashrc`
@@ -182,7 +357,7 @@ All should output valid version numbers.
 
 ---
 
-## 4.4 Git Setup & Authentication (Linux)
+## 4.7 Git Setup & Authentication (Linux)
 
 ### Step 1: Set your Git Name and Email
 ```bash
@@ -212,7 +387,7 @@ git config --global user.email "your_email@example.com"
    Type `yes` when prompted. You will see:
    `Hi <username>! You've successfully authenticated, but GitHub does not provide shell access.`
 
-## 4.5 Web3 & Solana Development Setup
+## 4.8 Web3 & Solana Development Setup
 
 If you are joining the Web3 Wing / Onchain IIITL or building decentralized applications (dApps), install the Rust and Solana development toolchains natively on Linux:
 

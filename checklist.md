@@ -48,6 +48,13 @@ Before starting your college lab or contest, run through this quick checklist to
   #include <ext/pb_ds/assoc_container.hpp>
   #include <ext/pb_ds/tree_policy.hpp>
 
+  #pragma GCC optimize("O3")
+  #pragma GCC optimize("unroll-loops")
+
+  #if (defined(__x86_64__) || defined(_M_X64)) && !defined(__APPLE__)
+  #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+  #endif
+
   using namespace std;
   using namespace __gnu_pbds;
 
@@ -61,8 +68,11 @@ Before starting your college lab or contest, run through this quick checklist to
       s.insert(20);
       s.insert(30);
 
-      // order_of_key returns the number of elements strictly smaller than 25 (output: 2)
-      cout << "Elements < 25: " << s.order_of_key(25) << endl;
+      // find_by_order(k) returns iterator to k-th smallest element (0-indexed)
+      cout << "Element at index 1: " << *s.find_by_order(1) << " (Expected: 20)" << endl;
+
+      // order_of_key(k) returns the number of elements strictly smaller than k
+      cout << "Elements < 25: " << s.order_of_key(25) << " (Expected: 2)" << endl;
       cout << "Environment is 100% ready for Competitive Programming & PBDS!" << endl;
       return 0;
   }
@@ -101,8 +111,14 @@ Run these commands in your terminal to verify that each tool responds with a ver
 ---
 
 ### 🌐 6. Browser Extensions
-- [ ] **Competitive Companion** extension installed in your web browser.
-- [ ] **Carrot** extension installed for Codeforces contest predictions.
+- [ ] **Competitive Companion** installed (Firefox / Chrome / Brave).
+- [ ] **Carrot** installed for Codeforces live rating predictions.
+- [ ] **CF Analytics** installed for detailed contest performance analytics.
+- [ ] **Codeforces Rating-Based Heatmap** installed for submission activity tracking.
+- [ ] **Codeforces Friends Tracker** installed for friends-only scoreboard filtering.
+- [ ] **Codeforces College / Custom Standings** installed for college leaderboard rankings.
+- [ ] **CF FetchCodes** installed for one-click accepted solution fetching.
+- [ ] **MetaMask** & **Phantom** wallets installed *(for Web3 / Blockchain track)*.
 
 ---
 
