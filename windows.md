@@ -227,7 +227,7 @@ int main() {
 
    ![Run Button in VS Code](images/vscode-linux-run-button.png)
 
-   *(Ensure you enabled `Code-runner: Run In Terminal` in VS Code settings as described in [1.8 VS Code Extensions](universal.md#18-essential-vs-code-extensions) so the program accepts interactive keyboard input like `cin`).*
+   *(Ensure you enabled `Code-runner: Run In Terminal` in VS Code settings as described in [1.9 VS Code Extensions](universal.md#19-essential-vs-code-extensions) so the program accepts interactive keyboard input like `cin`).*
 
 2. **Via the Integrated Terminal (`Ctrl + ~`):**
    Open the terminal inside VS Code and compile with your MSYS2 GCC compiler:
@@ -247,7 +247,7 @@ int main() {
 The official CP Wing workflow connects your browser directly to VS Code for one-click problem parsing and automated judging:
 
 1. **Browser & Extension Setup:**
-   Confirm you have installed **Competitive Companion** in Chrome, Edge, or Brave and **Competitive Programming Helper (cph)** in VS Code (see [1.7 Browser Extensions](universal.md#17-recommended-browser-extensions) and [1.8 VS Code Extensions](universal.md#18-essential-vs-code-extensions)).
+   Confirm you have installed **Competitive Companion** in Chrome, Edge, or Brave and **Competitive Programming Helper (cph)** in VS Code (see [1.8 Browser Extensions](universal.md#18-recommended-browser-extensions) and [1.9 VS Code Extensions](universal.md#19-essential-vs-code-extensions)).
 
 2. **Parse Any Contest Problem:**
    Open any problem on Codeforces, CodeChef, or AtCoder in your browser. Click the green **`+` (Competitive Companion)** icon in the browser toolbar:
@@ -508,6 +508,6 @@ Inside your Ubuntu Terminal, run:
 
 ## Next Steps
 
-- Now that VS Code, compilers, Git, and WSL are installed, head over to **[1.8 Essential VS Code Extensions](universal.md#18-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
+- Now that VS Code, compilers, Git, and WSL are installed, head over to **[1.9 Essential VS Code Extensions](universal.md#19-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
 - After installing extensions, proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.

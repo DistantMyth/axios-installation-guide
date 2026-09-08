@@ -257,7 +257,7 @@ int main() {
 The official CP Wing workflow pairs **Competitive Companion** in your browser with **Competitive Programming Helper (cph)** in VS Code for one-click problem parsing and automated testing:
 
 1. **Browser & Extension Setup:**
-   Confirm you have installed **Competitive Companion** in your browser (Safari, Chrome, or Firefox) and **Competitive Programming Helper (cph)** in VS Code (see [1.7 Browser Extensions](universal.md#17-recommended-browser-extensions) and [1.8 VS Code Extensions](universal.md#18-essential-vs-code-extensions)).
+   Confirm you have installed **Competitive Companion** in your browser (Safari, Chrome, or Firefox) and **Competitive Programming Helper (cph)** in VS Code (see [1.8 Browser Extensions](universal.md#18-recommended-browser-extensions) and [1.9 VS Code Extensions](universal.md#19-essential-vs-code-extensions)).
 
 2. **Parse Any Contest Problem:**
    Open any problem on Codeforces, CodeChef, or AtCoder in your browser. Click the green **`+` (Competitive Companion)** icon in the browser toolbar:
@@ -470,6 +470,6 @@ If you are joining the Web3 Wing / Onchain IIITL or building decentralized appli
 
 ## Next Steps
 
-- Now that VS Code, GCC, and Git are installed, head over to **[1.8 Essential VS Code Extensions](universal.md#18-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
+- Now that VS Code, GCC, and Git are installed, head over to **[1.9 Essential VS Code Extensions](universal.md#19-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
 - After installing extensions, proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.

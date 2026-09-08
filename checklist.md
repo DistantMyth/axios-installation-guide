@@ -23,6 +23,7 @@ Before starting your college lab or contest, run through this quick checklist to
 - [ ] **Codeforces**: Account registered and email verified.
 - [ ] **CodeChef**: Account registered, student details filled (IIIT Lucknow).
 - [ ] **Kaggle**: Account registered & phone verified (~30 hrs/week free GPU unlocked).
+- [ ] **Google Colab**: Verified Google account login and T4 GPU runtime switch.
 - [ ] **Hugging Face**: Account registered & email confirmed.
 - [ ] **MetaMask**: Wallet extension installed, account created, and Secret Recovery Phrase (SRP) stored safely offline.
 - [ ] **Sepolia Testnet**: Test network enabled in MetaMask and test ETH received from faucet.

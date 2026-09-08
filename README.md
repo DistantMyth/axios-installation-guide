@@ -8,7 +8,7 @@ Instead of hunting down fragmented tutorials, everything you need is organized b
 
 ## 🚀 How to Use This Guide
 
-1. **Step 1:** Complete the **[Universal Setup](universal.md)** first (Web accounts including GitHub, Kaggle, Hugging Face, Web3 crypto wallets, browser extensions, and VS Code extensions) — this applies to everyone regardless of operating system.
+1. **Step 1:** Complete the **[Universal Setup](universal.md)** first (Web accounts including GitHub, Kaggle, Google Colab, Hugging Face, Web3 crypto wallets, browser extensions, and VS Code extensions) — this applies to everyone regardless of operating system.
 2. **Step 2:** Pick your operating system guide below (**[Windows](windows.md)**, **[macOS](macos.md)**, or **[Linux](linux.md)**) to install package managers, compilers, build tools, WSL, Web3/Solana CLI, and set up Git SSH keys.
 3. **Step 3:** Run through the **[Verification Checklist](checklist.md)** to ensure all tools and compilers are working properly before your first lab or contest!
 
@@ -17,7 +17,7 @@ Instead of hunting down fragmented tutorials, everything you need is organized b
 ## 📚 Guide Modules
 
 - 🌐 **[1. Universal Setup (Accounts & Extensions)](universal.md)**  
-  *For all operating systems.* Set up your developer, ML, and Web3 accounts (GitHub, Codeforces, CodeChef, Kaggle, Hugging Face, MetaMask, Phantom), browser extensions, and essential VS Code extensions.
+  *For all operating systems.* Set up your developer, ML, and Web3 accounts (GitHub, Codeforces, CodeChef, Kaggle, Google Colab, Hugging Face, MetaMask, Phantom), browser extensions, and essential VS Code extensions.
 
 - 🪟 **[2. Windows Setup Guide](windows.md)**  
   One-click tool installation using **Chocolatey**, configuring modern standard GCC compilers via **MSYS2 UCRT64** (avoiding legacy MinGW `ordered_set` bugs), setting environment variables (PATH), Git SSH authentication, and setting up **WSL (Ubuntu)** with essential CTF & Web3/Solana development tools.

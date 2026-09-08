@@ -13,18 +13,22 @@ These steps are done directly in your web browser and code editor, so they are *
   - [Step 1: Register an Account](#step-1-register-an-account)
   - [Step 2: Phone Verification (Mandatory for Compute)](#step-2-phone-verification-mandatory-for-compute)
   - [Step 3: Complete the Profile](#step-3-complete-the-profile)
-- [1.5 Hugging Face Account](#15-hugging-face-account)
+- [1.5 Google Colab (Free Cloud GPU & Jupyter Notebooks)](#15-google-colab-free-cloud-gpu--jupyter-notebooks)
+  - [Step 1: Sign In with Google Account](#step-1-sign-in-with-google-account)
+  - [Step 2: Create a New Notebook & Basic Usage](#step-2-create-a-new-notebook--basic-usage)
+  - [Step 3: Enable Free GPU Acceleration (T4 GPU)](#step-3-enable-free-gpu-acceleration-t4-gpu)
+- [1.6 Hugging Face Account](#16-hugging-face-account)
   - [Step 1: Sign Up & Verify Email](#step-1-sign-up--verify-email)
   - [Step 2: Customize Profile Details](#step-2-customize-profile-details)
-- [1.6 Web3 Accounts, Wallets & Tools (Onchain IIITL)](#16-web3-accounts-wallets--tools-onchain-iiitl)
+- [1.7 Web3 Accounts, Wallets & Tools (Onchain IIITL)](#17-web3-accounts-wallets--tools-onchain-iiitl)
   - [1. MetaMask (Ethereum & EVM Wallet)](#1-metamask-ethereum--evm-wallet)
   - [2. Phantom Wallet (Solana Wallet)](#2-phantom-wallet-solana-wallet)
   - [3. Web3 Developer Tools & Explorers](#3-web3-developer-tools--explorers)
   - [4. Connect with Onchain IIITL](#4-connect-with-onchain-iiitl)
-- [1.7 Recommended Browser Extensions](#17-recommended-browser-extensions)
+- [1.8 Recommended Browser Extensions](#18-recommended-browser-extensions)
   - [Competitive Programming Extensions](#for-competitive-programming-codeforces--codechef)
   - [Web Development Extensions](#for-web-development)
-- [1.8 Essential VS Code Extensions](#18-essential-vs-code-extensions)
+- [1.9 Essential VS Code Extensions](#19-essential-vs-code-extensions)
   - [C / C++ & Competitive Programming](#c--c--competitive-programming)
   - [Python, Machine Learning & Data Science](#python-machine-learning--data-science)
   - [Web Development](#web-development)
@@ -151,7 +155,67 @@ Kaggle is the standard community hub for datasets, competitions, and free cloud 
 
 ---
 
-## 1.5 Hugging Face Account
+## 1.5 Google Colab (Free Cloud GPU & Jupyter Notebooks)
+
+Google Colaboratory (Colab) is a free, cloud-hosted Jupyter notebook service provided by Google. It allows you to write and execute Python code directly through your browser with zero local installation or driver headaches. Most importantly, Colab provides free access to cloud computing hardware including NVIDIA T4 GPUs and TPUs, making it essential for college machine learning, deep learning coursework, and data science projects.
+
+### Step 1: Sign In with Google Account
+1. Visit [colab.research.google.com](https://colab.research.google.com).
+2. Sign in with your **Google Account** (use your college email or personal Google account).
+   
+   ![Sign in to Google Colab](images/colab-setup-1.png)
+
+### Step 2: Create a New Notebook & Basic Usage
+1. In the initial welcome pop-up, click **New notebook** (or navigate to **File** &rarr; **New notebook**).
+   
+   ![Create a new notebook in Google Colab](images/colab-setup-2.png)
+
+2. By default, the notebook is titled `Untitled0.ipynb`. Click the title in the top-left corner to rename it (e.g., `colab_intro.ipynb`).
+
+   ![Rename notebook](images/colab-setup-3.png)
+
+3. Try typing a quick Python command in the first code cell:
+   ```python
+   print("Hello from Google Colab!")
+   ```
+4. Press `Shift + Enter` (or click the round Play button on the left of the cell) to run it.
+
+### Step 3: Enable Free GPU Acceleration (T4 GPU)
+> [!IMPORTANT]
+> By default, Colab connects to a standard CPU runtime. For training machine learning or deep learning models (e.g. with PyTorch or TensorFlow), you must switch to a GPU hardware accelerator.
+
+1. In the top navigation bar, click **Runtime** &rarr; **Change runtime type**.
+   
+   ![Click Runtime menu](images/colab-setup-4.png)
+
+   ![Select Change runtime type](images/colab-setup-5.png)
+
+2. In the configuration dialog:
+   - **Hardware accelerator**: Select **T4 GPU**.
+   - **GPU class**: Keep it as **Standard** (Free tier).
+3. Click **Save**.
+   
+   ![Select T4 GPU hardware accelerator and save](images/colab-setup-6.png)
+
+4. Run this snippet in a cell to verify your GPU is allocated:
+   ```python
+   # Check GPU hardware details
+   !nvidia-smi
+   ```
+   ```python
+   # Verify PyTorch CUDA support
+   import torch
+   print("CUDA Available:", torch.cuda.is_available())
+   if torch.cuda.is_available():
+       print("Device Name:", torch.cuda.get_device_name(0))
+   ```
+   If configured properly, PyTorch will output `CUDA Available: True` and show `Tesla T4`.
+   
+   ![Verify GPU availability in notebook cell](images/colab-setup-7.png)
+
+---
+
+## 1.6 Hugging Face Account
 
 Hugging Face is the central repository for pre-trained weights (LLMs, vision models), benchmarks, and raw datasets.
 
@@ -177,7 +241,7 @@ Hugging Face is the central repository for pre-trained weights (LLMs, vision mod
 
 ---
 
-## 1.6 Web3 Accounts, Wallets & Tools (Onchain IIITL)
+## 1.7 Web3 Accounts, Wallets & Tools (Onchain IIITL)
 
 Web3 and blockchain development involve interacting with decentralized networks, smart contracts, and cryptocurrency testnets. The following browser extensions and tools are used in all Web3 Wing / Onchain IIITL sessions:
 
@@ -295,7 +359,7 @@ Follow Onchain IIITL (Axios Web3 Wing) and core members on X (Twitter) for upcom
 
 ---
 
-## 1.7 Recommended Browser Extensions
+## 1.8 Recommended Browser Extensions
 Install these browser extensions (available on Chrome Web Store, Firefox Add-ons, and Microsoft Edge Add-ons) to make your coding and contest experience 10x smoother:
 
 ### For Competitive Programming (Codeforces / CodeChef):
@@ -359,7 +423,7 @@ Install these browser extensions (available on Chrome Web Store, Firefox Add-ons
 
 ---
 
-## 1.8 Essential VS Code Extensions
+## 1.9 Essential VS Code Extensions
 Once you install VS Code (from your OS guide), open VS Code, click the **Extensions** icon on the left sidebar (shortcut: `Ctrl + Shift + X` on Windows/Linux, `Cmd + Shift + X` on Mac), search for the following extensions, and click **Install**:
 
 ### C / C++ & Competitive Programming:
