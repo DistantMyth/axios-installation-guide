@@ -632,7 +632,7 @@ To solve this effortlessly, you have three excellent options:
    ```zsh
    # Create and enter an Ubuntu Linux shell
    orb create ubuntu my-linux
-   orb shell my-linux
+   orb shell
    ```
 
 ---
