@@ -28,6 +28,11 @@ For Windows, we will use **Chocolatey**, the most popular package manager for Wi
   - [Step 2: Configure your Linux Profile](#step-2-configure-your-linux-profile)
   - [Step 3: Update Linux and Install Essential & CTF Tools](#step-3-update-linux-and-install-essential--ctf-tools)
   - [Step 4: Web3 & Solana Development Setup (inside WSL)](#step-4-web3--solana-development-setup-inside-wsl)
+- [2.10 Installing & Managing Java Development Kits (JDK)](#210-installing--managing-java-development-kits-jdk)
+  - [Option A: SDKMAN! (Recommended inside WSL2 & Git Bash)](#option-a-sdkman-recommended-inside-wsl2--git-bash)
+  - [SDKMAN! Usage Mini-Guide](#sdkman-usage-mini-guide)
+  - [Option B: Native Windows Setup via Chocolatey (PowerShell)](#option-b-native-windows-setup-via-chocolatey-powershell)
+  - [Testing Your Java Setup](#testing-your-java-setup)
 - [Next Steps](#next-steps)
 
 ---
@@ -506,8 +511,164 @@ Inside your Ubuntu Terminal, run:
 
 ---
 
+## 2.10 Installing & Managing Java Development Kits (JDK)
+
+Java is essential for college coursework (Object-Oriented Programming, Data Structures, Android, and systems development) as well as competitive programming and backend engineering (Spring Boot). 
+
+Unlike C++, which compiles directly into native machine code, Java source files (`.java`) compile into bytecode (`.class`) that executes on the **Java Virtual Machine (JVM)**. To write and compile Java, you need the **Java Development Kit (JDK)**, which bundles the compiler (`javac`), runtime (`java`), and developer debugging tools.
+
+> [!IMPORTANT]
+> **Adopt Long-Term Support (LTS) Releases:**
+> In college labs and production environments, stick to official **LTS (Long-Term Support)** releases. Today, **Java 21 (LTS)** is the modern industry baseline, while **Java 17 (LTS)** remains prevalent in legacy frameworks. We standardize on **Eclipse Temurin** (by the Eclipse Adoptium Working Group), the vendor-neutral, fully certified open-source distribution of OpenJDK.
+
+Depending on your workflow, you can manage your JDK through:
+- **Option A (Recommended for Multi-Version Workflows):** Using **SDKMAN!** inside WSL2 or Git Bash for seamless, command-line version switching matching macOS and Linux.
+- **Option B (Native Windows Workflows):** Installing Eclipse Temurin JDK 21 directly into Windows via Chocolatey for PowerShell and native VS Code development.
+
+---
+
+### Option A: SDKMAN! (Recommended inside WSL2 & Git Bash)
+
+[SDKMAN!](https://sdkman.io) is the undisputed industry standard tool for managing parallel versions of multiple Software Development Kits (JDKs, Maven, Gradle, Kotlin, Groovy) across Unix-like environments.
+
+#### Installing SDKMAN! in WSL2 (Ubuntu):
+Open your **Ubuntu (WSL)** terminal and run:
+
+1. **Install Prerequisites (`zip`, `unzip`, `curl`):**
+   ```bash
+   sudo apt update && sudo apt install -y curl zip unzip
+   ```
+
+2. **Install SDKMAN!:**
+   ```bash
+   curl -s "https://get.sdkman.io" | bash
+   ```
+
+3. **Initialize SDKMAN! in Your Shell:**
+   ```bash
+   source "$HOME/.sdkman/bin/sdkman-init.sh"
+   ```
+
+4. **Verify Installation:**
+   ```bash
+   sdk version
+   ```
+
+---
+
+### SDKMAN! Usage Mini-Guide
+
+Once installed, managing JDKs is instantaneous:
+
+1. **List Available JDK Distributions:**
+   ```bash
+   sdk list java
+   ```
+   *(Press `q` to exit the list viewer).* You will see certified builds from **Temurin (`tem`)**, **Amazon Corretto (`amzn`)**, **GraalVM (`graalce`)**, and **Azul Zulu (`zulu`)**.
+
+2. **Install Java 21 LTS (Eclipse Temurin):**
+   ```bash
+   sdk install java 21.0.6-tem
+   ```
+   When prompted whether you want this version to be set as default, type `Y` and hit Enter.
+
+3. **Install an Older Version (e.g. Java 17 LTS for older projects):**
+   ```bash
+   sdk install java 17.0.14-tem
+   ```
+
+4. **Switch Versions on the Fly:**
+   - **Switch version for the current terminal session only:**
+     ```bash
+     sdk use java 17.0.14-tem
+     ```
+   - **Set the global default version for all new terminals:**
+     ```bash
+     sdk default java 21.0.6-tem
+     ```
+
+5. **Verify Currently Active Version:**
+   ```bash
+   sdk current java
+   java -version
+   javac -version
+   ```
+
+6. **Automatic Per-Project Version Locking (`.sdkmanrc`):**
+   In any project directory, you can lock the exact required Java version:
+   ```bash
+   # Generate a .sdkmanrc file configured to your active Java version
+   sdk env init
+   ```
+   Whenever you enter that folder in the future, simply run:
+   ```bash
+   sdk env
+   ```
+   SDKMAN! will automatically switch to the pinned JDK version!
+
+7. **Install Java Build & Automation Tools:**
+   You can also install industry-standard build tools with a single command:
+   ```bash
+   sdk install maven
+   sdk install gradle
+   ```
+
+---
+
+### Option B: Native Windows Setup via Chocolatey (PowerShell)
+
+If you prefer compiling and running Java programs directly inside Windows PowerShell, Command Prompt, or native Windows VS Code without WSL:
+
+1. **Install Eclipse Temurin JDK 21 LTS:**
+   Open **PowerShell as Administrator** and run:
+   ```powershell
+   choco install -y temurin21jdk
+   ```
+
+2. **Verify Environment Variables (`JAVA_HOME`):**
+   Chocolatey automatically configures your `PATH` and `JAVA_HOME`. Verify this by opening a **new, non-admin PowerShell window** and running:
+   ```powershell
+   $env:JAVA_HOME
+   java --version
+   javac --version
+   ```
+   *(If `$env:JAVA_HOME` is blank, you can set it permanently in PowerShell: `[Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\Eclipse Adoptium\jdk-21.0.6.7-hotspot", "User")`).*
+
+---
+
+### Testing Your Java Setup
+
+To confirm that your compiler and runtime are working properly, test a simple Java program:
+
+1. Create a test file named `Main.java`:
+   ```java
+   public class Main {
+       public static void main(String[] args) {
+           System.out.println("Java Environment Operational!");
+           System.out.println("Java Version: " + System.getProperty("java.version"));
+           System.out.println("JVM Architecture: " + System.getProperty("os.arch"));
+       }
+   }
+   ```
+
+2. Compile and execute:
+   ```bash
+   javac Main.java
+   java Main
+   ```
+
+3. **Expected Output:**
+   ```text
+   Java Environment Operational!
+   Java Version: 21.0.6
+   JVM Architecture: amd64
+   ```
+   *(Clean up test files afterwards: `rm Main.class Main.java` or in PowerShell: `Remove-Item Main.class, Main.java`).*
+
+---
+
 ## Next Steps
 
-- Now that VS Code, compilers, Git, and WSL are installed, head over to **[1.9 Essential VS Code Extensions](universal.md#19-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
+- Now that VS Code, compilers, Git, WSL, and JDK are installed, head over to **[1.9 Essential VS Code Extensions](universal.md#19-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Extension Pack for Java, etc.).
 - After installing extensions, proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.

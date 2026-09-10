@@ -39,6 +39,7 @@ Before starting your college lab or contest, run through this quick checklist to
   - [ ] Setting `code-runner.runInTerminal` is **checked** in VS Code Settings (`Ctrl + ,` or `Cmd + ,`).
 - [ ] **Python** & **Pylance** extensions installed.
 - [ ] **Jupyter** & **Ruff** extensions installed *(for ML & Data Science)*.
+- [ ] **Extension Pack for Java** extension installed *(for Java & OOPs coursework)*.
 
 ---
 
@@ -80,6 +81,16 @@ Before starting your college lab or contest, run through this quick checklist to
   ```
   *(Compile and run with `g++ test.cpp -o test && ./test` or press Play in VS Code).*
 
+- [ ] Test Java 21 file compiles and runs:
+  ```java
+  public class Main {
+      public static void main(String[] args) {
+          System.out.println("Java Environment Operational: " + System.getProperty("java.version"));
+      }
+  }
+  ```
+  *(Compile and run with `javac Main.java && java Main`).*
+
 ---
 
 ### 🔧 4. Command Line Tools
@@ -89,6 +100,10 @@ Run these commands in your terminal to verify that each tool responds with a ver
 | :--- | :--- | :--- |
 | **C Compiler** | `gcc --version` | Prints GCC version (or aliased GNU GCC on macOS) |
 | **C++ Compiler** | `g++ --version` | Prints G++ version |
+| **Java Compiler** | `javac --version` | `javac 21.x.x` |
+| **Java Runtime** | `java --version` | `openjdk 21.x.x` |
+| **SDKMAN! (JDK Manager)** | `sdk version` | `SDKMAN! x.x.x` *(macOS / Linux / WSL)* |
+| **Docker Engine / CLI** | `docker --version` | `Docker version 2x.x.x` *(macOS / Linux / WSL)* |
 | **Python** | `python --version` *(or `python3`)* | `Python 3.x.x` |
 | **uv Package Manager** | `uv --version` | `uv 0.x.x` |
 | **Node.js** | `node --version` | `v20.x.x` or `v22.x.x` |
@@ -145,6 +160,11 @@ For Windows users (inside WSL Ubuntu), native Linux users, and macOS users, veri
   - `solana address` (prints valid local base58 wallet address)
   - `avm --version` & `anchor --version`
   - Smoke test: `anchor build` compiles successfully inside a test Anchor project (`my-first-project`).
+- [ ] **Linux Containers & Docker (macOS, Linux & WSL):**
+  - `docker --version`
+  - `docker compose version`
+  - Container smoke test: `docker run --rm hello-world`
+  - On macOS Apple Silicon: `docker run --rm --platform linux/amd64 ubuntu:24.04 uname -m` (prints `x86_64`)
 
 ---
 

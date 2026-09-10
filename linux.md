@@ -28,6 +28,10 @@ Linux is the developer standard in industry and academia. There are dozens of Li
   - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-via-ssh)
 - [4.9 Cybersecurity & CTF Tools Setup (Linux)](#49-cybersecurity--ctf-tools-setup-linux)
 - [4.10 Web3 & Solana Development Setup](#410-web3--solana-development-setup)
+- [4.11 Installing & Managing Java Development Kits (JDK) with SDKMAN!](#411-installing--managing-java-development-kits-jdk-with-sdkman)
+  - [Step 1: Install Distro Prerequisites & SDKMAN!](#step-1-install-distro-prerequisites--sdkman)
+  - [Step 2: SDKMAN! Usage Mini-Guide](#step-2-sdkman-usage-mini-guide)
+  - [Step 3: Test Compiling a Java Program](#step-3-test-compiling-a-java-program)
 - [Next Steps](#next-steps)
 
 ---
@@ -563,8 +567,139 @@ If you are joining the Web3 Wing / Onchain IIITL or building decentralized appli
 
 ---
 
+## 4.11 Installing & Managing Java Development Kits (JDK) with SDKMAN!
+
+Java is required for Object-Oriented Programming (OOPs), Data Structures & Algorithms, Android app development, and backend services (Spring Boot). Java programs compile into bytecode executed by the **Java Virtual Machine (JVM)**.
+
+While Linux distributions package OpenJDK through system package managers (`apt`, `pacman`, `dnf`), installing multiple JDK versions this way often leads to messy `update-alternatives` conflicts, outdated builds, and broken `JAVA_HOME` paths. We use **SDKMAN!** (`sdkman.io`), the industry-standard version manager built specifically for the JVM ecosystem.
+
+> [!IMPORTANT]
+> **Adopt Long-Term Support (LTS) Releases:**
+> In university labs and industry, always standardize on official **LTS (Long-Term Support)** releases. Today, **Java 21 (LTS)** is the modern standard, while **Java 17 (LTS)** is common in legacy enterprise codebases. We standardize on **Eclipse Temurin** (by the Eclipse Adoptium Working Group), the vendor-neutral, fully certified open-source distribution of OpenJDK.
+
+### Step 1: Install Distro Prerequisites & SDKMAN!
+
+1. Open your Terminal and install the required utilities (`curl`, `zip`, `unzip`):
+   - **Debian / Ubuntu:**
+     ```bash
+     sudo apt update && sudo apt install -y curl zip unzip
+     ```
+   - **Arch Linux:**
+     ```bash
+     sudo pacman -S --needed curl zip unzip
+     ```
+   - **Fedora:**
+     ```bash
+     sudo dnf install -y curl zip unzip
+     ```
+
+2. Install SDKMAN!:
+   ```bash
+   curl -s "https://get.sdkman.io" | bash
+   ```
+
+3. Initialize SDKMAN! in your current terminal session:
+   ```bash
+   source "$HOME/.sdkman/bin/sdkman-init.sh"
+   ```
+   *(SDKMAN! automatically appends its initialization snippet to your `~/.bashrc` or `~/.zshrc`).*
+
+4. Verify installation:
+   ```bash
+   sdk version
+   ```
+
+---
+
+### Step 2: SDKMAN! Usage Mini-Guide
+
+Once installed, managing Java versions and JVM tools is effortless:
+
+1. **List Available JDK Distributions:**
+   ```bash
+   sdk list java
+   ```
+   *(Press `q` to exit the list viewer).* You will see certified builds from **Temurin (`tem`)**, **Amazon Corretto (`amzn`)**, **GraalVM (`graalce`)**, and **Azul Zulu (`zulu`)**.
+
+2. **Install Java 21 LTS (Eclipse Temurin):**
+   ```bash
+   sdk install java 21.0.6-tem
+   ```
+   When prompted whether you want this version set as your system default, type `Y` and press Enter.
+
+3. **Install an Older Version (e.g. Java 17 LTS):**
+   ```bash
+   sdk install java 17.0.14-tem
+   ```
+
+4. **Switch Versions on the Fly:**
+   - **Switch version for the current terminal session only:**
+     ```bash
+     sdk use java 17.0.14-tem
+     ```
+   - **Change the persistent default version for all future terminal sessions:**
+     ```bash
+     sdk default java 21.0.6-tem
+     ```
+
+5. **Verify Currently Active Version:**
+   ```bash
+   sdk current java
+   java -version
+   javac -version
+   ```
+
+6. **Automatic Project Version Switching (`.sdkmanrc`):**
+   In any project directory, generate an environment configuration pinning your desired Java version:
+   ```bash
+   sdk env init
+   ```
+   Whenever you enter that folder in the future, simply run:
+   ```bash
+   sdk env
+   ```
+   SDKMAN! will automatically switch to the pinned JDK version!
+
+7. **Install Java Build & Dependency Tools:**
+   You can also manage Java build tools seamlessly via SDKMAN!:
+   ```bash
+   sdk install maven
+   sdk install gradle
+   ```
+
+---
+
+### Step 3: Test Compiling a Java Program
+
+1. Create a test file `Main.java`:
+   ```java
+   public class Main {
+       public static void main(String[] args) {
+           System.out.println("Java Environment Operational!");
+           System.out.println("Java Version: " + System.getProperty("java.version"));
+           System.out.println("JVM Architecture: " + System.getProperty("os.arch"));
+       }
+   }
+   ```
+
+2. Compile and run:
+   ```bash
+   javac Main.java
+   java Main
+   ```
+
+3. **Expected Output:**
+   ```text
+   Java Environment Operational!
+   Java Version: 21.0.6
+   JVM Architecture: amd64
+   ```
+   *(Clean up test files: `rm Main.class Main.java`).*
+
+---
+
 ## Next Steps
 
-- Now that VS Code, build tools, and Git are installed, head over to **[1.9 Essential VS Code Extensions](universal.md#19-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
+- Now that VS Code, build tools, Git, and JDK are installed, head over to **[1.9 Essential VS Code Extensions](universal.md#19-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Extension Pack for Java, etc.).
 - After installing extensions, proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.

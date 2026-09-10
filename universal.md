@@ -31,6 +31,7 @@ These steps are done directly in your web browser and code editor, so they are *
 - [1.9 Essential VS Code Extensions](#19-essential-vs-code-extensions)
   - [C / C++ & Competitive Programming](#c--c--competitive-programming)
   - [Python, Machine Learning & Data Science](#python-machine-learning--data-science)
+  - [Java Development](#java-development)
   - [Web Development](#web-development)
   - [Quality of Life & Themes](#quality-of-life--themes)
 - [Next Steps](#next-steps)
@@ -517,6 +518,9 @@ When working with Jupyter notebooks (`.ipynb`) in VS Code:
    ```
 2. Open your `.ipynb` file in VS Code.
 3. Click **Select Kernel** in the top-right corner &rarr; select **Python Environments...** &rarr; choose your project's **`.venv`**.
+
+### Java Development:
+- **Extension Pack for Java** (by Microsoft): The official Microsoft extension pack for VS Code, including Language Support for Java (by Red Hat), Debugger for Java, Test Runner for Java, Maven/Gradle project support, and automatic JDK detection.
 
 ### Web Development:
 - **Live Server** (by Ritwick Dey): Launch a local development server with live reload for HTML/CSS/JavaScript.

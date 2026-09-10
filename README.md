@@ -20,13 +20,13 @@ Instead of hunting down fragmented tutorials, everything you need is organized b
   *For all operating systems.* Set up your developer, ML, and Web3 accounts (GitHub, Codeforces, CodeChef, Kaggle, Google Colab, Hugging Face, MetaMask, Phantom), browser extensions, and essential VS Code extensions.
 
 - 🪟 **[2. Windows Setup Guide](windows.md)**  
-  One-click tool installation using **Chocolatey**, configuring modern standard GCC compilers via **MSYS2 UCRT64** (avoiding legacy MinGW `ordered_set` bugs), setting environment variables (PATH), Git SSH authentication, and setting up **WSL (Ubuntu)** with essential CTF & Web3/Solana development tools.
+  One-click tool installation using **Chocolatey**, configuring modern standard GCC compilers via **MSYS2 UCRT64** (avoiding legacy MinGW `ordered_set` bugs), setting environment variables (PATH), Git SSH authentication, setting up **WSL (Ubuntu)** with CTF & Web3/Solana development tools, and managing JDKs via **SDKMAN!** and Chocolatey.
 
 - 🍎 **[3. macOS Setup Guide](macos.md)**  
-  Setting up **Homebrew**, tool installations, solving the Apple Clang vs GNU GCC problem for `#include <bits/stdc++.h>`, essential CTF utilities, Web3/Solana development tools, and configuring Git with GitHub SSH authentication.
+  Setting up **Homebrew**, tool installations, solving the Apple Clang vs GNU GCC problem for `#include <bits/stdc++.h>`, essential CTF utilities, Web3/Solana development tools, managing multiple JDKs with **SDKMAN!**, running **Linux containers** (OrbStack, Colima & Docker with x86_64 emulation), and configuring Git with GitHub SSH authentication.
 
 - 🐧 **[4. Linux Setup Guide](linux.md)**  
-  Complete installation guide across major distro families: **Debian / Ubuntu** (`apt`), **Arch Linux** (`pacman`), and **Fedora / RHEL** (`dnf`), shell PATH configuration (`.bashrc` / `.zshrc`), Web3/Solana development tools, and Git SSH setup.
+  Complete installation guide across major distro families: **Debian / Ubuntu** (`apt`), **Arch Linux** (`pacman`), and **Fedora / RHEL** (`dnf`), shell PATH configuration (`.bashrc` / `.zshrc`), Web3/Solana development tools, managing multiple JDKs with **SDKMAN!**, and Git SSH setup.
 
 - ✅ **[5. Quick Verification Checklist](checklist.md)**  
   Interactive self-check test and command reference table to verify compilers, interpreters, tools, and SSH keys in under 2 minutes.

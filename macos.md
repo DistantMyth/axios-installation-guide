@@ -24,6 +24,16 @@ macOS is Unix-based and fantastic for development, but it has a few specific qui
   - [Step 2: Authenticate with GitHub via SSH](#step-2-authenticate-with-github-via-ssh)
 - [3.11 Cybersecurity & CTF Tools Setup (macOS)](#311-cybersecurity--ctf-tools-setup-macos)
 - [3.12 Web3 & Solana Development Setup (macOS)](#312-web3--solana-development-setup-macos)
+- [3.13 Installing & Managing Java Development Kits (JDK) with SDKMAN!](#313-installing--managing-java-development-kits-jdk-with-sdkman)
+  - [Step 1: Install Prerequisites & SDKMAN!](#step-1-install-prerequisites--sdkman)
+  - [Step 2: SDKMAN! Usage Mini-Guide](#step-2-sdkman-usage-mini-guide)
+  - [Step 3: Test Compiling a Java Program](#step-3-test-compiling-a-java-program)
+- [3.14 Linux Containers on macOS (OrbStack, Colima & Docker)](#314-linux-containers-on-macos-orbstack-colima--docker)
+  - [Why Linux Containers on macOS?](#why-linux-containers-on-macos)
+  - [Option 1: OrbStack (Recommended - Ultra Fast & Lightweight)](#option-1-orbstack-recommended---ultra-fast--lightweight)
+  - [Option 2: Colima (100% Free & Open-Source CLI)](#option-2-colima-100-free--open-source-cli)
+  - [Option 3: Docker Desktop for Mac (Traditional GUI)](#option-3-docker-desktop-for-mac-traditional-gui)
+  - [Hands-on Container Mini-Guide](#hands-on-container-mini-guide)
 - [Next Steps](#next-steps)
 
 ---
@@ -468,8 +478,250 @@ If you are joining the Web3 Wing / Onchain IIITL or building decentralized appli
 
 ---
 
+## 3.13 Installing & Managing Java Development Kits (JDK) with SDKMAN!
+
+Java is required for Object-Oriented Programming (OOPs), Data Structures & Algorithms, Android/Kotlin mobile development, and systems engineering. Modern Java compiles source files (`.java`) into bytecode executed by the **Java Virtual Machine (JVM)**.
+
+On macOS, managing different Java versions manually (via Apple's `/usr/libexec/java_home` or DMG installers) often causes broken PATHs and conflicting environment variables. We use **SDKMAN!** (`sdkman.io`), the industry-standard version manager designed specifically for the JVM ecosystem.
+
+> [!IMPORTANT]
+> **Recommended JDK Distribution & LTS Standard:**
+> We standardize on **Eclipse Temurin 21 (LTS)** (`21.0.6-tem`), the vendor-neutral, production-ready build of OpenJDK produced by the Eclipse Adoptium Working Group. It includes native Apple Silicon (`aarch64`) builds optimized for M1/M2/M3/M4 chips.
+
+### Step 1: Install Prerequisites & SDKMAN!
+
+1. Open your Terminal and ensure Homebrew utilities (`curl`, `zip`, `unzip`) are present:
+   ```zsh
+   brew install curl zip unzip
+   ```
+
+2. Install SDKMAN!:
+   ```zsh
+   curl -s "https://get.sdkman.io" | bash
+   ```
+
+3. Initialize SDKMAN! in your current terminal:
+   ```zsh
+   source "$HOME/.sdkman/bin/sdkman-init.sh"
+   ```
+   *(SDKMAN! automatically appends its initialization snippet to the bottom of your `~/.zshrc`).*
+
+4. Confirm the installation:
+   ```zsh
+   sdk version
+   ```
+
+---
+
+### Step 2: SDKMAN! Usage Mini-Guide
+
+SDKMAN! makes installing and switching Java versions instantaneous:
+
+1. **List Available JDK Distributions:**
+   ```zsh
+   sdk list java
+   ```
+   *(Press `q` to exit the list viewer).* You will see certified builds from **Temurin (`tem`)**, **Amazon Corretto (`amzn`)**, **GraalVM (`graalce`)**, and **Azul Zulu (`zulu`)**.
+
+2. **Install Java 21 LTS (Eclipse Temurin):**
+   ```zsh
+   sdk install java 21.0.6-tem
+   ```
+   When prompted whether you want this version set as your system default, type `Y` and press Enter.
+
+3. **Install an Older Version (e.g. Java 17 LTS):**
+   ```zsh
+   sdk install java 17.0.14-tem
+   ```
+
+4. **Switch Versions on the Fly:**
+   - **Switch version for the current terminal tab only:**
+     ```zsh
+     sdk use java 17.0.14-tem
+     ```
+   - **Change the persistent default version for all future terminal sessions:**
+     ```zsh
+     sdk default java 21.0.6-tem
+     ```
+
+5. **Verify Currently Active Version:**
+   ```zsh
+   sdk current java
+   java -version
+   javac -version
+   ```
+
+6. **Automatic Project Version Switching (`.sdkmanrc`):**
+   In any project folder, generate an environment configuration pinning your desired Java version:
+   ```zsh
+   sdk env init
+   ```
+   Whenever you `cd` into that directory, run `sdk env` to automatically switch to the pinned JDK version.
+
+7. **Install Java Build & Dependency Tools:**
+   You can also manage Java build tools seamlessly via SDKMAN!:
+   ```zsh
+   sdk install maven
+   sdk install gradle
+   ```
+
+---
+
+### Step 3: Test Compiling a Java Program
+
+1. Create a quick test file `Main.java`:
+   ```java
+   public class Main {
+       public static void main(String[] args) {
+           System.out.println("Java Environment Operational!");
+           System.out.println("Java Version: " + System.getProperty("java.version"));
+           System.out.println("Architecture: " + System.getProperty("os.arch"));
+       }
+   }
+   ```
+
+2. Compile and run:
+   ```zsh
+   javac Main.java
+   java Main
+   ```
+
+3. **Expected Output:**
+   ```text
+   Java Environment Operational!
+   Java Version: 21.0.6
+   Architecture: aarch64
+   ```
+   *(Clean up: `rm Main.class Main.java`).*
+
+---
+
+## 3.14 Linux Containers on macOS (OrbStack, Colima & Docker)
+
+### Why Linux Containers on macOS?
+
+macOS runs the **Darwin (XNU)** kernel, not the Linux kernel. Therefore, native Linux ELF binaries, server microservices, Linux-based databases, and Linux containers cannot run bare-metal on macOS. They require a lightweight Linux virtual machine.
+
+Furthermore, on modern Apple Silicon Macs (M1/M2/M3/M4), the CPU runs **ARM64 (`aarch64`)**. However, college cybersecurity CTFs, binary exploitation challenges (pwn), and legacy tools specifically require **x86_64 (`amd64`) Linux environments**.
+
+To solve this effortlessly, you have three excellent options:
+- **Option 1 (Recommended - Modern & Fast): OrbStack** — Starts in 2 seconds, consumes a fraction of the RAM/battery of Docker Desktop, and features seamless Rosetta x86_64 translation.
+- **Option 2 (100% Free & Open-Source CLI): Colima** — Minimalist, terminal-first container runtime powered by Lima.
+- **Option 3 (Traditional GUI): Docker Desktop for Mac** — The standard enterprise graphical container dashboard.
+
+---
+
+### Option 1: OrbStack (Recommended - Ultra Fast & Lightweight)
+
+[OrbStack](https://orbstack.dev) is the modern favorite container engine for macOS. It replaces Docker Desktop completely with zero configuration.
+
+1. **Install via Homebrew:**
+   ```zsh
+   brew install --cask orbstack
+   ```
+2. **Launch OrbStack:**
+   Press `Cmd + Space`, search for **OrbStack**, and hit Enter. Grant the requested system permissions.
+3. **Instant Docker Compatibility:**
+   OrbStack automatically integrates with the standard `docker` and `docker compose` command-line tools:
+   ```zsh
+   docker --version
+   docker compose version
+   ```
+4. **Instant Linux Machines (Bonus):**
+   OrbStack also allows you to spin up lightweight Linux machines in under 2 seconds:
+   ```zsh
+   # Create and enter an Ubuntu Linux shell
+   orb create ubuntu my-linux
+   orb shell my-linux
+   ```
+
+---
+
+### Option 2: Colima (100% Free & Open-Source CLI)
+
+If you prefer a 100% open-source, CLI-only setup without GUI background apps:
+
+1. **Install Colima and Docker CLI via Homebrew:**
+   ```zsh
+   brew install colima docker docker-compose
+   ```
+
+2. **Start the Linux Container Runtime:**
+   ```zsh
+   # Default ARM64 Linux VM:
+   colima start --cpu 4 --memory 8
+   ```
+
+   > [!TIP]
+   > **Running x86_64 Containers on Apple Silicon with Colima:**
+   > If you need to emulate an x86_64 Linux kernel (e.g. for CTF pwn challenges), you can start Colima with Rosetta or x86_64 emulation:
+   > ```zsh
+   > colima start --arch x86_64 --cpu 4 --memory 8
+   > ```
+
+3. **Stopping Colima:**
+   When you are done working to save battery:
+   ```zsh
+   colima stop
+   ```
+
+---
+
+### Option 3: Docker Desktop for Mac (Traditional GUI)
+
+If you prefer the official GUI dashboard:
+
+1. **Install Docker Desktop via Homebrew:**
+   ```zsh
+   brew install --cask docker
+   ```
+2. **Launch Docker Desktop** from Applications, accept the service agreement, and ensure **Use Rosetta for x86/amd64 emulation on Apple Silicon** is enabled in **Settings &rarr; General**.
+
+---
+
+### Hands-on Container Mini-Guide
+
+Regardless of whether you choose OrbStack, Colima, or Docker Desktop, the standard `docker` CLI works identically:
+
+1. **Run a Quick Smoke-Test:**
+   ```zsh
+   docker run --rm hello-world
+   ```
+
+2. **Launch an Interactive Ubuntu 24.04 Linux Shell:**
+   ```zsh
+   docker run -it --rm ubuntu:24.04 bash
+   ```
+   *(You are now inside a clean, isolated Linux container! Type `exit` to return to your Mac).*
+
+3. **Run an x86_64 Linux Container on Apple Silicon (CTF & Binary Analysis):**
+   To execute `x86_64` Linux binaries on an M-series Mac with Rosetta hardware translation:
+   ```zsh
+   docker run -it --rm --platform linux/amd64 ubuntu:24.04 bash
+   ```
+   Inside the container, run `uname -m`. It will display `x86_64`!
+
+4. **Mounting Your Local Mac Folders into a Container:**
+   Share files between your Mac and the Linux container:
+   ```zsh
+   docker run -it --rm -v "$(pwd):/workspace" -w /workspace ubuntu:24.04 bash
+   ```
+
+5. **Running a Web Server with Port Forwarding:**
+   Run an Nginx web server in the background and expose port 8080 to your Mac browser:
+   ```zsh
+   docker run -d -p 8080:80 --name test-nginx nginx
+   ```
+   Open `http://localhost:8080` in Safari or Chrome to view the running web page.
+   Clean up:
+   ```zsh
+   docker stop test-nginx && docker rm test-nginx
+   ```
+
+---
+
 ## Next Steps
 
-- Now that VS Code, GCC, and Git are installed, head over to **[1.9 Essential VS Code Extensions](universal.md#19-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Ruff, etc.).
+- Now that VS Code, GCC, Git, JDK, and Linux container runtimes are installed, head over to **[1.9 Essential VS Code Extensions](universal.md#19-essential-vs-code-extensions)** to install the recommended extensions (C/C++, CPH, Code Runner, Python, Jupyter, Extension Pack for Java, etc.).
 - After installing extensions, proceed to the **[5. Quick Verification Checklist](checklist.md)** to verify your complete setup.
 - Or return to the **[Basic Installation Overview](README.md)**.
