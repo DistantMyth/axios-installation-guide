@@ -1,6 +1,23 @@
 # 5. Quick Verification Checklist
 
-Before starting your college lab or contest, run through this quick checklist to confirm everything is working smoothly.
+Before starting your college lab or contest, run through this verification guide to confirm everything is working smoothly.
+
+---
+
+## ⚡ One-Click Automated Verification
+
+Instead of manually checking individual tools, you can run our automated verification script to audit your entire development environment in seconds. The script checks all compilers, runtimes, package managers, PATH variables, `<bits/stdc++.h>` compilation, and GitHub SSH connectivity:
+
+- **🪟 Windows (PowerShell)**:
+  ```powershell
+  powershell -ExecutionPolicy Bypass -File .\verify.ps1
+  ```
+- **🍎 macOS & 🐧 Linux (Terminal)**:
+  ```bash
+  chmod +x verify.sh && ./verify.sh
+  ```
+
+The script will output a clean report with `[✔ INSTALLED]` and `[✘ NOT FOUND]` items along with exact instructions to fix any missing tools!
 
 ---
 

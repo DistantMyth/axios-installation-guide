@@ -26,9 +26,17 @@ Follow these guides in numerical order:
 
 ---
 
-## ⚡ Quick Verification Checklist
+## ⚡ Automated Environment Verification
 
-After completing all guides, open a new Terminal window (`Cmd + Space` -> `Terminal`) and verify:
+Instead of running individual commands manually, run our automated verification script from the root of the repository:
+
+```bash
+chmod +x verify.sh && ./verify.sh
+```
+
+This single script will test Homebrew, genuine GNU GCC vs Apple Clang, `<bits/stdc++.h>` compilation, Python 3, `uv`, `nvm`, Node LTS, Java, and Docker.
+
+Alternatively, you can verify manually:
 
 ```zsh
 brew --version

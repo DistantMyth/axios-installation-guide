@@ -24,9 +24,17 @@ Follow these guides in numerical order:
 
 ---
 
-## ⚡ Quick Verification Checklist
+## ⚡ Automated Environment Verification
 
-After completing all chapters, opening a new PowerShell window and running the following commands should all succeed without errors:
+Instead of running verification commands manually, you can run our automated verification script from the root of the repository:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\verify.ps1
+```
+
+This single script will test every tool, compiler, App Execution Alias, and PATH variable, printing a report of what is configured and what needs attention.
+
+Alternatively, you can test commands manually:
 
 ```powershell
 choco --version
