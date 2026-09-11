@@ -24,15 +24,16 @@ Follow these guides in numerical order:
 
 ---
 
-## ⚡ Automated Environment Verification
+## ⚡ Automated Environment Verification (One-Liner)
 
-Instead of running verification commands manually, you can run our automated verification script from the root of the repository:
+You do **not** need to clone this repository or run manual checks one by one. Simply open **PowerShell** and run:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\verify.ps1
+irm https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.ps1 | iex
 ```
+*(Or with bypass flag: `powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.ps1 | iex"`)*
 
-This single script will test every tool, compiler, App Execution Alias, and PATH variable, printing a report of what is configured and what needs attention.
+This will download and run the verification script directly from GitHub in memory, testing every compiler, runtime, App Execution Alias, and PATH variable, and printing a clean report of what is configured and what needs attention.
 
 Alternatively, you can test commands manually:
 

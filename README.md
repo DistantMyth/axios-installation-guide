@@ -29,7 +29,7 @@ graph TD
    - 🪟 **[Windows Setup Guide](./windows/README.md)**: Package management with Chocolatey & Winget, `uv`, `nvm-windows`, MinGW C/C++ compilers, Git & SSH, Java 21, WSL2 (Ubuntu), and Infosec tools.
    - 🐧 **[Linux Setup Guide](./linux/README.md)**: Native development environments for Ubuntu/Debian (`apt`), Arch (`pacman`), and Fedora (`dnf`), GCC/G++, `uv`, `nvm`, Java, Docker Engine, and security toolchains.
    - 🍎 **[macOS Setup Guide](./macos/README.md)**: Homebrew configuration for Apple Silicon / Intel, genuine GNU GCC (`<bits/stdc++.h>` fix), `uv`, `nvm`, Java, and Linux container setups for infosec tooling.
-3. **Verify Everything**: Run through the **[Verification Checklist](./checklist.md)** to ensure all compilers, runtimes, and SSH keys are 100% operational.
+3. **Verify Everything**: Run through the **[Verification Checklist](./checklist.md)** or run our automated one-liner verification script directly from GitHub (Windows: `irm https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.ps1 | iex`, macOS/Linux: `curl -fsSL https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.sh | bash`) to ensure all compilers, runtimes, and SSH keys are 100% operational.
 
 ---
 

@@ -26,15 +26,15 @@ Follow these guides in numerical order:
 
 ---
 
-## ⚡ Automated Environment Verification
+## ⚡ Automated Environment Verification (One-Liner)
 
-Instead of running individual commands manually, run our automated verification script from the root of the repository:
+You do **not** need to clone this repository or check tools manually. Simply open **Terminal** and run:
 
 ```bash
-chmod +x verify.sh && ./verify.sh
+curl -fsSL https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.sh | bash
 ```
 
-This single script will test Homebrew, genuine GNU GCC vs Apple Clang, `<bits/stdc++.h>` compilation, Python 3, `uv`, `nvm`, Node LTS, Java, and Docker.
+This runs our verification script directly from GitHub in memory, testing Homebrew, genuine GNU GCC vs Apple Clang, `<bits/stdc++.h>` compilation, Python 3, `uv`, `nvm`, Node LTS, Java, and Docker.
 
 Alternatively, you can verify manually:
 

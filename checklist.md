@@ -4,20 +4,24 @@ Before starting your college lab or contest, run through this verification guide
 
 ---
 
-## ⚡ One-Click Automated Verification
+## ⚡ One-Click Automated Verification (No Repo Cloning Required!)
 
-Instead of manually checking individual tools, you can run our automated verification script to audit your entire development environment in seconds. The script checks all compilers, runtimes, package managers, PATH variables, `<bits/stdc++.h>` compilation, and GitHub SSH connectivity:
+You do **not** need to clone this repository or download any files. Simply copy and paste the one-line command below into your terminal. It will fetch and run the verification script directly from GitHub in memory:
 
-- **🪟 Windows (PowerShell)**:
-  ```powershell
-  powershell -ExecutionPolicy Bypass -File .\verify.ps1
-  ```
-- **🍎 macOS & 🐧 Linux (Terminal)**:
-  ```bash
-  chmod +x verify.sh && ./verify.sh
-  ```
+### 🪟 Windows (PowerShell)
+Open **PowerShell** and run:
+```powershell
+irm https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.ps1 | iex
+```
+*(If script execution is restricted on your machine, run: `powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.ps1 | iex"`)*
 
-The script will output a clean report with `[✔ INSTALLED]` and `[✘ NOT FOUND]` items along with exact instructions to fix any missing tools!
+### 🍎 macOS & 🐧 Linux (Terminal)
+Open **Terminal** and run:
+```bash
+curl -fsSL https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.sh | bash
+```
+
+The script will instantly audit all compilers, runtimes, package managers, PATH configurations, and SSH connections, producing a clean report of `[✔ INSTALLED]` and `[✘ NOT FOUND]` items with exact instructions to fix any missing tools!
 
 ---
 
