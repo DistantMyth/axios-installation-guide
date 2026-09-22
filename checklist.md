@@ -1,6 +1,27 @@
 # 5. Quick Verification Checklist
 
-Before starting your college lab or contest, run through this quick checklist to confirm everything is working smoothly.
+Before starting your college lab or contest, run through this verification guide to confirm everything is working smoothly.
+
+---
+
+## ⚡ One-Click Automated Verification (No Repo Cloning Required!)
+
+You do **not** need to clone this repository or download any files. Simply copy and paste the one-line command below into your terminal. It will fetch and run the verification script directly from GitHub in memory:
+
+### 🪟 Windows (PowerShell)
+Open **PowerShell** and run:
+```powershell
+irm https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.ps1 | iex
+```
+*(If script execution is restricted on your machine, run: `powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.ps1 | iex"`)*
+
+### 🍎 macOS & 🐧 Linux (Terminal)
+Open **Terminal** and run:
+```bash
+curl -fsSL https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.sh | bash
+```
+
+The script will instantly audit all compilers, runtimes, package managers, PATH configurations, and SSH connections, producing a clean report of `[✔ INSTALLED]` and `[✘ NOT FOUND]` items with exact instructions to fix any missing tools!
 
 ---
 
