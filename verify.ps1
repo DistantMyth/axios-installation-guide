@@ -340,7 +340,7 @@ if ($env:JAVA_HOME -and (Test-Path $env:JAVA_HOME)) {
     Report-Pass "JAVA_HOME Variable" "Configured -> $env:JAVA_HOME"
 } else {
     if ($miseInstalled) {
-        Report-Warn "JAVA_HOME Variable" "JAVA_HOME is not set! Solution: add mise activation to `$PROFILE: Add-Content `$PROFILE '`nmise activate ps1 | Out-String | Invoke-Expression' and run 'mise use -g java@21'"
+        Report-Warn "JAVA_HOME Variable" "JAVA_HOME is not set! Solution: add mise activation to `$PROFILE: Add-Content `$PROFILE '`nmise activate powershell | Out-String | Invoke-Expression' and run 'mise use -g java@21'"
     } else {
         Report-Warn "JAVA_HOME Variable" "JAVA_HOME not set! Solution: install mise ('winget install jdx.mise') and run 'mise use -g java@21' (mise sets JAVA_HOME automatically)"
     }

@@ -33,7 +33,7 @@ To enable `mise` to automatically configure your active JDK and `JAVA_HOME` in e
 
 ```powershell
 if (!(Test-Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }
-Add-Content -Path $PROFILE -Value "`nmise activate ps1 | Out-String | Invoke-Expression"
+Add-Content -Path $PROFILE -Value "`nmise activate powershell | Out-String | Invoke-Expression"
 ```
 Reload your current session:
 ```powershell
