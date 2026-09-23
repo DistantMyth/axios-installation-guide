@@ -53,9 +53,9 @@ Write-Host "🔍 Starting Windows Developer Environment Verification..." -Foregr
 Write-Host "Time: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" -ForegroundColor DarkGray
 
 # -------------------------------------------------------------
-# 1. Package & Tool Managers
+# 1. Package Managers
 # -------------------------------------------------------------
-Write-Header "1. Windows Package & Tool Managers"
+Write-Header "1. Windows Package Managers"
 
 # Chocolatey
 $chocoCmd = Get-Command choco -ErrorAction SilentlyContinue
@@ -73,37 +73,6 @@ if ($wingetCmd) {
     Report-Pass "Windows Package Manager" "Version $wingetVer"
 } else {
     Report-Warn "Windows Package Manager" "winget not found (Update 'App Installer' from Microsoft Store)"
-}
-
-# mise (Polyglot Tool & Runtime Manager)
-$hasMise = $false
-$miseCmd = Get-Command mise -ErrorAction SilentlyContinue
-if (-not $miseCmd) {
-    $possibleMisePaths = @(
-        "$env:LOCALAPPDATA\mise\bin\mise.exe",
-        "$env:USERPROFILE\.local\bin\mise.exe",
-        "C:\Program Files\mise\bin\mise.exe"
-    )
-    foreach ($p in $possibleMisePaths) {
-        if (Test-Path $p) {
-            $miseCmd = Get-Item $p
-            break
-        }
-    }
-}
-
-if ($miseCmd) {
-    $hasMise = $true
-    $miseVer = (& $miseCmd.FullName --version 2>$null)
-    $activeMise = (& $miseCmd.FullName ls --current 2>$null)
-    if ($activeMise) {
-        $activeSummary = ($activeMise -join ", ")
-        Report-Pass "mise (Tool Manager)" "$miseVer (Active: $activeSummary)"
-    } else {
-        Report-Pass "mise (Tool Manager)" "$miseVer (Installed)"
-    }
-} else {
-    Report-Warn "mise (Tool Manager)" "Optional but Recommended: install via 'winget install jdx.mise' to manage Java, Node, Python"
 }
 
 # -------------------------------------------------------------
@@ -260,32 +229,16 @@ Write-Header "4. Python Ecosystem & Astral uv"
 
 # Python
 $pythonCmd = Get-Command python -ErrorAction SilentlyContinue
-$miseHasPython = $false
-if ($hasMise) {
-    $misePyCheck = (& mise which python 2>$null)
-    if ($misePyCheck) { $miseHasPython = $true }
-}
-
 if ($pythonCmd) {
     # Check for Microsoft Store redirector alias
     if ($pythonCmd.Source -like "*WindowsApps*") {
-        if ($miseHasPython) {
-            Report-Fail "Python" "Intercepted by WindowsApps! Activate mise ('mise activate ps1') or disable App execution aliases"
-        } else {
-            Report-Fail "Python" "Intercepted by WindowsApps! Disable 'App execution aliases' in Windows Settings (or install with 'mise use -g python@3.12')"
-        }
+        Report-Fail "Python" "Intercepted by WindowsApps! Disable 'App execution aliases' in Windows Settings"
     } else {
         $pyVer = (& python --version 2>$null)
-        if ($pythonCmd.Source -like "*mise*") {
-            Report-Pass "Python 3" "$pyVer (Managed by mise)"
-        } else {
-            Report-Pass "Python 3" "$pyVer ($($pythonCmd.Source))"
-        }
+        Report-Pass "Python 3" "$pyVer ($($pythonCmd.Source))"
     }
-} elseif ($miseHasPython) {
-    Report-Warn "Python 3" "Python installed in mise, but not active in this session. Add 'mise activate ps1' to `$PROFILE"
 } else {
-    Report-Fail "Python 3" "Install with: mise use -g python@3.12 (or choco install -y python3)"
+    Report-Fail "Python 3" "Install with: choco install -y python3"
 }
 
 # uv
@@ -294,33 +247,30 @@ if ($uvCmd) {
     $uvVer = (& uv --version 2>$null)
     Report-Pass "Astral uv" "$uvVer"
 } else {
-    Report-Fail "Astral uv" "Install with: mise use -g uv (or winget install --id=astral-sh.uv -e)"
+    Report-Fail "Astral uv" "Install with: winget install --id=astral-sh.uv -e"
 }
 
 # -------------------------------------------------------------
 # 5. JavaScript / Node.js Ecosystem & NVM
 # -------------------------------------------------------------
-Write-Header "5. Node.js & Tool Manager (NVM / mise)"
+Write-Header "5. Node.js & Node Version Manager (NVM)"
+
+# NVM
+$nvmCmd = Get-Command nvm -ErrorAction SilentlyContinue
+if ($nvmCmd) {
+    $nvmVer = (& nvm version 2>$null)
+    Report-Pass "nvm-windows" "Version $nvmVer"
+} else {
+    Report-Fail "nvm-windows" "Install with: winget install CoreyButler.NVMforWindows (or choco install nvm)"
+}
 
 # Node.js
 $nodeCmd = Get-Command node -ErrorAction SilentlyContinue
-$miseHasNode = $false
-if ($hasMise) {
-    $miseNodeCheck = (& mise which node 2>$null)
-    if ($miseNodeCheck) { $miseHasNode = $true }
-}
-
 if ($nodeCmd) {
     $nodeVer = (& node -v 2>$null)
-    if ($nodeCmd.Source -like "*mise*") {
-        Report-Pass "Node.js" "Active version: $nodeVer (Managed by mise)"
-    } else {
-        Report-Pass "Node.js" "Active version: $nodeVer"
-    }
-} elseif ($miseHasNode) {
-    Report-Warn "Node.js" "Node.js installed in mise, but not active in this session. Run: mise activate ps1 | Out-String | Invoke-Expression"
+    Report-Pass "Node.js" "Active version: $nodeVer"
 } else {
-    Report-Fail "Node.js" "Install with: mise use -g node@lts (or nvm install lts; nvm use lts)"
+    Report-Fail "Node.js" "Run: nvm install lts; nvm use lts"
 }
 
 # npm
@@ -329,66 +279,98 @@ if ($npmCmd) {
     $npmVer = (& npm -v 2>$null)
     Report-Pass "npm" "Version $npmVer"
 } else {
-    Report-Fail "npm" "Missing npm executable (Install Node with: mise use -g node@lts)"
+    Report-Fail "npm" "Missing npm executable"
 }
 
-# Node Version Manager (mise or nvm-windows)
-$nvmCmd = Get-Command nvm -ErrorAction SilentlyContinue
-if ($nodeCmd -and ($nodeCmd.Source -like "*mise*")) {
-    Report-Pass "Node Version Manager" "Managed via mise ($miseVer)"
-} elseif ($nvmCmd) {
-    $nvmVer = (& nvm version 2>$null)
-    Report-Pass "nvm-windows" "Version $nvmVer"
-} elseif ($hasMise) {
-    Report-Pass "Node Version Manager" "mise available for Node management (mise use -g node@lts)"
+# -------------------------------------------------------------
+# 6. Java Development Kit (JDK 21) & mise
+# -------------------------------------------------------------
+Write-Header "6. Java Development Kit (JDK) & mise"
+
+# Check mise for Java
+$miseCmd = Get-Command mise -ErrorAction SilentlyContinue
+$miseInstalled = $false
+if ($miseCmd) {
+    $miseInstalled = $true
+    $miseVer = (& mise --version 2>$null)
+    Report-Pass "mise (Tool & JDK Manager)" "$miseVer ($($miseCmd.Source))"
+
+    # Verify Java via mise
+    $miseJavaCur = (& mise current java 2>$null)
+    $miseJavaList = (& mise ls java 2>$null)
+    if ($miseJavaCur) {
+        Report-Pass "Java via mise" "Active version: java@$miseJavaCur"
+    } elseif ($miseJavaList) {
+        Report-Warn "Java via mise" "Java installed in mise ($miseJavaList) but no global version selected. Solution: mise use --global java@21"
+    } else {
+        Report-Warn "Java via mise" "No Java installed via mise. Solution: mise use --global java@21"
+    }
 } else {
-    Report-Warn "Node Version Manager" "Neither mise nor nvm-windows detected (Install mise: winget install jdx.mise)"
+    Report-Warn "mise (JDK Manager)" "mise not detected. Recommended solution for Java: winget install jdx.mise"
 }
-
-# -------------------------------------------------------------
-# 6. Java Development Kit (JDK 21)
-# -------------------------------------------------------------
-Write-Header "6. Java Development Kit (JDK)"
 
 # Java Runtime
 $javaCmd = Get-Command java -ErrorAction SilentlyContinue
-$miseHasJava = $false
-if ($hasMise) {
-    $miseJavaCheck = (& mise which java 2>$null)
-    if ($miseJavaCheck) { $miseHasJava = $true }
-}
-
 if ($javaCmd) {
     $javaVer = (& java -version 2>&1 | Select-Object -First 1)
-    if ($javaCmd.Source -like "*mise*") {
-        Report-Pass "Java Runtime" "$javaVer (Managed by mise)"
-    } else {
-        Report-Pass "Java Runtime" "$javaVer"
-    }
-} elseif ($miseHasJava) {
-    Report-Warn "Java Runtime" "Java installed in mise, but not active in this session. Run: mise activate ps1 | iex"
+    Report-Pass "Java Runtime" "$javaVer ($($javaCmd.Source))"
 } else {
-    Report-Fail "Java Runtime" "Install with: mise use -g java@21 (or winget install EclipseAdoptium.Temurin.21.JDK)"
+    if ($miseInstalled) {
+        Report-Fail "Java Runtime" "java not found in PATH! Solution: run 'mise use --global java@21' and ensure mise is in your `$PROFILE"
+    } else {
+        Report-Fail "Java Runtime" "java not found! Solution: install mise ('winget install jdx.mise') then run 'mise use --global java@21'"
+    }
 }
 
 # Java Compiler
 $javacCmd = Get-Command javac -ErrorAction SilentlyContinue
 if ($javacCmd) {
     $javacVer = (& javac -version 2>&1 | Select-Object -First 1)
-    Report-Pass "Java Compiler (javac)" "$javacVer"
+    Report-Pass "Java Compiler (javac)" "$javacVer ($($javacCmd.Source))"
 } else {
-    Report-Fail "Java Compiler" "javac not found in PATH (Install with: mise use -g java@21)"
+    if ($miseInstalled) {
+        Report-Fail "Java Compiler (javac)" "javac not found in PATH! Solution: run 'mise use --global java@21' (mise automatically includes javac)"
+    } else {
+        Report-Fail "Java Compiler (javac)" "javac not found! Solution: install mise ('winget install jdx.mise') then run 'mise use --global java@21'"
+    }
 }
 
 # JAVA_HOME
 if ($env:JAVA_HOME -and (Test-Path $env:JAVA_HOME)) {
     Report-Pass "JAVA_HOME Variable" "Configured -> $env:JAVA_HOME"
 } else {
-    if ($hasMise) {
-        Report-Warn "JAVA_HOME Variable" "JAVA_HOME is not set in this session. Running 'mise activate ps1' sets JAVA_HOME automatically!"
+    if ($miseInstalled) {
+        Report-Warn "JAVA_HOME Variable" "JAVA_HOME is not set! Solution: add mise activation to `$PROFILE: Add-Content `$PROFILE '`nmise activate ps1 | Out-String | Invoke-Expression' and run 'mise use -g java@21'"
     } else {
-        Report-Warn "JAVA_HOME Variable" "JAVA_HOME is not set. Install mise ('winget install jdx.mise' then 'mise use -g java@21') to manage JAVA_HOME automatically without manual registry editing."
+        Report-Warn "JAVA_HOME Variable" "JAVA_HOME not set! Solution: install mise ('winget install jdx.mise') and run 'mise use -g java@21' (mise sets JAVA_HOME automatically)"
     }
+}
+
+# Java Execution Smoke Test
+if ($javaCmd -and $javacCmd) {
+    $tempJavaDir = [System.IO.Path]::GetTempPath()
+    $tempJava = [System.IO.Path]::Combine($tempJavaDir, "VerifyJavaTest.java")
+    $tempClass = [System.IO.Path]::Combine($tempJavaDir, "VerifyJavaTest.class")
+    Set-Content -Path $tempJava -Value @"
+public class VerifyJavaTest {
+    public static void main(String[] args) {
+        System.out.println("JAVA_OK");
+    }
+}
+"@
+    & javac $tempJava 2>$null
+    if (Test-Path $tempClass) {
+        $runOut = (& java -cp $tempJavaDir VerifyJavaTest 2>$null)
+        if ($runOut -match "JAVA_OK") {
+            Report-Pass "Java Execution Test" "Single-file compilation and JVM execution successful"
+        } else {
+            Report-Fail "Java Execution Test" "Compiled test class but JVM execution failed"
+        }
+        Remove-Item $tempClass -Force -ErrorAction SilentlyContinue
+    } else {
+        Report-Fail "Java Execution Test" "javac failed to compile test class"
+    }
+    Remove-Item $tempJava -Force -ErrorAction SilentlyContinue
 }
 
 # -------------------------------------------------------------
@@ -459,7 +441,7 @@ if ($dockerCmd) {
 }
 
 # -------------------------------------------------------------
-# Summary & Actionable Recommendations
+# Summary
 # -------------------------------------------------------------
 Write-Host ""
 Write-Host "=================================================================" -ForegroundColor Cyan
@@ -473,53 +455,6 @@ Write-Host "=================================================================" -
 if ($failCount -eq 0) {
     Write-Host "🎉 Outstanding! Your Windows developer environment is 100% configured!" -ForegroundColor Green
 } else {
-    Write-Host "⚠️  Some components are missing or require configuration. See recommended fixes below:" -ForegroundColor Yellow
-}
-
-if ($failCount -gt 0 -or $warnCount -gt 0) {
-    Write-Host ""
-    Write-Host "=================================================================" -ForegroundColor Magenta
-    Write-Host "         RECOMMENDED SOLUTIONS & QUICK FIXES (via mise)          " -ForegroundColor Magenta
-    Write-Host "=================================================================" -ForegroundColor Magenta
-
-    if (-not $hasMise) {
-        Write-Host " 📦 1. Install mise (Universal Tool & Runtime Manager):" -ForegroundColor White
-        Write-Host "    winget install jdx.mise" -ForegroundColor Yellow
-        Write-Host "    Then add the PowerShell profile activation hook:" -ForegroundColor DarkGray
-        Write-Host "    if (!(Test-Path `$PROFILE)) { New-Item -ItemType File -Path `$PROFILE -Force }" -ForegroundColor DarkGray
-        Write-Host "    Add-Content -Path `$PROFILE -Value '`nmise activate ps1 | Out-String | Invoke-Expression'" -ForegroundColor DarkGray
-        Write-Host ""
-    }
-
-    Write-Host " 🛠️  One-Command Fixes for Missing Tools:" -ForegroundColor White
-
-    if (-not $javaCmd -or -not $javacCmd -or -not $env:JAVA_HOME) {
-        Write-Host "    • Fix Java 21 & JAVA_HOME : " -NoNewline -ForegroundColor Cyan
-        Write-Host "mise use -g java@21" -ForegroundColor Yellow
-    }
-    if (-not $nodeCmd -or -not $npmCmd) {
-        Write-Host "    • Fix Node.js LTS & npm   : " -NoNewline -ForegroundColor Cyan
-        Write-Host "mise use -g node@lts" -ForegroundColor Yellow
-    }
-    if (-not $pythonCmd -or ($pythonCmd.Source -like "*WindowsApps*")) {
-        Write-Host "    • Fix Python 3            : " -NoNewline -ForegroundColor Cyan
-        Write-Host "mise use -g python@3.12" -ForegroundColor Yellow
-    }
-    if (-not $uvCmd) {
-        Write-Host "    • Fix Astral uv           : " -NoNewline -ForegroundColor Cyan
-        Write-Host "mise use -g uv" -ForegroundColor Yellow
-    }
-    if (-not $gccCmd -or -not $gppCmd) {
-        Write-Host "    • Fix C/C++ (MSYS2 UCRT64): " -NoNewline -ForegroundColor Cyan
-        Write-Host "winget install MSYS2.MSYS2; pacman -S --noconfirm mingw-w64-ucrt-x86_64-toolchain" -ForegroundColor Yellow
-        Write-Host "                                (ensure C:\msys64\ucrt64\bin is at top of User PATH)" -ForegroundColor DarkGray
-    }
-
-    if ($hasMise) {
-        Write-Host ""
-        Write-Host " 🩺 Diagnose Environment:" -ForegroundColor White
-        Write-Host "    mise doctor" -ForegroundColor Yellow
-    }
-    Write-Host "=================================================================" -ForegroundColor Magenta
+    Write-Host "⚠️  Please check the items marked [✘ NOT FOUND] above and follow their setup guide." -ForegroundColor Yellow
 }
 Write-Host ""

@@ -15,7 +15,6 @@ YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 WHITE='\033[1;37m'
 GRAY='\033[0;90m'
-MAGENTA='\033[0;35m'
 NC='\033[0m' # No Color
 
 pass_count=0
@@ -85,34 +84,6 @@ else
         report_pass "Package Manager (Pacman)" "Arch Linux family detected"
     elif command -v dnf >/dev/null 2>&1; then
         report_pass "Package Manager (DNF)" "Fedora/RHEL family detected"
-    fi
-fi
-
-# mise (Polyglot Runtime & Tool Manager)
-HAS_MISE=false
-MISE_BIN=""
-if command -v mise >/dev/null 2>&1; then
-    HAS_MISE=true
-    MISE_BIN="mise"
-elif [ -x "$HOME/.local/bin/mise" ]; then
-    HAS_MISE=true
-    MISE_BIN="$HOME/.local/bin/mise"
-    export PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ "$HAS_MISE" = true ]; then
-    MISE_VER=$($MISE_BIN --version 2>/dev/null)
-    MISE_TOOLS=$($MISE_BIN ls --current 2>/dev/null | tr '\n' ' ' || true)
-    if [ -n "$MISE_TOOLS" ]; then
-        report_pass "mise (Tool Manager)" "$MISE_VER (Active: $MISE_TOOLS)"
-    else
-        report_pass "mise (Tool Manager)" "$MISE_VER (Installed)"
-    fi
-else
-    if [ "$OS_TYPE" = "Darwin" ]; then
-        report_warn "mise (Tool Manager)" "Optional but recommended: brew install mise (to manage Java, Node, Python)"
-    else
-        report_warn "mise (Tool Manager)" "Optional but recommended: curl https://mise.run | sh (to manage Java, Node, Python)"
     fi
 fi
 
@@ -251,101 +222,146 @@ fi
 header "4. Python Ecosystem & Astral uv"
 
 if command -v python3 >/dev/null 2>&1; then
-    PY_PATH=$(command -v python3)
-    if [[ "$PY_PATH" == *"mise"* ]]; then
-        report_pass "Python 3" "$(python3 --version) (Managed by mise)"
-    else
-        report_pass "Python 3" "$(python3 --version) ($PY_PATH)"
-    fi
-elif [ "$HAS_MISE" = true ] && $MISE_BIN which python >/dev/null 2>&1; then
-    report_warn "Python 3" "Installed in mise, but mise not activated in this shell. Run: eval \"\$($MISE_BIN activate $(basename "$SHELL"))\""
+    report_pass "Python 3" "$(python3 --version)"
 else
-    report_fail "Python 3" "Install with: mise use -g python@3.12 (or brew install python / apt install python3)"
+    report_fail "Python 3" "Install via brew install python / apt install python3"
 fi
 
 if command -v uv >/dev/null 2>&1; then
     report_pass "Astral uv" "$(uv --version)"
 else
-    report_fail "Astral uv" "Install with: mise use -g uv (or curl -LsSf https://astral.sh/uv/install.sh | sh)"
+    report_fail "Astral uv" "Install via brew install uv (or curl -LsSf https://astral.sh/uv/install.sh | sh)"
 fi
 
 # ==============================================================================
-# 5. Node.js & Node Version Manager (NVM / mise)
+# 5. Node.js & Node Version Manager (NVM)
 # ==============================================================================
-header "5. Node.js & Tool Manager (NVM / mise)"
+header "5. Node.js & Node Version Manager (NVM)"
 
-if command -v node >/dev/null 2>&1; then
-    NODE_PATH=$(command -v node)
-    if [[ "$NODE_PATH" == *"mise"* ]]; then
-        report_pass "Node.js" "$(node -v) (Managed by mise)"
-    else
-        report_pass "Node.js" "$(node -v)"
-    fi
-elif [ "$HAS_MISE" = true ] && $MISE_BIN which node >/dev/null 2>&1; then
-    report_warn "Node.js" "Node.js installed in mise, but mise not activated. Run: eval \"\$($MISE_BIN activate $(basename "$SHELL"))\""
-else
-    report_fail "Node.js" "Install with: mise use -g node@lts (or nvm install --lts && nvm use --lts)"
-fi
-
-if command -v npm >/dev/null 2>&1; then
-    report_pass "npm" "v$(npm -v)"
-else
-    report_fail "npm" "npm not found (Fix with: mise use -g node@lts)"
-fi
-
-# NVM or mise detection
+# NVM is a shell function, so check NVM_DIR or function
 NVM_FOUND=false
 if [ -n "${NVM_DIR:-}" ] && [ -s "$NVM_DIR/nvm.sh" ]; then
     NVM_FOUND=true
 elif [ -s "$HOME/.nvm/nvm.sh" ]; then
     NVM_FOUND=true
     export NVM_DIR="$HOME/.nvm"
+    # Source nvm for this session
     \. "$NVM_DIR/nvm.sh" >/dev/null 2>&1 || true
 fi
 
-if [[ "$(command -v node 2>/dev/null)" == *"mise"* ]]; then
-    report_pass "Node Version Manager" "Managed via mise ($MISE_VER)"
-elif [ "$NVM_FOUND" = true ]; then
+if [ "$NVM_FOUND" = true ]; then
     report_pass "NVM (Node Version Manager)" "Configured at ${NVM_DIR}"
-elif [ "$HAS_MISE" = true ]; then
-    report_pass "Node Version Manager" "mise available for Node management (mise use -g node@lts)"
 else
-    report_warn "Node Version Manager" "Neither mise nor nvm detected (Install mise: curl https://mise.run | sh)"
+    report_fail "NVM" "NVM not loaded. Run install script (see 05-nvm-setup.md)"
+fi
+
+if command -v node >/dev/null 2>&1; then
+    report_pass "Node.js" "$(node -v)"
+else
+    report_fail "Node.js" "Node executable not active (Run: nvm install --lts && nvm use --lts)"
+fi
+
+if command -v npm >/dev/null 2>&1; then
+    report_pass "npm" "v$(npm -v)"
+else
+    report_fail "npm" "npm not found"
 fi
 
 # ==============================================================================
-# 6. Java Development Kit (JDK 21)
+# 6. Java Development Kit (JDK 21) & mise
 # ==============================================================================
-header "6. Java Development Kit (JDK)"
+header "6. Java Development Kit (JDK) & mise"
 
+MISE_INSTALLED=false
+if command -v mise >/dev/null 2>&1; then
+    MISE_INSTALLED=true
+    report_pass "mise (Tool & JDK Manager)" "$(mise --version) ($(command -v mise))"
+
+    # Verify Java via mise
+    MISE_JAVA_CUR=$(mise current java 2>/dev/null || true)
+    MISE_JAVA_LS=$(mise ls java 2>/dev/null || true)
+    if [ -n "$MISE_JAVA_CUR" ]; then
+        report_pass "Java via mise" "Active version: java@$MISE_JAVA_CUR"
+    elif [ -n "$MISE_JAVA_LS" ]; then
+        report_warn "Java via mise" "Java installed in mise ($MISE_JAVA_LS) but not active globally. Solution: mise use --global java@21"
+    else
+        report_warn "Java via mise" "No Java installed via mise. Solution: mise use --global java@21"
+    fi
+else
+    if [ "$OS_TYPE" = "Darwin" ]; then
+        report_warn "mise (JDK Manager)" "mise not detected. Recommended solution for Java: brew install mise"
+    else
+        report_warn "mise (JDK Manager)" "mise not detected. Recommended solution for Java: curl https://mise.run | sh"
+    fi
+fi
+
+# Java Runtime
 if command -v java >/dev/null 2>&1; then
     JAVA_OUT=$(java -version 2>&1 | head -n 1)
-    JAVA_PATH=$(command -v java)
-    if [[ "$JAVA_PATH" == *"mise"* ]]; then
-        report_pass "Java Runtime" "$JAVA_OUT (Managed by mise)"
+    report_pass "Java Runtime" "$JAVA_OUT ($(command -v java))"
+else
+    if [ "$MISE_INSTALLED" = true ]; then
+        report_fail "Java Runtime" "java not found in PATH! Solution: run 'mise use --global java@21' and ensure mise is active in shell profile"
     else
-        report_pass "Java Runtime" "$JAVA_OUT"
+        if [ "$OS_TYPE" = "Darwin" ]; then
+            report_fail "Java Runtime" "java not found! Solution: install mise ('brew install mise') then run 'mise use --global java@21'"
+        else
+            report_fail "Java Runtime" "java not found! Solution: install mise ('curl https://mise.run | sh') then run 'mise use --global java@21'"
+        fi
     fi
-elif [ "$HAS_MISE" = true ] && $MISE_BIN which java >/dev/null 2>&1; then
-    report_warn "Java Runtime" "Java installed in mise, but mise not activated. Run: eval \"\$($MISE_BIN activate $(basename "$SHELL"))\""
-else
-    report_fail "Java Runtime" "Install with: mise use -g java@21 (or brew install openjdk / apt install openjdk-21-jdk)"
 fi
 
+# Java Compiler
 if command -v javac >/dev/null 2>&1; then
-    report_pass "Java Compiler (javac)" "$(javac -version 2>&1)"
+    report_pass "Java Compiler (javac)" "$(javac -version 2>&1) ($(command -v javac))"
 else
-    report_fail "Java Compiler (javac)" "javac not found in PATH (Install with: mise use -g java@21)"
+    if [ "$MISE_INSTALLED" = true ]; then
+        report_fail "Java Compiler (javac)" "javac not found in PATH! Solution: run 'mise use --global java@21' (mise automatically includes javac)"
+    else
+        if [ "$OS_TYPE" = "Darwin" ]; then
+            report_fail "Java Compiler (javac)" "javac not found! Solution: install mise ('brew install mise') then run 'mise use --global java@21'"
+        else
+            report_fail "Java Compiler (javac)" "javac not found! Solution: install mise ('curl https://mise.run | sh') then run 'mise use --global java@21'"
+        fi
+    fi
 fi
 
+# JAVA_HOME Variable
 if [ -n "${JAVA_HOME:-}" ] && [ -d "$JAVA_HOME" ]; then
     report_pass "JAVA_HOME Variable" "$JAVA_HOME"
 else
-    if [ "$HAS_MISE" = true ]; then
-        report_warn "JAVA_HOME Variable" "JAVA_HOME not exported in this session. Running 'eval \"\$($MISE_BIN activate $(basename "$SHELL"))\"' exports JAVA_HOME automatically!"
+    if [ "$MISE_INSTALLED" = true ]; then
+        if [ "$OS_TYPE" = "Darwin" ]; then
+            report_warn "JAVA_HOME Variable" "JAVA_HOME not set! Solution: add 'eval \"\$(mise activate zsh)\"' to ~/.zshrc and run 'mise use -g java@21'"
+        else
+            report_warn "JAVA_HOME Variable" "JAVA_HOME not set! Solution: add 'eval \"\$($HOME/.local/bin/mise activate bash)\"' to ~/.bashrc and run 'mise use -g java@21'"
+        fi
     else
-        report_warn "JAVA_HOME Variable" "JAVA_HOME not exported. Install mise ('curl https://mise.run | sh' -> 'mise use -g java@21') to manage JAVA_HOME automatically"
+        report_warn "JAVA_HOME Variable" "JAVA_HOME not set! Solution: install mise which automatically manages and exports JAVA_HOME (see 07-java-setup.md)"
     fi
+fi
+
+# Java Execution Smoke Test
+if command -v java >/dev/null 2>&1 && command -v javac >/dev/null 2>&1; then
+    TEMP_DIR=$(mktemp -d /tmp/verify_java.XXXXXX)
+    cat << 'EOF' > "$TEMP_DIR/VerifyJavaTest.java"
+public class VerifyJavaTest {
+    public static void main(String[] args) {
+        System.out.println("JAVA_OK");
+    }
+}
+EOF
+    if javac "$TEMP_DIR/VerifyJavaTest.java" >/dev/null 2>&1; then
+        RUN_OUT=$(java -cp "$TEMP_DIR" VerifyJavaTest 2>/dev/null || true)
+        if echo "$RUN_OUT" | grep -q "JAVA_OK"; then
+            report_pass "Java Execution Test" "Single-file compilation and JVM execution successful"
+        else
+            report_fail "Java Execution Test" "Compiled test class but JVM execution failed"
+        fi
+    else
+        report_fail "Java Execution Test" "javac failed to compile test class"
+    fi
+    rm -rf "$TEMP_DIR"
 fi
 
 # ==============================================================================
@@ -417,7 +433,7 @@ if [ "$OS_TYPE" = "Darwin" ]; then
 fi
 
 # ==============================================================================
-# Summary & Actionable Recommendations
+# Summary
 # ==============================================================================
 echo ""
 echo -e "${CYAN}=================================================================${NC}"
@@ -431,53 +447,6 @@ echo -e "${CYAN}================================================================
 if [ "$fail_count" -eq 0 ]; then
     echo -e "${GREEN}🎉 Outstanding! Your developer environment is 100% configured!${NC}"
 else
-    echo -e "${YELLOW}⚠️  Some components are missing or require configuration. See recommended fixes below:${NC}"
-fi
-
-if [ "$fail_count" -gt 0 ] || [ "$warn_count" -gt 0 ]; then
-    echo ""
-    echo -e "${MAGENTA}=================================================================${NC}"
-    echo -e "${MAGENTA}         RECOMMENDED SOLUTIONS & QUICK FIXES (via mise)          ${NC}"
-    echo -e "${MAGENTA}=================================================================${NC}"
-
-    if [ "$HAS_MISE" != true ]; then
-        echo -e " ${WHITE}📦 1. Install mise (Universal Tool & Runtime Manager):${NC}"
-        if [ "$OS_TYPE" = "Darwin" ]; then
-            echo -e "    ${YELLOW}brew install mise${NC}"
-            echo -e "    ${GRAY}echo 'eval \"\$(mise activate zsh)\"' >> ~/.zshrc && source ~/.zshrc${NC}"
-        else
-            echo -e "    ${YELLOW}curl https://mise.run | sh${NC}"
-            echo -e "    ${GRAY}echo 'eval \"\$(~/.local/bin/mise activate bash)\"' >> ~/.bashrc && source ~/.bashrc${NC}"
-        fi
-        echo ""
-    fi
-
-    echo -e " ${WHITE}🛠️  One-Command Fixes for Missing Tools:${NC}"
-    if ! command -v java >/dev/null 2>&1 || ! command -v javac >/dev/null 2>&1 || [ -z "${JAVA_HOME:-}" ]; then
-        echo -e "    ${CYAN}• Fix Java 21 & JAVA_HOME : ${YELLOW}mise use -g java@21${NC}"
-    fi
-    if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
-        echo -e "    ${CYAN}• Fix Node.js LTS & npm   : ${YELLOW}mise use -g node@lts${NC}"
-    fi
-    if ! command -v python3 >/dev/null 2>&1; then
-        echo -e "    ${CYAN}• Fix Python 3            : ${YELLOW}mise use -g python@3.12${NC}"
-    fi
-    if ! command -v uv >/dev/null 2>&1; then
-        echo -e "    ${CYAN}• Fix Astral uv           : ${YELLOW}mise use -g uv${NC}"
-    fi
-    if ! command -v g++ >/dev/null 2>&1; then
-        if [ "$OS_TYPE" = "Darwin" ]; then
-            echo -e "    ${CYAN}• Fix GNU G++ (macOS)     : ${YELLOW}brew install gcc${NC}"
-        else
-            echo -e "    ${CYAN}• Fix GNU G++ (Linux)     : ${YELLOW}sudo apt install -y build-essential${NC} (or pacman -S base-devel)"
-        fi
-    fi
-
-    if [ "$HAS_MISE" = true ]; then
-        echo ""
-        echo -e " ${WHITE}🩺 Diagnose Shell Environment:${NC}"
-        echo -e "    ${YELLOW}mise doctor${NC}"
-    fi
-    echo -e "${MAGENTA}=================================================================${NC}"
+    echo -e "${YELLOW}⚠️  Please check the items marked [✘ NOT FOUND] above and follow their respective setup guide.${NC}"
 fi
 echo ""
