@@ -123,7 +123,7 @@ Run these commands in your terminal to verify that each tool responds with a ver
 | **C++ Compiler** | `g++ --version` | Prints G++ version |
 | **Java Compiler** | `javac --version` | `javac 21.x.x` |
 | **Java Runtime** | `java --version` | `openjdk 21.x.x` |
-| **SDKMAN! (JDK Manager)** | `sdk version` | `SDKMAN! x.x.x` *(macOS / Linux / WSL)* |
+| **mise (JDK & Tool Manager)** | `mise --version` | `202x.x.x` *(Windows / macOS / Linux)* |
 | **Docker Engine / CLI** | `docker --version` | `Docker version 2x.x.x` *(macOS / Linux / WSL)* |
 | **Python** | `python --version` *(or `python3`)* | `Python 3.x.x` |
 | **uv Package Manager** | `uv --version` | `uv 0.x.x` |

@@ -2,37 +2,78 @@
 
 Java is essential for academic computer science courses covering Object-Oriented Programming, Data Structures & Algorithms, and distributed systems.
 
-We will install **OpenJDK 21 (LTS)** on your Linux system.
+You have two options to install and manage Java on Linux:
+- **Option A (Recommended for Multi-Version Workflows):** Use **`mise`**, a modern, blazing-fast polyglot runtime manager that installs any certified OpenJDK version on demand and automatically manages `JAVA_HOME`.
+- **Option B (System Package Manager):** Install OpenJDK 21 LTS directly via your Linux distribution's package manager (`apt`, `pacman`, or `dnf`).
 
 ---
 
-## Step 1: Install OpenJDK 21
+## Option A: `mise` — Modern JDK & Tool Manager (Recommended)
 
-Follow the instructions for your distribution family:
+[mise](https://mise.jdx.dev/) is an extremely fast, Rust-based tool manager (the modern alternative to `asdf` and `sdkman`) that allows seamless switching between Java versions without root permissions or distro conflicts.
 
-### Option A: Debian & Ubuntu-Based (`apt`)
+### 1. Install `mise`:
 ```bash
-sudo apt update
-sudo apt install -y openjdk-21-jdk
+curl https://mise.run | sh
 ```
 
-### Option B: Arch Linux (`pacman`)
+### 2. Activate `mise` in Your Shell:
+Add the activation line to your shell configuration file:
+
 ```bash
-sudo pacman -S --needed jdk-openjdk
+# If using Bash (Ubuntu, Debian, Fedora):
+echo 'eval "$($HOME/.local/bin/mise activate bash)"' >> ~/.bashrc
+source ~/.bashrc
+
+# If using Zsh (Manjaro, Kali, Arch with zsh):
+if [ -f ~/.zshrc ]; then
+  echo 'eval "$($HOME/.local/bin/mise activate zsh)"' >> ~/.zshrc
+  source ~/.zshrc
+fi
 ```
 
-### Option C: Fedora & Red Hat-Based (`dnf`)
+### 3. Install & Select Java 21 LTS:
 ```bash
-sudo dnf install -y java-latest-openjdk-devel
+mise use --global java@21
 ```
+`mise` downloads certified Eclipse Temurin OpenJDK 21, configures executables, and automatically sets `JAVA_HOME`!
+
+### 4. Useful `mise` Commands:
+- **List installed Java versions**: `mise ls java`
+- **List all available Java versions**: `mise ls-remote java`
+- **Install an older version (e.g., Java 17 for an older project)**:
+  ```bash
+  mise install java@17
+  ```
+- **Switch version inside a specific project folder**:
+  ```bash
+  mise use java@17
+  ```
+  *(Creates a `.mise.toml` file in that folder; navigating to that directory automatically switches your active JDK and `JAVA_HOME`).*
 
 ---
 
-## Step 2: Configure `JAVA_HOME` Environment Variable
+## Option B: Distro Package Managers (`apt`, `pacman`, `dnf`)
 
-Many build tools (Gradle, Maven) and IDEs expect the `JAVA_HOME` variable to be set.
+If you prefer a single system-wide installation via your distribution:
 
-Add the following dynamic resolution line to your shell configuration file:
+### 1. Install OpenJDK 21:
+- **Debian / Ubuntu-Based (`apt`)**:
+  ```bash
+  sudo apt update
+  sudo apt install -y openjdk-21-jdk
+  ```
+- **Arch Linux (`pacman`)**:
+  ```bash
+  sudo pacman -S --needed jdk-openjdk
+  ```
+- **Fedora & Red Hat-Based (`dnf`)**:
+  ```bash
+  sudo dnf install -y java-latest-openjdk-devel
+  ```
+
+### 2. Configure `JAVA_HOME` Environment Variable:
+Add dynamic resolution to your shell configuration file:
 
 ```bash
 # Detect and export JAVA_HOME automatically
@@ -40,7 +81,6 @@ JAVA_PATH=$(dirname $(dirname $(readlink -f $(which javac))))
 echo "export JAVA_HOME=\"$JAVA_PATH\"" >> ~/.bashrc
 echo 'export PATH="$JAVA_HOME/bin:$PATH"' >> ~/.bashrc
 
-# If you use Zsh, run for ~/.zshrc as well:
 if [ -f ~/.zshrc ]; then
   echo "export JAVA_HOME=\"$JAVA_PATH\"" >> ~/.zshrc
   echo 'export PATH="$JAVA_HOME/bin:$PATH"' >> ~/.zshrc

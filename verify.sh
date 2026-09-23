@@ -259,6 +259,13 @@ else
     report_warn "JAVA_HOME Variable" "JAVA_HOME not exported in shell profile (see 07-java-setup.md)"
 fi
 
+# mise (Tool & JDK Manager)
+if command -v mise >/dev/null 2>&1; then
+    report_pass "mise (Tool & JDK Manager)" "$(mise --version)"
+else
+    report_warn "mise (Tool Manager)" "Optional: install via 'curl https://mise.run | sh' (or brew install mise)"
+fi
+
 # ==============================================================================
 # 7. Git Identity & GitHub SSH Connection
 # ==============================================================================

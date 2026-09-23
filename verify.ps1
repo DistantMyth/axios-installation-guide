@@ -260,6 +260,15 @@ if ($env:JAVA_HOME -and (Test-Path $env:JAVA_HOME)) {
     Report-Warn "JAVA_HOME Variable" "JAVA_HOME is not set or directory does not exist (see windows/07-java-setup.md)"
 }
 
+# mise (Tool & JDK Manager)
+$miseCmd = Get-Command mise -ErrorAction SilentlyContinue
+if ($miseCmd) {
+    $miseVer = (& mise --version 2>$null)
+    Report-Pass "mise (Tool & JDK Manager)" "$miseVer"
+} else {
+    Report-Warn "mise (Tool Manager)" "Optional: install with 'winget install jdx.mise' for multi-version management"
+}
+
 # -------------------------------------------------------------
 # 7. Git Identity & GitHub SSH Connection
 # -------------------------------------------------------------

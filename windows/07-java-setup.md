@@ -2,46 +2,94 @@
 
 Java is a core language for college Object-Oriented Programming (OOP), Data Structures & Algorithms (DSA), backend enterprise services (Spring Boot), and Android development.
 
-We will install **Eclipse Temurin OpenJDK 21 (LTS)**, the community-standard, free, open-source JDK built by the Eclipse Adoptium Working Group.
+Unlike C++, which compiles directly into machine code, Java source code (`.java`) compiles into bytecode (`.class`) that executes on the **Java Virtual Machine (JVM)**. To develop Java applications, you need the **Java Development Kit (JDK)**, which includes the compiler (`javac`), runtime (`java`), and developer debugging tools.
+
+> [!IMPORTANT]
+> **Stick to Long-Term Support (LTS) Releases:**
+> In college labs and production environments, standardize on official **LTS** releases. Today, **Java 21 (LTS)** is the modern standard, while **Java 17 (LTS)** remains common in legacy frameworks. We recommend **Eclipse Temurin** (by the Eclipse Adoptium Working Group), the vendor-neutral, certified open-source distribution of OpenJDK.
+
+You have two great options to set up Java on Windows:
+- **Option A (Recommended):** Use **`mise`**, a modern, blazing-fast polyglot tool and runtime manager (written in Rust) that manages parallel JDK versions and automatically handles `JAVA_HOME`.
+- **Option B (Direct Windows Install):** Install Eclipse Temurin JDK 21 directly via **Winget** or **Chocolatey**.
 
 ---
 
-## Step 1: Install OpenJDK 21 LTS
+## Option A: `mise` — Modern JDK & Tool Manager (Recommended)
 
-Open **PowerShell as Administrator** and install via **Winget** (or Chocolatey):
+[mise](https://mise.jdx.dev/) is the modern, cross-platform successor to tools like `asdf` and `sdkman`. It runs natively on Windows PowerShell, macOS, and Linux, and manages multiple parallel versions of Java, Node, Python, and more.
 
-### Method A: Via Winget (Recommended)
+### 1. Install `mise` on Windows
+
+Open **PowerShell** and install via **Winget** (or Chocolatey):
+
 ```powershell
-winget install EclipseAdoptium.Temurin.21.JDK
+winget install jdx.mise
+```
+*(Or via Chocolatey: `choco install -y mise`)*.
+
+### 2. Activate `mise` in PowerShell
+
+To enable `mise` to automatically configure your active JDK and `JAVA_HOME` in every PowerShell session, add it to your PowerShell profile:
+
+```powershell
+if (!(Test-Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }
+Add-Content -Path $PROFILE -Value "`nmise activate ps1 | Out-String | Invoke-Expression"
+```
+Reload your current session:
+```powershell
+& $PROFILE
 ```
 
-### Method B: Via Chocolatey
+### 3. Install & Select Java 21 LTS
+
+With `mise`, installing and setting up Java takes one command:
+
 ```powershell
+mise use --global java@21
+```
+
+`mise` will automatically download certified Eclipse Temurin OpenJDK 21, link the executables, and export `JAVA_HOME` into your environment!
+
+### 4. Useful `mise` Commands for Java:
+- **List installed Java versions**: `mise ls java`
+- **List all available Java versions**: `mise ls-remote java`
+- **Install an older version (e.g. Java 17 for an older project)**:
+  ```powershell
+  mise install java@17
+  ```
+- **Switch to Java 17 inside a specific project folder**:
+  ```powershell
+  mise use java@17
+  ```
+  *(Creates a `.mise.toml` file in that folder; whenever you navigate to that directory, `mise` automatically switches your active JDK and `JAVA_HOME`!)*
+
+---
+
+## Option B: Native Windows Setup via Winget / Chocolatey
+
+If you prefer a direct, standalone system-wide installation without a version manager:
+
+### 1. Install OpenJDK 21 via Winget or Chocolatey:
+Open **PowerShell as Administrator**:
+
+```powershell
+# Via Winget (Recommended)
+winget install EclipseAdoptium.Temurin.21.JDK
+
+# Or via Chocolatey
 choco install -y openjdk
 ```
 
----
-
-## Step 2: Configure `JAVA_HOME` and PATH
-
-Many build tools (Maven, Gradle), IDEs, and Android SDKs require a system variable named `JAVA_HOME` that points to the root directory of your Java installation.
-
-### 1. Identify the Install Directory:
+### 2. Configure `JAVA_HOME` and PATH:
 Temurin typically installs to:
 `C:\Program Files\Eclipse Adoptium\jdk-21.x.x-hotspot\`
 (Or Chocolatey OpenJDK installs to: `C:\Program Files\OpenJDK\openjdk-21.x.x\`).
 
-### 2. Set System Environment Variable (PowerShell One-Liner):
-Run the following in Administrator PowerShell to set `JAVA_HOME` automatically:
-
+Set the system environment variable:
 ```powershell
 [System.Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\Eclipse Adoptium\jdk-21.0.6.7-hotspot", "Machine")
 ```
-*(Ensure the directory path matches the exact folder name inside `C:\Program Files\Eclipse Adoptium\` or `C:\Program Files\OpenJDK\` on your machine).*
-
-### 3. Add `%JAVA_HOME%\bin` to System PATH:
-Check via `sysdm.cpl` (System Properties > Advanced > Environment Variables) that either the installer automatically added Java to your System Path, or add:
-`%JAVA_HOME%\bin`
+*(Ensure the directory path matches the exact folder name inside `C:\Program Files\Eclipse Adoptium\` or `C:\Program Files\OpenJDK\` on your machine, and ensure `%JAVA_HOME%\bin` is added to System PATH).*
 
 ---
 
@@ -65,7 +113,7 @@ OpenJDK 64-Bit Server VM Temurin-21.x.x+x (build 21.0.x+x-LTS, mixed mode, shari
 
 ## Step 4: Quick Single-File Test
 
-Modern Java (Java 11+) allows executing single-source Java files directly without manual `.class` compilation!
+Modern Java allows executing single-source Java files directly without manual `.class` compilation!
 
 Run this in PowerShell:
 
@@ -88,7 +136,7 @@ If it prints `☕ Hello from Java 21... on Windows!`, your Java environment is f
 ## 💻 Recommended VS Code Extension for Java
 
 In VS Code, search for and install:
-- **Extension Pack for Java** (by Microsoft): Includes language support by Red Hat, debugger for Java, test runner, Maven/Gradle project support, and IntelliCode auto-completion.
+- **Extension Pack for Java** (by Microsoft): Includes language support by Red Hat, debugger for Java, test runner, Maven/Gradle project support, and automatic JDK detection.
 
 ---
 

@@ -2,24 +2,61 @@
 
 Java is a core language for university coursework in Object-Oriented Programming (OOP), Data Structures & Algorithms (DSA), and software architecture.
 
-We will install **OpenJDK 21 (LTS)** on macOS using Homebrew and register it with macOS's native Java Virtual Machine system.
+You have two great options to install and manage Java on macOS:
+- **Option A (Recommended for Managing Multiple JDKs):** Use **`mise`**, a fast, Rust-based tool manager that downloads any certified OpenJDK version on demand and automatically configures `JAVA_HOME` without manual symlinks.
+- **Option B (Homebrew System JVM):** Install OpenJDK 21 directly via Homebrew and symlink it into the macOS system JVM registry.
 
 ---
 
-## Step 1: Install OpenJDK 21 via Homebrew
+## Option A: `mise` — Modern JDK & Tool Manager (Recommended)
 
-In your Terminal, run:
+[mise](https://mise.jdx.dev/) is an extremely fast, modern tool manager (replacing `asdf` and `sdkman`) that allows seamless switching between Java versions without permission or JVM registry hassles.
 
+### 1. Install `mise` via Homebrew:
+```zsh
+brew install mise
+```
+
+### 2. Activate `mise` in Zsh:
+Add the activation line to your `~/.zshrc`:
+
+```zsh
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+### 3. Install & Select Java 21 LTS:
+```zsh
+mise use --global java@21
+```
+`mise` automatically downloads certified Eclipse Temurin OpenJDK 21, configures executables, and manages `JAVA_HOME` dynamically!
+
+### 4. Useful `mise` Commands:
+- **List installed Java versions**: `mise ls java`
+- **List all available Java versions**: `mise ls-remote java`
+- **Install an older version (e.g., Java 17 for an older project)**:
+  ```zsh
+  mise install java@17
+  ```
+- **Switch version inside a specific project folder**:
+  ```zsh
+  mise use java@17
+  ```
+  *(Creates a `.mise.toml` file in that folder; navigating to that directory automatically switches your active JDK and `JAVA_HOME`).*
+
+---
+
+## Option B: Homebrew System OpenJDK 21
+
+If you prefer installing OpenJDK system-wide into the macOS JVM registry:
+
+### 1. Install OpenJDK 21 via Homebrew:
 ```zsh
 brew install openjdk
 ```
-
 *(Alternatively, you can install Eclipse Temurin via `brew install --cask temurin`)*.
 
----
-
-## Step 2: Symlink OpenJDK into macOS JVM Registry
-
+### 2. Symlink OpenJDK into macOS JVM Registry:
 For macOS's built-in system Java wrappers (`/usr/libexec/java_home`) and IDEs to recognize Homebrew's OpenJDK installation, create a symbolic link:
 
 ```zsh
@@ -27,12 +64,7 @@ sudo ln -sfn $(brew --prefix)/opt/openjdk/libexec/openjdk.jdk /Library/Java/Java
 ```
 *(Enter your Mac password when prompted).*
 
----
-
-## Step 3: Configure `JAVA_HOME` in `~/.zshrc`
-
-Add `JAVA_HOME` and update your PATH so command-line tools (Maven, Gradle) immediately recognize Java:
-
+### 3. Configure `JAVA_HOME` in `~/.zshrc`:
 ```zsh
 cat << 'EOF' >> ~/.zshrc
 
@@ -46,7 +78,7 @@ source ~/.zshrc
 
 ---
 
-## Step 4: Verify Java Version
+## Step 3: Verify Java Version
 
 In your Terminal, verify that both the runtime and compiler respond:
 
@@ -58,13 +90,13 @@ javac -version
 You should see:
 ```text
 openjdk version "21.0.x" ...
-OpenJDK Runtime Environment Homebrew ...
+OpenJDK Runtime Environment ...
 OpenJDK 64-Bit Server VM ...
 ```
 
 ---
 
-## Step 5: Quick Single-File Compilation Test
+## Step 4: Quick Single-File Compilation Test
 
 Verify single-file execution:
 
