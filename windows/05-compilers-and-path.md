@@ -35,19 +35,73 @@ Open **Command Prompt** or **PowerShell** from the Start Menu and run:
 winget install MSYS2.MSYS2
 ```
 
-This installs MSYS2 to the standard location `C:\msys64`.
+This installs MSYS2 to `C:\msys64` (or `C:\msys32` on 32-bit systems).
 
 ---
 
-## 3. Install GCC / G++ in MSYS2 UCRT64
+## 3. Add MSYS2 & GCC to Environment Variables (PATH)
 
-1. Open the Windows Start Menu, search for **MSYS2 UCRT64**, and launch it.
-   *(Make sure to open **MSYS2 UCRT64**, not MSYS2 MSYS or CLANG64).*
-2. Inside the MSYS2 UCRT64 terminal, run the following command to install the full 64-bit GCC compiler toolchain:
+> [!IMPORTANT]
+> **Set Up PATH Before Running Pacman:**
+> Adding the MSYS2 directory to your system PATH **before** invoking `pacman` ensures that Windows terminal sessions (PowerShell, Command Prompt, and VS Code) immediately recognize `pacman`, `bash`, and the upcoming `gcc`/`g++` compilers.
 
-```bash
+### GUI Method (Step-by-Step):
+
+1. Press `Windows Key`, search for **"Environment Variables"**, and click **Edit the system environment variables**.
+
+   ![Windows Search Environment Variables](../images/windows-search-env-variables.png)
+
+2. In the System Properties window, click the **Environment Variables...** button.
+3. Under the top section titled **User variables for `<YourUsername>`**, select the variable named **Path** and click **Edit...**.
+4. Click **New** on the right side and add both of the following paths:
+   ```text
+   C:\msys64\ucrt64\bin
+   C:\msys64\usr\bin
+   ```
+   *(Note for 32-bit Windows / MSYS32 setups: if installed to `C:\msys32`, use `C:\msys32\ucrt64\bin` and `C:\msys32\usr\bin`).*
+
+5. Select `C:\msys64\ucrt64\bin` and click the **Move Up** button repeatedly until it is at the **very top** of the list.
+
+   ![MSYS2 UCRT64 Path moved to top](../images/windows-env-path-msys2-top.png)
+
+   > [!TIP]
+   > - `C:\msys64\ucrt64\bin` contains the modern GNU C/C++ compilers (`gcc`, `g++`, `gdb`). Keeping it at the top ensures it takes priority over any older legacy compilers.
+   > - `C:\msys64\usr\bin` contains the MSYS2 core binaries, including the `pacman` package manager and `bash`.
+
+6. Click **OK** on all three open dialogs to save your changes.
+7. **Close and reopen any open PowerShell or Command Prompt windows** so the newly added PATH entries take effect!
+
+### ⚡ Optional PowerShell One-Liner (Automated Alternative):
+Instead of clicking through the GUI, you can also run this command in **PowerShell**:
+```powershell
+$userPath = [System.Environment]::GetEnvironmentVariable("Path", "User")
+$msysBin = "C:\msys64\ucrt64\bin;C:\msys64\usr\bin"
+if ($userPath -notlike "*msys64*") {
+    [System.Environment]::SetEnvironmentVariable("Path", "$msysBin;$userPath", "User")
+    Write-Host "MSYS2 added to PATH successfully!" -ForegroundColor Green
+}
+```
+
+---
+
+## 4. Install GCC / G++ Toolchain via `pacman`
+
+With MSYS2 registered in your PATH, you can now run `pacman` to install the complete 64-bit UCRT GCC compiler toolchain:
+
+### Method A: Directly from PowerShell or Command Prompt
+Open a fresh **PowerShell** window and run:
+
+```powershell
 pacman -S --noconfirm mingw-w64-ucrt-x86_64-toolchain
 ```
+*(Alternatively, you can run it via the MSYS bash launcher: `C:\msys64\usr\bin\bash.exe -lc "pacman -S --noconfirm mingw-w64-ucrt-x86_64-toolchain"`).*
+
+### Method B: From the MSYS2 UCRT64 App
+1. Open the Windows Start Menu, search for **MSYS2 UCRT64**, and launch it.
+2. Run:
+   ```bash
+   pacman -S --noconfirm mingw-w64-ucrt-x86_64-toolchain
+   ```
 
 When prompted with `Enter a selection (default=all):`, simply press **Enter** to install all packages.
 
@@ -56,33 +110,6 @@ This installs:
 - `g++` (GNU C++ Compiler)
 - `gdb` (GNU Debugger)
 - `make` and essential compilation tools and header libraries (including PBDS).
-
----
-
-## 4. Add GCC to Environment PATH
-
-To allow PowerShell, Command Prompt, VS Code, and terminal scripts to run `g++` and `gcc` from anywhere, add the MSYS2 UCRT64 binary folder to your user PATH:
-
-1. Press `Windows Key`, search for **"Environment Variables"**, and click **Edit the system environment variables**.
-
-   ![Windows Search Environment Variables](../images/windows-search-env-variables.png)
-
-2. In the System Properties window, click the **Environment Variables...** button.
-3. Under the top section titled **User variables for `<YourUsername>`**, select the variable named **Path** and click **Edit...**.
-4. Click **New** on the right side and type:
-   ```text
-   C:\msys64\ucrt64\bin
-   ```
-5. With `C:\msys64\ucrt64\bin` selected, click the **Move Up** button repeatedly until it is at the **very top** of the list.
-
-   ![MSYS2 UCRT64 Path moved to top](../images/windows-env-path-msys2-top.png)
-
-   > [!IMPORTANT]
-   > **Move it to the Top:**
-   > In other setups, if any older compiler paths were previously added (for example, an old `C:\tools\mingw64\bin` or Strawberry Perl), keep them below the MSYS2 path or remove them. Having `C:\msys64\ucrt64\bin` at the top guarantees Windows always invokes this modern UCRT64 compiler.
-
-6. Click **OK** on all open dialogs to save your changes.
-7. **Close and reopen VS Code and any open PowerShell/Command Prompt windows** to load the new PATH.
 
 ---
 

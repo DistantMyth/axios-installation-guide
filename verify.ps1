@@ -127,6 +127,19 @@ if ($wgetCmd) {
 # -------------------------------------------------------------
 Write-Header "3. C/C++ Compilers (MSYS2 UCRT64) & CP Verification"
 
+# MSYS2 & Pacman
+$pacmanCmd = Get-Command pacman -ErrorAction SilentlyContinue
+if ($pacmanCmd) {
+    $pacmanVer = (& pacman --version 2>$null | Select-Object -First 1)
+    Report-Pass "MSYS2 (pacman)" "$pacmanVer ($($pacmanCmd.Source))"
+} elseif (Test-Path "C:\msys64\usr\bin\pacman.exe") {
+    Report-Pass "MSYS2 Platform" "Installed at C:\msys64 (Tip: add C:\msys64\usr\bin to PATH for direct pacman commands)"
+} elseif (Test-Path "C:\msys32\usr\bin\pacman.exe") {
+    Report-Pass "MSYS2 Platform" "Installed at C:\msys32 (Tip: add C:\msys32\usr\bin to PATH for direct pacman commands)"
+} else {
+    Report-Warn "MSYS2 (pacman)" "MSYS2 not detected in PATH (see windows/05-compilers-and-path.md)"
+}
+
 # GCC
 $gccCmd = Get-Command gcc -ErrorAction SilentlyContinue
 if ($gccCmd) {
