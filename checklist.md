@@ -119,8 +119,8 @@ Run these commands in your terminal to verify that each tool responds with a ver
 
 | Tool | Verification Command | Expected Output |
 | :--- | :--- | :--- |
-| **C Compiler** | `gcc --version` | Prints GCC version (or aliased GNU GCC on macOS) |
-| **C++ Compiler** | `g++ --version` | Prints G++ version |
+| **C Compiler** | `gcc --version` | Prints GCC version (MSYS2 UCRT64 on Windows, GNU GCC on macOS) |
+| **C++ Compiler** | `g++ --version` | Prints G++ version (MSYS2 UCRT64 on Windows, GNU GCC on macOS) |
 | **Java Compiler** | `javac --version` | `javac 21.x.x` |
 | **Java Runtime** | `java --version` | `openjdk 21.x.x` |
 | **mise (JDK & Tool Manager)** | `mise --version` | `202x.x.x` *(Windows / macOS / Linux)* |

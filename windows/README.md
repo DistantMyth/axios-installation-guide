@@ -13,10 +13,10 @@ Follow these guides in numerical order:
 | Step | Topic | Description | Link |
 | :---: | :--- | :--- | :--- |
 | **01** | **Chocolatey Setup** | Install the Chocolatey package manager in Administrator PowerShell | [01-chocolatey-setup.md](./01-chocolatey-setup.md) |
-| **02** | **Packages Installation** | Install core development packages (`git`, `vscode`, `python3`, `mingw`, `7zip`, `wget`) | [02-packages-installation.md](./02-packages-installation.md) |
+| **02** | **Packages Installation** | Install core development packages (`git`, `vscode`, `python3`, `7zip`, `wget`) via Chocolatey | [02-packages-installation.md](./02-packages-installation.md) |
 | **03** | **`uv` Setup (Winget)** | Install the modern Python project manager via `winget` (fixes broken choco install) | [03-uv-setup.md](./03-uv-setup.md) |
 | **04** | **`nvm` Setup (Node.js)** | Install Node Version Manager (`nvm-windows`), Node LTS, and run a quick verification test | [04-nvm-setup.md](./04-nvm-setup.md) |
-| **05** | **Compilers & PATH** | Disable Windows App Execution Aliases, verify MinGW C/C++ in PATH | [05-compilers-and-path.md](./05-compilers-and-path.md) |
+| **05** | **Compilers & PATH** | Install MSYS2 UCRT64 GCC/G++, add to PATH, configure VS Code, and test `ordered_set` | [05-compilers-and-path.md](./05-compilers-and-path.md) |
 | **06** | **Git & SSH Authentication** | Configure Git username/email, generate Ed25519 SSH keys, connect to GitHub | [06-git-setup.md](./06-git-setup.md) |
 | **07** | **Java Setup** | Install OpenJDK 21 LTS, set `JAVA_HOME` & PATH, verify with compiler test | [07-java-setup.md](./07-java-setup.md) |
 | **08** | **WSL2 & Linux Containers** | Install Ubuntu on WSL2, set up Docker Desktop backend, and VS Code WSL | [08-wsl-setup.md](./08-wsl-setup.md) |

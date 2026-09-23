@@ -165,12 +165,44 @@ if command -v g++ >/dev/null 2>&1; then
 #include <bits/stdc++.h>
 int main() { return 0; }
 EOF
-    if g++ "$TEMP_CPP" -o "$TEMP_BIN" >/dev/null 2>&1; then
+    if g++ -std=c++17 "$TEMP_CPP" -o "$TEMP_BIN" >/dev/null 2>&1; then
         report_pass "<bits/stdc++.h> Header" "Compiles cleanly with g++"
     else
         report_fail "<bits/stdc++.h> Header" "Compilation failed! bits/stdc++.h not found by g++"
     fi
     rm -f "$TEMP_CPP" "$TEMP_BIN"
+
+    # Test Policy-Based Data Structure (ordered_set) compilation & execution
+    TEMP_PBDS=$(mktemp /tmp/verify_pbds.XXXXXX.cpp)
+    TEMP_PBDS_BIN=$(mktemp /tmp/verify_pbds.XXXXXX.out)
+    cat << 'EOF' > "$TEMP_PBDS"
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+template<class T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+int main() {
+    ordered_set<int> s;
+    s.insert(10);
+    s.insert(20);
+    s.insert(30);
+    if (*s.find_by_order(1) == 20 && s.order_of_key(25) == 2) {
+        return 0;
+    }
+    return 1;
+}
+EOF
+    if g++ -std=c++17 "$TEMP_PBDS" -o "$TEMP_PBDS_BIN" >/dev/null 2>&1 && "$TEMP_PBDS_BIN" >/dev/null 2>&1; then
+        report_pass "PBDS (ordered_set)" "Compiles and executes correctly with g++"
+    else
+        report_fail "PBDS (ordered_set)" "ordered_set template failed to compile or run"
+    fi
+    rm -f "$TEMP_PBDS" "$TEMP_PBDS_BIN"
 else
     report_fail "G++ (C++ Compiler)" "Install genuine GCC (brew install gcc / apt install build-essential)"
 fi

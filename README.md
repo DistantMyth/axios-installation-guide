@@ -26,7 +26,7 @@ graph TD
    - Browser extensions for contests and web development
    - Visual Studio Code extensions and settings
 2. **Select your Operating System**:
-   - 🪟 **[Windows Setup Guide](./windows/README.md)**: Package management with Chocolatey & Winget, `uv`, `nvm-windows`, MinGW C/C++ compilers, Git & SSH, Java 21, WSL2 (Ubuntu), and Infosec tools.
+   - 🪟 **[Windows Setup Guide](./windows/README.md)**: Package management with Chocolatey & Winget, `uv`, `nvm-windows`, MSYS2 UCRT64 GCC/G++ compilers (supporting `<bits/stdc++.h>` & `ordered_set`), Git & SSH, Java 21, WSL2 (Ubuntu), and Infosec tools.
    - 🐧 **[Linux Setup Guide](./linux/README.md)**: Native development environments for Ubuntu/Debian (`apt`), Arch (`pacman`), and Fedora (`dnf`), GCC/G++, `uv`, `nvm`, Java, Docker Engine, and security toolchains.
    - 🍎 **[macOS Setup Guide](./macos/README.md)**: Homebrew configuration for Apple Silicon / Intel, genuine GNU GCC (`<bits/stdc++.h>` fix), `uv`, `nvm`, Java, and Linux container setups for infosec tooling.
 3. **Verify Everything**: Run through the **[Verification Checklist](./checklist.md)** or run our automated one-liner verification script directly from GitHub (Windows: `irm https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.ps1 | iex`, macOS/Linux: `curl -fsSL https://raw.githubusercontent.com/DistantMyth/axios-installation-guide/main/verify.sh | bash`) to ensure all compilers, runtimes, and SSH keys are 100% operational.
@@ -52,7 +52,7 @@ Docs/
 │   ├── 02-packages-installation.md    # Core developer packages via Chocolatey
 │   ├── 03-uv-setup.md                 # Python package manager (via Winget)
 │   ├── 04-nvm-setup.md                # Node Version Manager & Node.js LTS
-│   ├── 05-compilers-and-path.md       # MinGW (gcc/g++), PATH, and App Aliases fix
+│   ├── 05-compilers-and-path.md       # MSYS2 UCRT64 GCC/G++, PATH, and App Aliases fix
 │   ├── 06-git-setup.md                # Git configuration & SSH authentication
 │   ├── 07-java-setup.md               # OpenJDK 21, JAVA_HOME, and compiler test
 │   ├── 08-wsl-setup.md                # WSL2 (Ubuntu Linux) & VS Code integration
@@ -90,7 +90,7 @@ Docs/
 By completing these guides, your machine will have:
 
 - **Version Control**: Git configured with secure Ed25519 SSH keys linked to your GitHub profile.
-- **C / C++ Compilers**: MinGW GCC on Windows, GNU GCC on macOS (supporting `<bits/stdc++.h>`), and `build-essential` on Linux.
+- **C / C++ Compilers**: MSYS2 UCRT64 GCC on Windows (supporting `<bits/stdc++.h>` & `ordered_set`), GNU GCC on macOS, and `build-essential` on Linux.
 - **Python Ecosystem**: Modern `uv` package manager (10x-100x faster than traditional `pip`) avoiding system-managed package errors.
 - **JavaScript / Web Development**: `nvm` (Node Version Manager) managing Node.js LTS seamlessly without permission issues.
 - **Java**: OpenJDK 21 LTS with properly configured `JAVA_HOME` and command-line compilers (`javac`, `java`).

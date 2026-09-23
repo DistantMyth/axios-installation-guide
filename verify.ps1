@@ -123,33 +123,33 @@ if ($wgetCmd) {
 }
 
 # -------------------------------------------------------------
-# 3. C / C++ Compilers & Competitive Programming
+# 3. C / C++ Compilers (MSYS2 UCRT64) & CP Verification
 # -------------------------------------------------------------
-Write-Header "3. C/C++ Compilers & Competitive Programming"
+Write-Header "3. C/C++ Compilers (MSYS2 UCRT64) & CP Verification"
 
 # GCC
 $gccCmd = Get-Command gcc -ErrorAction SilentlyContinue
 if ($gccCmd) {
     $gccVer = (& gcc --version 2>$null | Select-Object -First 1)
-    Report-Pass "GCC (C Compiler)" "$gccVer"
+    Report-Pass "GCC (C Compiler)" "$gccVer ($($gccCmd.Source))"
 } else {
-    Report-Fail "GCC (C Compiler)" "MinGW not found in PATH (Check C:\tools\mingw64\bin in sysdm.cpl)"
+    Report-Fail "GCC (C Compiler)" "GCC not found in PATH (Add C:\msys64\ucrt64\bin to top of User PATH)"
 }
 
 # G++
 $gppCmd = Get-Command g++ -ErrorAction SilentlyContinue
 if ($gppCmd) {
     $gppVer = (& g++ --version 2>$null | Select-Object -First 1)
-    Report-Pass "G++ (C++ Compiler)" "$gppVer"
+    Report-Pass "G++ (C++ Compiler)" "$gppVer ($($gppCmd.Source))"
 
-    # Test <bits/stdc++.h> compilation
+    # Test 1: <bits/stdc++.h> compilation
     $tempCpp = [System.IO.Path]::GetTempFileName() + ".cpp"
     $tempExe = [System.IO.Path]::GetTempFileName() + ".exe"
     Set-Content -Path $tempCpp -Value @"
 #include <bits/stdc++.h>
 int main() { return 0; }
 "@
-    & g++ $tempCpp -o $tempExe 2>$null
+    & g++ -std=c++17 $tempCpp -o $tempExe 2>$null
     if (Test-Path $tempExe) {
         Report-Pass "<bits/stdc++.h> Header" "Compiles cleanly with G++"
         Remove-Item $tempExe -Force -ErrorAction SilentlyContinue
@@ -157,8 +157,47 @@ int main() { return 0; }
         Report-Fail "<bits/stdc++.h> Header" "Failed to compile test file with bits/stdc++.h"
     }
     Remove-Item $tempCpp -Force -ErrorAction SilentlyContinue
+
+    # Test 2: Policy-Based Data Structure (ordered_set) compilation & execution
+    $tempPbds = [System.IO.Path]::GetTempFileName() + ".cpp"
+    $tempPbdsExe = [System.IO.Path]::GetTempFileName() + ".exe"
+    Set-Content -Path $tempPbds -Value @"
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+template<class T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+int main() {
+    ordered_set<int> s;
+    s.insert(10);
+    s.insert(20);
+    s.insert(30);
+    if (*s.find_by_order(1) == 20 && s.order_of_key(25) == 2) {
+        return 0;
+    }
+    return 1;
+}
+"@
+    & g++ -std=c++17 $tempPbds -o $tempPbdsExe 2>$null
+    if (Test-Path $tempPbdsExe) {
+        & $tempPbdsExe 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            Report-Pass "PBDS (ordered_set)" "Compiles and executes correctly with G++"
+        } else {
+            Report-Fail "PBDS (ordered_set)" "Compiled but returned incorrect result"
+        }
+        Remove-Item $tempPbdsExe -Force -ErrorAction SilentlyContinue
+    } else {
+        Report-Fail "PBDS (ordered_set)" "ordered_set template failed to compile! Use MSYS2 UCRT64 toolchain (see windows/05-compilers-and-path.md)"
+    }
+    Remove-Item $tempPbds -Force -ErrorAction SilentlyContinue
 } else {
-    Report-Fail "G++ (C++ Compiler)" "Install with: choco install -y mingw"
+    Report-Fail "G++ (C++ Compiler)" "Install via MSYS2: winget install MSYS2.MSYS2 then pacman -S --noconfirm mingw-w64-ucrt-x86_64-toolchain"
 }
 
 # GDB
@@ -167,7 +206,7 @@ if ($gdbCmd) {
     $gdbVer = (& gdb --version 2>$null | Select-Object -First 1)
     Report-Pass "GDB (Debugger)" "$gdbVer"
 } else {
-    Report-Warn "GDB (Debugger)" "GDB not found in PATH (part of mingw)"
+    Report-Warn "GDB (Debugger)" "GDB not found in PATH (included in mingw-w64-ucrt-x86_64-toolchain)"
 }
 
 # -------------------------------------------------------------
