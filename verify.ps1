@@ -441,6 +441,138 @@ if ($dockerCmd) {
 }
 
 # -------------------------------------------------------------
+# 9. Cybersecurity & CTF Tools (WSL2 & Windows)
+# -------------------------------------------------------------
+Write-Header "9. Cybersecurity & CTF Tools (WSL2 & Windows)"
+
+$wslAvailable = $false
+if ($wslCmd) {
+    $wslDistros = (& wsl -l -q 2>$null)
+    if ($wslDistros) {
+        $wslAvailable = $true
+    }
+}
+
+if ($wslAvailable) {
+    # ExifTool
+    $exifCheck = (& wsl -e bash -c "command -v exiftool 2>/dev/null" 2>$null)
+    if ($exifCheck) {
+        $exifVer = (& wsl -e bash -c "exiftool -ver 2>/dev/null" 2>$null | Select-Object -First 1)
+        Report-Pass "ExifTool (WSL)" "v$exifVer"
+    } else {
+        Report-Fail "ExifTool (WSL)" "Install in WSL: sudo apt install -y libimage-exiftool-perl"
+    }
+
+    # Nmap
+    $nmapCheck = (& wsl -e bash -c "command -v nmap 2>/dev/null" 2>$null)
+    if ($nmapCheck) {
+        $nmapVer = (& wsl -e bash -c "nmap --version 2>/dev/null" 2>$null | Select-Object -First 1)
+        Report-Pass "Nmap (WSL)" "$nmapVer"
+    } else {
+        Report-Fail "Nmap (WSL)" "Install in WSL: sudo apt install -y nmap"
+    }
+
+    # Binwalk
+    $binwalkCheck = (& wsl -e bash -c "command -v binwalk 2>/dev/null" 2>$null)
+    if ($binwalkCheck) {
+        $binwalkVer = (& wsl -e bash -c "binwalk --version 2>/dev/null" 2>$null | Select-Object -First 1)
+        Report-Pass "Binwalk (WSL)" "$binwalkVer"
+    } else {
+        Report-Fail "Binwalk (WSL)" "Install in WSL: sudo apt install -y binwalk"
+    }
+
+    # Steghide
+    $steghideCheck = (& wsl -e bash -c "command -v steghide 2>/dev/null" 2>$null)
+    if ($steghideCheck) {
+        $steghideVer = (& wsl -e bash -c "steghide --version 2>&1" 2>$null | Select-Object -First 1)
+        Report-Pass "Steghide (WSL)" "$steghideVer"
+    } else {
+        Report-Fail "Steghide (WSL)" "Install in WSL: sudo apt install -y steghide"
+    }
+
+    # Netcat
+    $ncCheck = (& wsl -e bash -c "command -v nc 2>/dev/null" 2>$null)
+    if ($ncCheck) {
+        Report-Pass "Netcat (nc in WSL)" "Networking utility available"
+    } else {
+        Report-Fail "Netcat (nc in WSL)" "Install in WSL: sudo apt install -y netcat-traditional"
+    }
+} else {
+    Report-Warn "WSL CTF Tools" "WSL2 Ubuntu not installed/running. Run: wsl --install -d Ubuntu (see windows/08-wsl-setup.md)"
+}
+
+# Windows Native GUI Tools (Wireshark & Burp Suite)
+$wiresharkCmd = Get-Command wireshark -ErrorAction SilentlyContinue
+$wiresharkPath = "C:\Program Files\Wireshark\Wireshark.exe"
+if ($wiresharkCmd -or (Test-Path $wiresharkPath)) {
+    Report-Pass "Wireshark (Windows GUI)" "Installed"
+} else {
+    Report-Warn "Wireshark (Windows GUI)" "Optional: winget install WiresharkFoundation.Wireshark"
+}
+
+$burpPath1 = "$env:ProgramFiles\BurpSuiteCommunity\BurpSuiteCommunity.exe"
+$burpPath2 = "$env:LOCALAPPDATA\Programs\BurpSuiteCommunity\BurpSuiteCommunity.exe"
+if ((Test-Path $burpPath1) -or (Test-Path $burpPath2)) {
+    Report-Pass "Burp Suite (Windows GUI)" "Installed"
+} else {
+    Report-Warn "Burp Suite (Windows GUI)" "Optional: winget install PortSwigger.BurpSuite.Community"
+}
+
+# -------------------------------------------------------------
+# 10. Web3 & Solana Toolchain (inside WSL2)
+# -------------------------------------------------------------
+Write-Header "10. Web3 & Solana Toolchain (WSL2)"
+
+if ($wslAvailable) {
+    # Rustc
+    $rustcCheck = (& wsl -e bash -c "source ~/.cargo/env 2>/dev/null; command -v rustc 2>/dev/null" 2>$null)
+    if ($rustcCheck) {
+        $rustcVer = (& wsl -e bash -c "source ~/.cargo/env 2>/dev/null; rustc --version 2>/dev/null" 2>$null | Select-Object -First 1)
+        Report-Pass "Rust Compiler (WSL)" "$rustcVer"
+    } else {
+        Report-Fail "Rust Compiler (WSL)" "Install in WSL: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+    }
+
+    # Cargo
+    $cargoCheck = (& wsl -e bash -c "source ~/.cargo/env 2>/dev/null; command -v cargo 2>/dev/null" 2>$null)
+    if ($cargoCheck) {
+        $cargoVer = (& wsl -e bash -c "source ~/.cargo/env 2>/dev/null; cargo --version 2>/dev/null" 2>$null | Select-Object -First 1)
+        Report-Pass "Cargo (WSL)" "$cargoVer"
+    } else {
+        Report-Fail "Cargo (WSL)" "Installed automatically with Rustup"
+    }
+
+    # Solana CLI
+    $solanaCheck = (& wsl -e bash -c "export PATH=\"\$HOME/.local/share/solana/install/active_release/bin:\$PATH\"; command -v solana 2>/dev/null" 2>$null)
+    if ($solanaCheck) {
+        $solanaVer = (& wsl -e bash -c "export PATH=\"\$HOME/.local/share/solana/install/active_release/bin:\$PATH\"; solana --version 2>/dev/null" 2>$null | Select-Object -First 1)
+        Report-Pass "Solana CLI (WSL)" "$solanaVer"
+    } else {
+        Report-Fail "Solana CLI (WSL)" "Install in WSL: sh -c `"`$(curl -sSfL https://release.anza.xyz/stable/install)`""
+    }
+
+    # Anchor Version Manager (AVM)
+    $avmCheck = (& wsl -e bash -c "source ~/.cargo/env 2>/dev/null; command -v avm 2>/dev/null" 2>$null)
+    if ($avmCheck) {
+        $avmVer = (& wsl -e bash -c "source ~/.cargo/env 2>/dev/null; avm --version 2>/dev/null" 2>$null | Select-Object -First 1)
+        Report-Pass "Anchor AVM (WSL)" "$avmVer"
+    } else {
+        Report-Fail "Anchor AVM (WSL)" "Install in WSL: cargo install --git https://github.com/coral-xyz/anchor avm --locked --force"
+    }
+
+    # Anchor CLI
+    $anchorCheck = (& wsl -e bash -c "export PATH=\"\$HOME/.avm/bin:\$PATH\"; source ~/.cargo/env 2>/dev/null; command -v anchor 2>/dev/null" 2>$null)
+    if ($anchorCheck) {
+        $anchorVer = (& wsl -e bash -c "export PATH=\"\$HOME/.avm/bin:\$PATH\"; source ~/.cargo/env 2>/dev/null; anchor --version 2>/dev/null" 2>$null | Select-Object -First 1)
+        Report-Pass "Anchor CLI (WSL)" "$anchorVer"
+    } else {
+        Report-Fail "Anchor CLI (WSL)" "Install in WSL: avm install latest && avm use latest"
+    }
+} else {
+    Report-Warn "Web3 Toolchain" "WSL2 Ubuntu required for Solana/Anchor development on Windows (see windows/10-web3-setup.md)"
+}
+
+# -------------------------------------------------------------
 # Summary
 # -------------------------------------------------------------
 Write-Host ""

@@ -135,7 +135,65 @@ Kaggle (by Google) is the world's largest community for data science and machine
 
 ---
 
-## 5. Hugging Face Account
+## 5. Google Colab (Free Cloud GPU & Jupyter Notebooks)
+
+Google Colaboratory (Colab) is a free, cloud-hosted Jupyter notebook environment provided by Google. It allows you to write and execute Python in your browser with zero configuration, and provides free access to computing resources including **NVIDIA T4 GPUs**.
+
+### Step 1: Sign In with Google Account
+1. Open [colab.research.google.com](https://colab.research.google.com).
+2. Sign in using your Google account (your personal or college Gmail).
+   
+   ![Colab Welcome Page and Sign In](../images/colab-setup-1.png)
+
+### Step 2: Create a New Notebook & Basic Usage
+1. Click **New notebook** in the bottom-left corner of the dialog (or click **File > New notebook** from the top menu).
+   
+   ![Click New notebook button](../images/colab-setup-2.png)
+
+2. You'll be taken to an empty Jupyter notebook interface with an untitled filename (e.g., `Untitled0.ipynb`). Rename your notebook by clicking on the filename at the top.
+   
+   ![Blank notebook interface](../images/colab-setup-3.png)
+
+3. Try typing a simple Python command in the first code cell and click the **Run** button (or press `Shift + Enter`):
+   ```python
+   print("Hello from Google Colab!")
+   ```
+   
+   ![Run first Python code cell in notebook](../images/colab-setup-4.png)
+
+### Step 3: Enable Free GPU Acceleration (T4 GPU)
+By default, Colab notebooks run on a standard CPU. To switch to a free GPU hardware accelerator for deep learning, PyTorch, or TensorFlow:
+
+1. In the top menu, navigate to **Runtime > Change runtime type**.
+   
+   ![Navigate to Runtime and select Change runtime type](../images/colab-setup-5.png)
+
+2. Under **Hardware accelerator**, select **T4 GPU**:
+   - **Hardware accelerator**: Select **T4 GPU**.
+   - **GPU class**: Keep it as **Standard** (Free tier).
+3. Click **Save**.
+   
+   ![Select T4 GPU hardware accelerator and save](../images/colab-setup-6.png)
+
+4. Run this snippet in a cell to verify your GPU is allocated:
+   ```python
+   # Check GPU hardware details
+   !nvidia-smi
+   ```
+   ```python
+   # Verify PyTorch CUDA support
+   import torch
+   print("CUDA Available:", torch.cuda.is_available())
+   if torch.cuda.is_available():
+       print("Device Name:", torch.cuda.get_device_name(0))
+   ```
+   If configured properly, PyTorch will output `CUDA Available: True` and show `Tesla T4`.
+   
+   ![Verify GPU availability in notebook cell](../images/colab-setup-7.png)
+
+---
+
+## 6. Hugging Face Account
 
 Hugging Face is the central hub for modern AI, Large Language Models (LLMs), open-weights models, datasets, and AI demo hosting (Spaces).
 

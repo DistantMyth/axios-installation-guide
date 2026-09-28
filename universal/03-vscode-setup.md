@@ -93,7 +93,4 @@ To apply standard editor optimizations, press `Ctrl + Shift + P` (or `Cmd + Shif
 
 ---
 
-👉 **You are now ready for OS-specific installation!**
-- 🪟 Windows Users: **[Windows Setup Guide](../windows/README.md)**
-- 🐧 Linux Users: **[Linux Setup Guide](../linux/README.md)**
-- 🍎 macOS Users: **[macOS Setup Guide](../macos/README.md)**
+👉 **Next Step**: Proceed to **[04. Web3 Wallets & Ecosystem Setup](./04-web3-wallets.md)**.

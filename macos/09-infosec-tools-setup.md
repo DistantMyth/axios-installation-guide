@@ -10,15 +10,34 @@ For macOS developers, the gold standard for cybersecurity, CTF challenges, and p
 
 ---
 
-## 💡 Why Use a Linux Container on macOS for Infosec?
+## Part 1: Native macOS CLI & CTF Utilities (via Homebrew)
+
+If you are participating in CTF (Capture The Flag) competitions or cybersecurity challenges with the Infosec / Cybersecurity Wing, install these standard reverse engineering, steganography, and network analysis utilities directly via Homebrew:
+
+```zsh
+brew install exiftool nmap binwalk steghide netcat
+```
+
+### Verify Native CTF Tools:
+```zsh
+exiftool -ver       # Metadata extraction and image analysis
+nmap --version      # Network scanning and port discovery
+binwalk --version   # Embedded file carving and firmware analysis
+steghide --version  # Steganography hidden data extraction
+nc -h               # Netcat networking utility
+```
+
+---
+
+## Part 2: Isolated Linux Container (for Advanced Raw Sockets & Binary Exploitation)
+
+### 💡 Why Use a Linux Container on macOS for Advanced Infosec?
 
 1. **Raw Sockets & Packet Crafting**: Low-level networking tools (e.g. Nmap OS fingerprinting `-O`, SYN stealth scans `-sS`, Scapy packet injection) rely on Linux raw socket architectures (`AF_PACKET`) that macOS restricts.
 2. **Binary Exploitation & CTF Reverse Engineering**: Tools like `gdb` with PEDA/GEF, `pwntools`, and decompilers target Linux ELF binaries. macOS uses the Mach-O binary format and enforces System Integrity Protection (SIP), making local binary analysis difficult on macOS.
 3. **Safe Sandboxing**: Prevents security tools, scripts, and wordlists from triggering macOS Gatekeeper warnings or polluting system libraries.
 
----
-
-## Step 1: Create a Persistent Infosec Linux Container
+### Step 1: Create a Persistent Infosec Linux Container
 
 We will launch an official **Kali Linux** (or Ubuntu) container with a shared folder mapped to your Mac's home directory.
 
@@ -119,4 +138,4 @@ brew install --cask wireshark
 
 ---
 
-👉 **macOS Setup is Complete!** You have a robust UNIX developer workstation with full Linux container capability for security and coursework.
+👉 **Next Step**: Proceed to **[10. Web3 & Solana Development Setup](./10-web3-setup.md)**.

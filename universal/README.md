@@ -12,9 +12,10 @@ Complete the following sections in order before moving to your operating-system-
 
 | Step | Topic | Description | Link |
 | :---: | :--- | :--- | :--- |
-| **01** | **Developer Accounts** | Set up GitHub, Codeforces, CodeChef, Kaggle, and Hugging Face | [01-accounts-setup.md](./01-accounts-setup.md) |
+| **01** | **Developer Accounts** | Set up GitHub, Codeforces, CodeChef, Kaggle, Google Colab (GPU), and Hugging Face | [01-accounts-setup.md](./01-accounts-setup.md) |
 | **02** | **Browser Extensions** | Install Competitive Companion, Carrot, CF Analytics, and JSON tools | [02-browser-extensions.md](./02-browser-extensions.md) |
 | **03** | **VS Code Setup** | Install VS Code extensions for C++, Python, Web Dev, and Competitive Programming | [03-vscode-setup.md](./03-vscode-setup.md) |
+| **04** | **Web3 Wallets & Tools** | Set up MetaMask, Phantom, Sepolia testnet, Solana devnet, Remix IDE, and Onchain IIITL | [04-web3-wallets.md](./04-web3-wallets.md) |
 
 ---
 

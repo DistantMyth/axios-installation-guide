@@ -42,9 +42,10 @@ Docs/
 │
 ├── universal/                         # Platform-agnostic tools & accounts
 │   ├── README.md                      # Universal overview & sequence
-│   ├── 01-accounts-setup.md           # GitHub, Codeforces, CodeChef, Kaggle, Hugging Face
+│   ├── 01-accounts-setup.md           # GitHub, Codeforces, CodeChef, Kaggle, Colab, Hugging Face
 │   ├── 02-browser-extensions.md       # Competitive Companion, Carrot, JSON Viewer
-│   └── 03-vscode-setup.md             # VS Code extensions & key configuration
+│   ├── 03-vscode-setup.md             # VS Code extensions & key configuration
+│   └── 04-web3-wallets.md             # MetaMask, Phantom, Sepolia testnet, Solana devnet, Remix
 │
 ├── windows/                           # Windows 10/11 developer configuration
 │   ├── README.md                      # Windows roadmap & verification checklist
@@ -56,7 +57,8 @@ Docs/
 │   ├── 06-git-setup.md                # Git configuration & SSH authentication
 │   ├── 07-java-setup.md               # OpenJDK 21, JAVA_HOME, and compiler test
 │   ├── 08-wsl-setup.md                # WSL2 (Ubuntu Linux) & VS Code integration
-│   └── 09-infosec-tools-setup.md      # Infosec tools in WSL & native tools
+│   ├── 09-infosec-tools-setup.md      # Core CTF tools in WSL2 & native GUI tools
+│   └── 10-web3-setup.md               # Rust, Solana CLI, AVM & Anchor framework in WSL2
 │
 ├── linux/                             # Linux distributions (Debian/Ubuntu, Arch, Fedora)
 │   ├── README.md                      # Linux roadmap & distribution matrix
@@ -68,7 +70,8 @@ Docs/
 │   ├── 06-git-setup.md                # Git configuration & SSH key authentication
 │   ├── 07-java-setup.md               # OpenJDK 21 installation & JAVA_HOME
 │   ├── 08-linux-container-setup.md    # Docker CE engine & non-root user setup
-│   └── 09-infosec-tools-setup.md      # Nmap, Wireshark, Burp Suite, John, etc.
+│   ├── 09-infosec-tools-setup.md      # Core CTF tools, Wireshark, Burp Suite, John, etc.
+│   └── 10-web3-setup.md               # Rust, Solana CLI, AVM & Anchor framework
 │
 └── macos/                             # macOS (Apple Silicon & Intel)
     ├── README.md                      # macOS roadmap & prerequisites
@@ -80,7 +83,8 @@ Docs/
     ├── 06-git-setup.md                # Git configuration & SSH key authentication
     ├── 07-java-setup.md               # OpenJDK 21 / Temurin & JAVA_HOME
     ├── 08-linux-container-setup.md    # Docker / Colima / OrbStack container runtime
-    └── 09-infosec-tools-setup.md      # Containerized Linux environment for security tools
+    ├── 09-infosec-tools-setup.md      # Native Homebrew CTF tools & Linux containers
+    └── 10-web3-setup.md               # Rust, Solana CLI, AVM & Anchor framework
 ```
 
 ---
@@ -95,7 +99,8 @@ By completing these guides, your machine will have:
 - **JavaScript / Web Development**: `nvm` (Node Version Manager) managing Node.js LTS seamlessly without permission issues.
 - **Java**: OpenJDK 21 LTS with properly configured `JAVA_HOME` and command-line compilers (`javac`, `java`).
 - **Containers / Linux Environment**: WSL2 on Windows, native Docker Engine on Linux, and Docker/Colima on macOS.
-- **Security / Infosec**: Core network analysis and penetration testing utilities (Nmap, Wireshark, Burp Suite) running natively or in isolated Linux containers.
+- **Security / Infosec**: Core CTF utilities (ExifTool, Binwalk, Steghide, Nmap, Netcat) inside WSL2 / Linux / macOS, and Wireshark & Burp Suite.
+- **Web3 & Blockchain**: MetaMask (Sepolia testnet), Phantom (Solana devnet), Remix IDE, Rust compiler, Solana CLI, AVM, and Anchor framework.
 - **Productivity & Contests**: VS Code loaded with CPH, Code Runner, Python, Prettier, and browser test-case parsers for Codeforces & CodeChef.
 
 > [!TIP]

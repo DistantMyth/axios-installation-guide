@@ -22,7 +22,8 @@ Follow these guides in numerical order:
 | **06** | **Git & SSH Authentication** | Configure Git identity, generate Ed25519 SSH keys, copy via `pbcopy` | [06-git-setup.md](./06-git-setup.md) |
 | **07** | **Java Setup** | Install OpenJDK 21 LTS via Homebrew, symlink JVM, and configure `JAVA_HOME` | [07-java-setup.md](./07-java-setup.md) |
 | **08** | **Linux Containers Setup** | Set up Docker Desktop / OrbStack / Colima on macOS | [08-linux-container-setup.md](./08-linux-container-setup.md) |
-| **09** | **Infosec Tools Setup (Containers)** | Run cybersecurity tools inside isolated Linux containers on macOS | [09-infosec-tools-setup.md](./09-infosec-tools-setup.md) |
+| **09** | **Infosec & CTF Tools** | Install native CTF tools via Homebrew (ExifTool, Nmap, Binwalk, Steghide, Netcat) and Linux containers | [09-infosec-tools-setup.md](./09-infosec-tools-setup.md) |
+| **10** | **Web3 & Solana Setup** | Set up Rust, Solana CLI, AVM, and Anchor framework natively on macOS | [10-web3-setup.md](./10-web3-setup.md) |
 
 ---
 

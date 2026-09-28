@@ -12,14 +12,31 @@ Running cybersecurity and penetration testing tools inside **WSL2** is the indus
 
 ---
 
-## Part 1: Installing CLI Infosec Tools inside WSL2
+## Part 1: Installing CLI Infosec & CTF Tools inside WSL2
 
 Open your **Ubuntu WSL terminal** and install the core toolset:
 
-### 1. Essential Networking & Reconnaissance Tools
+### 1. Core CTF, Forensics & Steganography Utilities
+These are the fundamental utilities used in CTF (Capture The Flag) competitions for metadata extraction, steganography, file carving, and network debugging:
+
 ```bash
-sudo apt update
-sudo apt install -y nmap tcpdump tshark netcat-openbsd socat dnsutils whois traceroute
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y build-essential libimage-exiftool-perl nmap netcat-traditional binwalk steghide pkg-config libssl-dev libudev-dev
+```
+
+#### Verify Core CTF Tools inside Ubuntu:
+Run these commands inside your WSL terminal to ensure each tool is ready:
+```bash
+exiftool -ver       # Metadata extraction and image analysis
+nmap --version      # Network scanning and port discovery
+binwalk --version   # Firmware and binary embedded file analysis / carving
+steghide --version  # Steganography hidden data extraction
+nc -h               # Netcat networking utility
+```
+
+### 2. Extended Networking & Reconnaissance Tools
+```bash
+sudo apt install -y tcpdump tshark socat dnsutils whois traceroute
 ```
 
 - **`nmap`**: The world's leading network mapper and port scanner.
@@ -92,4 +109,4 @@ To practice legally and sharpen your skills:
 
 ---
 
-👉 **Windows Setup is Complete!** You are fully equipped for development, coursework, and competitive programming.
+👉 **Next Step**: Proceed to **[10. Web3 & Solana Development Setup (inside WSL)](./10-web3-setup.md)**.

@@ -20,7 +20,8 @@ Follow these guides in numerical order:
 | **06** | **Git & SSH Authentication** | Configure Git username/email, generate Ed25519 SSH keys, connect to GitHub | [06-git-setup.md](./06-git-setup.md) |
 | **07** | **Java Setup** | Install OpenJDK 21 LTS, set `JAVA_HOME` & PATH, verify with compiler test | [07-java-setup.md](./07-java-setup.md) |
 | **08** | **WSL2 & Linux Containers** | Install Ubuntu on WSL2, set up Docker Desktop backend, and VS Code WSL | [08-wsl-setup.md](./08-wsl-setup.md) |
-| **09** | **Infosec Tools Setup** | Configure Nmap, Wireshark, Burp Suite, and pentest tools inside WSL2 & Windows | [09-infosec-tools-setup.md](./09-infosec-tools-setup.md) |
+| **09** | **Infosec & CTF Tools** | Install core CTF utilities (ExifTool, Binwalk, Steghide, Nmap, Netcat) inside WSL2 and Wireshark/Burp on Windows | [09-infosec-tools-setup.md](./09-infosec-tools-setup.md) |
+| **10** | **Web3 & Solana Setup** | Set up Rust, Solana CLI, AVM, and Anchor framework inside WSL2 | [10-web3-setup.md](./10-web3-setup.md) |
 
 ---
 

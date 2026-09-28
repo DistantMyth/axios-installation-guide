@@ -10,24 +10,55 @@ Linux is the native operating system of choice for cybersecurity researchers, pe
 
 ---
 
-## 1. Network Reconnaissance & Analysis Tools
+## 1. Core CTF, Steganography & File Analysis Utilities
 
-Install Nmap, Wireshark/TShark, Netcat, and packet capture tools:
+If you are participating in CTF (Capture The Flag) competitions, forensics challenges, or cybersecurity coursework, install these essential command-line tools for metadata inspection, steganography, file carving, and socket debugging:
+
+### On Debian / Ubuntu / Linux Mint:
+```bash
+sudo apt update
+sudo apt install -y libimage-exiftool-perl nmap netcat-traditional binwalk steghide
+```
+
+### On Arch Linux / Manjaro:
+```bash
+sudo pacman -S --needed perl-image-exiftool nmap gnu-netcat binwalk steghide
+```
+
+### On Fedora / RHEL:
+```bash
+sudo dnf install -y perl-Image-ExifTool nmap nmap-ncat binwalk steghide
+```
+
+### Verify Core CTF Tools:
+Run these commands in your terminal to confirm every tool is operational:
+```bash
+exiftool -ver       # Metadata extraction and image analysis
+nmap --version      # Network scanning and port discovery
+binwalk --version   # Embedded file carving and firmware analysis
+steghide --version  # Steganography hidden data extraction
+nc -h               # Netcat networking utility
+```
+
+---
+
+## 2. Extended Network Reconnaissance & Analysis Tools
+
+Install Wireshark/TShark, packet sniffers, and network diagnostics:
 
 ### On Debian / Ubuntu:
 ```bash
-sudo apt update
-sudo apt install -y nmap tcpdump tshark wireshark netcat-openbsd socat dnsutils whois traceroute
+sudo apt install -y tcpdump tshark wireshark netcat-openbsd socat dnsutils whois traceroute
 ```
 
 ### On Arch Linux:
 ```bash
-sudo pacman -S --needed nmap tcpdump wireshark-cli wireshark-qt openbsd-netcat socat bind-tools whois traceroute
+sudo pacman -S --needed tcpdump wireshark-cli wireshark-qt openbsd-netcat socat bind-tools whois traceroute
 ```
 
 ### On Fedora:
 ```bash
-sudo dnf install -y nmap tcpdump wireshark wireshark-cli nc socat bind-utils whois traceroute
+sudo dnf install -y tcpdump wireshark wireshark-cli nc socat bind-utils whois traceroute
 ```
 
 ---
@@ -125,4 +156,4 @@ uv pip install scapy pwntools requests beautifulsoup4 cryptography
 
 ---
 
-👉 **Linux Setup is Complete!** Your Linux development and security workstation is now fully operational.
+👉 **Next Step**: Proceed to **[10. Web3 & Solana Development Setup](./10-web3-setup.md)**.

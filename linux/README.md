@@ -26,7 +26,8 @@ Follow these guides in numerical order:
 | **06** | **Git & SSH Authentication** | Configure Git identity, generate Ed25519 SSH keys, copy via `wl-copy`/`xclip` | [06-git-setup.md](./06-git-setup.md) |
 | **07** | **Java Setup** | Install OpenJDK 21 LTS, set `JAVA_HOME`, and verify single-file compiler execution | [07-java-setup.md](./07-java-setup.md) |
 | **08** | **Docker Containers Setup** | Install Docker Engine, configure rootless user groups, and VS Code Dev Containers | [08-linux-container-setup.md](./08-linux-container-setup.md) |
-| **09** | **Infosec Tools Setup** | Set up Nmap, Wireshark with non-root packet capture, Burp Suite, and security tools | [09-infosec-tools-setup.md](./09-infosec-tools-setup.md) |
+| **09** | **Infosec & CTF Tools** | Install core CTF tools (ExifTool, Nmap, Netcat, Binwalk, Steghide), non-root Wireshark, Burp Suite | [09-infosec-tools-setup.md](./09-infosec-tools-setup.md) |
+| **10** | **Web3 & Solana Setup** | Set up Rust, Solana CLI, AVM, and Anchor framework natively on Linux | [10-web3-setup.md](./10-web3-setup.md) |
 
 ---
 

@@ -433,6 +433,140 @@ if [ "$OS_TYPE" = "Darwin" ]; then
 fi
 
 # ==============================================================================
+# 9. Cybersecurity & CTF Tools
+# ==============================================================================
+header "9. Cybersecurity & CTF Tools"
+
+# ExifTool
+if command -v exiftool >/dev/null 2>&1; then
+    report_pass "ExifTool" "v$(exiftool -ver 2>/dev/null | head -n 1)"
+else
+    if [ "$OS_TYPE" = "Darwin" ]; then
+        report_fail "ExifTool" "Install via: brew install exiftool"
+    else
+        report_fail "ExifTool" "Install via: sudo apt install -y libimage-exiftool-perl (or pacman -S perl-image-exiftool)"
+    fi
+fi
+
+# Nmap
+if command -v nmap >/dev/null 2>&1; then
+    NMAP_VER=$(nmap --version 2>/dev/null | head -n 1)
+    report_pass "Nmap" "$NMAP_VER"
+else
+    if [ "$OS_TYPE" = "Darwin" ]; then
+        report_fail "Nmap" "Install via: brew install nmap"
+    else
+        report_fail "Nmap" "Install via: sudo apt install -y nmap (or pacman -S nmap)"
+    fi
+fi
+
+# Binwalk
+if command -v binwalk >/dev/null 2>&1; then
+    BINWALK_VER=$(binwalk --version 2>/dev/null | head -n 1)
+    report_pass "Binwalk" "$BINWALK_VER"
+else
+    if [ "$OS_TYPE" = "Darwin" ]; then
+        report_fail "Binwalk" "Install via: brew install binwalk"
+    else
+        report_fail "Binwalk" "Install via: sudo apt install -y binwalk (or pacman -S binwalk)"
+    fi
+fi
+
+# Steghide
+if command -v steghide >/dev/null 2>&1; then
+    STEG_VER=$(steghide --version 2>&1 | head -n 1)
+    report_pass "Steghide" "$STEG_VER"
+else
+    if [ "$OS_TYPE" = "Darwin" ]; then
+        report_fail "Steghide" "Install via: brew install steghide"
+    else
+        report_fail "Steghide" "Install via: sudo apt install -y steghide (or pacman -S steghide)"
+    fi
+fi
+
+# Netcat (nc)
+if command -v nc >/dev/null 2>&1; then
+    report_pass "Netcat (nc)" "Command available in PATH ($(command -v nc))"
+else
+    if [ "$OS_TYPE" = "Darwin" ]; then
+        report_fail "Netcat (nc)" "Install via: brew install netcat"
+    else
+        report_fail "Netcat (nc)" "Install via: sudo apt install -y netcat-traditional (or pacman -S openbsd-netcat)"
+    fi
+fi
+
+# GUI Security Tools (Optional)
+if [ "$OS_TYPE" = "Darwin" ]; then
+    if [ -d "/Applications/Wireshark.app" ]; then
+        report_pass "Wireshark GUI" "Installed in /Applications"
+    else
+        report_warn "Wireshark GUI" "Optional: brew install --cask wireshark"
+    fi
+    if [ -d "/Applications/Burp Suite Community Edition.app" ]; then
+        report_pass "Burp Suite GUI" "Installed in /Applications"
+    else
+        report_warn "Burp Suite GUI" "Optional: brew install --cask burp-suite"
+    fi
+else
+    if command -v wireshark >/dev/null 2>&1; then
+        report_pass "Wireshark GUI" "Installed ($(command -v wireshark))"
+    else
+        report_warn "Wireshark GUI" "Optional: sudo apt install -y wireshark (or pacman -S wireshark-qt)"
+    fi
+fi
+
+# ==============================================================================
+# 10. Web3 & Solana Development Tools
+# ==============================================================================
+header "10. Web3 & Solana Development Tools"
+
+# Ensure environment paths for Cargo, Solana, and AVM are loaded in current subshell
+if [ -s "$HOME/.cargo/env" ]; then
+    \. "$HOME/.cargo/env" >/dev/null 2>&1 || true
+fi
+if [ -d "$HOME/.local/share/solana/install/active_release/bin" ]; then
+    export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+fi
+if [ -d "$HOME/.avm/bin" ]; then
+    export PATH="$HOME/.avm/bin:$PATH"
+fi
+
+# Rustc
+if command -v rustc >/dev/null 2>&1; then
+    report_pass "Rust Compiler (rustc)" "$(rustc --version) ($(command -v rustc))"
+else
+    report_fail "Rust Compiler (rustc)" "Install via: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+fi
+
+# Cargo
+if command -v cargo >/dev/null 2>&1; then
+    report_pass "Cargo Package Manager" "$(cargo --version) ($(command -v cargo))"
+else
+    report_fail "Cargo" "Installed automatically with Rustup"
+fi
+
+# Solana CLI
+if command -v solana >/dev/null 2>&1; then
+    report_pass "Solana CLI" "$(solana --version) ($(command -v solana))"
+else
+    report_fail "Solana CLI" "Install via: sh -c \"\$(curl -sSfL https://release.anza.xyz/stable/install)\""
+fi
+
+# Anchor Version Manager (AVM)
+if command -v avm >/dev/null 2>&1; then
+    report_pass "Anchor AVM" "$(avm --version) ($(command -v avm))"
+else
+    report_fail "Anchor AVM" "Install via: cargo install --git https://github.com/coral-xyz/anchor avm --locked --force"
+fi
+
+# Anchor CLI
+if command -v anchor >/dev/null 2>&1; then
+    report_pass "Anchor Framework CLI" "$(anchor --version) ($(command -v anchor))"
+else
+    report_fail "Anchor CLI" "Install via: avm install latest && avm use latest"
+fi
+
+# ==============================================================================
 # Summary
 # ==============================================================================
 echo ""
